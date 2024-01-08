@@ -34,4 +34,4 @@ asyncio.run(main())
 - PyEpic does not support Epic Games' XMPP services. This includes real-time in-game events such as party invites or whispers.
 
 # Disclaimers
-- The APIs that PyEpic with are not officially documented, nor are they intended to be used outside the official clients. As a result, the package could experience major breaking changes (or stop working!) at any moment.
+- The APIs that PyEpic interacts with are not officially documented, nor are they intended to be used outside the official clients. As a result, the package could experience major breaking changes (or stop working!) at any moment.
