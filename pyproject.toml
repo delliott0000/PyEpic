@@ -1,5 +1,5 @@
 [project]
-name = "pyepic"
+name = "py-epic"
 readme = "README.md"
 version = "0.0.1"
 description = "HTTP wrapper for the Epic/Fortnite APIs."
