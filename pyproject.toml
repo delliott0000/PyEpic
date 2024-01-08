@@ -1,0 +1,27 @@
+[project]
+name = "pyepic"
+readme = "README.md"
+version = "0.0.1"
+description = "HTTP wrapper for the Epic/Fortnite APIs."
+requires-python = ">=3.10"
+authors = [
+    { name = "Delliott", email = "dlelliott100@outlook.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha"
+]
+dependencies = [
+    "aiohttp >= 3.3.0"
+]
+
+[project.urls]
+Repository = "https://github.com/delliott0000/Epic-HTTP-Py"
+
+[build-system]
+requires = [
+    "setuptools >= 46.4.0"
+]
+build-backend = "setuptools.build_meta"
