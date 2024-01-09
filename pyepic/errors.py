@@ -14,6 +14,7 @@ __all__ = (
     "FortniteException",
     "FortniteItemException",
     "UnknownTemplateID",
+    "BadItemAttributes",
     "ItemIsReadOnly",
     "ItemIsFavorited",
     "InvalidUpgrade",
@@ -59,6 +60,11 @@ class FortniteItemException(FortniteException):
 class UnknownTemplateID(FortniteItemException):
     def __str__(self) -> str:
         return f"Unknown template ID: {self.item.template_id}"
+
+
+class BadItemAttributes(FortniteItemException):
+    def __str__(self) -> str:
+        return f"Malformed/invalid item attributes: {self.item.raw_attributes}"
 
 
 class ItemIsReadOnly(FortniteItemException):

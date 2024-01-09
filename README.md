@@ -10,6 +10,19 @@ An asynchronous, object-oriented API wrapper for the Epic/Fortnite HTTP services
 - Automatic, configurable rate limit handling and caching.
 - Optimised for speed and memory.
 
+# Installing
+**Python 3.10 or higher is required. For project dependencies, see [requirements.txt](https://github.com/delliott0000/PyEpic/blob/master/requirements.txt).**
+
+It is recommended to install the library within a virtual environment instead of the global Python installation.
+
+```sh
+# Windows
+py -m pip install py-epic
+
+#Linux/MacOS
+python3 -m pip install py-epic
+```
+
 # Basic Example
 
 ```py

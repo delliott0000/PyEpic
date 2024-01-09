@@ -6,6 +6,7 @@ from typing import Generic
 from .base import BaseEntity, AccountBoundMixin
 from pyepic import (
     UnknownTemplateID,
+    BadItemAttributes,
     ItemIsReadOnly,
     ItemIsFavorited,
     InvalidUpgrade,
@@ -17,7 +18,7 @@ if TYPE_CHECKING:
     from typing import ClassVar
 
     from pyepic import AuthSession
-    from pyepic._types import Dict, DCo, Attributes
+    from pyepic._types import Dict, DCo, Attributes, Personality
 
 
 __all__ = (
@@ -26,6 +27,9 @@ __all__ = (
     "Upgradable",
     "Schematic",
     "SchematicPerk",
+    "SurvivorBase",
+    "Survivor",
+    "LeadSurvivor",
 )
 
 
@@ -192,3 +196,36 @@ class SchematicPerk(Generic[AccountT]):
         self.description: str
 
     # TODO: implement dunders here
+
+
+class SurvivorBase(Generic[AccountT], Upgradable[AccountT]):
+    __slots__ = ("personality", "squad_id", "squad_index")
+
+    def __init__(
+        self,
+        account: AccountT,
+        item_id: str,
+        template_id: str,
+        raw_attributes: Attributes,
+        /,
+    ) -> None:
+        super().__init__(account, item_id, template_id, raw_attributes)
+
+        try:
+            self.personality: Personality = raw_attributes[
+                "personality"
+            ].split(".")[-1][2:]
+            _index = raw_attributes["squad_slot_idx"]
+        except KeyError:
+            raise BadItemAttributes(self)
+
+        self.squad_id: str | None = raw_attributes.get("squad_id")
+        self.squad_index: int | None = _index if _index != -1 else None
+
+
+class Survivor(Generic[AccountT], SurvivorBase[AccountT]):
+    __slots__ = ()
+
+
+class LeadSurvivor(Generic[AccountT], SurvivorBase[AccountT]):
+    __slots__ = ()

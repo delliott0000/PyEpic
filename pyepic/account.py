@@ -8,7 +8,7 @@ from logging import getLogger
 from .route import FriendsService
 from .errors import UnknownTemplateID
 from .fortnite.base import AccountBoundMixin
-from .fortnite.stw import Schematic
+from .fortnite.stw import Schematic, Survivor, LeadSurvivor
 
 if TYPE_CHECKING:
     from typing import Any, Self
@@ -157,6 +157,20 @@ class PartialAccount:
     ) -> Coroutine[Any, Any, list[Schematic[Self]]]:
         return self.fetch_stw_objects(
             "Schematic:sid", Schematic, auth_session, **kwargs
+        )
+
+    def survivors(
+        self, auth_session: AuthSession, /, **kwargs: bool
+    ) -> Coroutine[Any, Any, list[Survivor[Self]]]:
+        return self.fetch_stw_objects(
+            "Worker:worker", Survivor, auth_session, **kwargs
+        )
+
+    def lead_survivors(
+        self, auth_session: AuthSession, /, **kwargs: bool
+    ) -> Coroutine[Any, Any, list[LeadSurvivor[Self]]]:
+        return self.fetch_stw_objects(
+            "Worker:manager", LeadSurvivor, auth_session, **kwargs
         )
 
 
