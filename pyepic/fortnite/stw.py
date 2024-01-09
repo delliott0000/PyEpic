@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 from typing import Generic
 
 from .base import BaseEntity, AccountBoundMixin
-from pyepic import (
+from pyepic.errors import (
     UnknownTemplateID,
     BadItemAttributes,
     ItemIsReadOnly,
@@ -17,7 +17,7 @@ from pyepic.resources import lookup
 if TYPE_CHECKING:
     from typing import ClassVar
 
-    from pyepic import AuthSession
+    from pyepic.auth import AuthSession
     from pyepic._types import Dict, DCo, Attributes, Personality
 
 
