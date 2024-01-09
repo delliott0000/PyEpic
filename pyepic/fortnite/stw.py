@@ -226,6 +226,10 @@ class SurvivorBase(Generic[AccountT], Upgradable[AccountT]):
 class Survivor(Generic[AccountT], SurvivorBase[AccountT]):
     __slots__ = ()
 
+    ...
+
 
 class LeadSurvivor(Generic[AccountT], SurvivorBase[AccountT]):
     __slots__ = ()
+
+    ...
