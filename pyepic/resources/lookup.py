@@ -10690,7 +10690,7 @@ lookup = {
                 },
             },
         },
-        "Lead Survivor": {
+        "LeadSurvivor": {
             "Uncommon": {
                 "1": {
                     "1": 5,

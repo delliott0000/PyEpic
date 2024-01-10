@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from typing import ClassVar
 
     from pyepic.auth import AuthSession
-    from pyepic._types import Dict, DCo, Attributes, Personality
+    from pyepic._types import Dict, DCo, Attributes
 
 
 __all__ = (
@@ -212,7 +212,7 @@ class SurvivorBase(Generic[AccountT], Upgradable[AccountT]):
         super().__init__(account, item_id, template_id, raw_attributes)
 
         try:
-            self.personality: Personality = raw_attributes[
+            self.personality: str = raw_attributes[
                 "personality"
             ].split(".")[-1][2:]
             _index = raw_attributes["squad_slot_idx"]
@@ -230,6 +230,27 @@ class Survivor(Generic[AccountT], SurvivorBase[AccountT]):
 
 
 class LeadSurvivor(Generic[AccountT], SurvivorBase[AccountT]):
-    __slots__ = ()
+    __slots__ = ("preferred_squad_id",)
 
-    ...
+    def __init__(
+        self,
+        account: AccountT,
+        item_id: str,
+        template_id: str,
+        raw_attributes: Attributes,
+        /,
+    ) -> None:
+        super().__init__(account, item_id, template_id, raw_attributes)
+
+        try:
+            self.preferred_squad_id: str = lookup["LeadPreferredSquads"][
+                raw_attributes["managerSynergy"]
+            ]
+        except KeyError:
+            raise BadItemAttributes(self)
+
+    @property
+    def base_power_level(self) -> int:
+        return lookup["ItemPowerLevels"]["LeadSurvivor"][self.rarity][
+            str(self.tier)
+        ][str(self.level)]

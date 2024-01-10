@@ -34,17 +34,6 @@ FriendType = Literal[
     "friends", "incoming", "outgoing", "suggested", "blocklist"
 ]
 
-Personality = Literal[
-    "Competitive",
-    "Cooperative",
-    "Adventurous",
-    "Dependable",
-    "Analytical",
-    "Pragmatic",
-    "Dreamer",
-    "Curious",
-]
-
 
 class PartialCacheEntry(TypedDict):
     account: PartialAccount
