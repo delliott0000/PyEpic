@@ -259,7 +259,9 @@ class Survivor(Generic[AccountT], SurvivorBase[AccountT]):
         except KeyError:
             raise BadItemAttributes(self)
 
-        self.set_bonus_type: SetBonusType = SetBonusType(type=_set_bonus_type, **_set_bonus_data)
+        self.set_bonus_type: SetBonusType = SetBonusType(
+            type=_set_bonus_type, **_set_bonus_data
+        )
 
     @property
     def base_power_level(self) -> int:
