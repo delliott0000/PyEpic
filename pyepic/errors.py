@@ -1,11 +1,12 @@
 from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from .fortnite import BaseEntity
-    from ._types import Json
-
     from aiohttp import ClientResponse
+
+    from ._types import Json
+    from .fortnite import BaseEntity
 
 
 __all__ = (

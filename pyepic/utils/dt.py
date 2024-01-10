@@ -1,6 +1,5 @@
 from datetime import datetime, timezone
 
-
 __all__ = ("utc_now",)
 
 

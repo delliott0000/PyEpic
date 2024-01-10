@@ -1,25 +1,25 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
 
-from typing import Generic
 from dataclasses import dataclass
+from typing import TYPE_CHECKING, Generic
 
-from .base import BaseEntity, AccountBoundMixin
-from pyepic.errors import (
-    UnknownTemplateID,
-    BadItemAttributes,
-    ItemIsReadOnly,
-    ItemIsFavorited,
-    InvalidUpgrade,
-)
 from pyepic._types import AccountT
+from pyepic.errors import (
+    BadItemAttributes,
+    InvalidUpgrade,
+    ItemIsFavorited,
+    ItemIsReadOnly,
+    UnknownTemplateID,
+)
 from pyepic.resources import lookup
+
+from .base import AccountBoundMixin, BaseEntity
 
 if TYPE_CHECKING:
     from typing import ClassVar
 
+    from pyepic._types import Attributes, DCo, Dict
     from pyepic.auth import AuthSession
-    from pyepic._types import Dict, DCo, Attributes
 
 
 __all__ = (

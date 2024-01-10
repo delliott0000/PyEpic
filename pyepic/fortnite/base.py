@@ -1,8 +1,7 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
 
 from abc import ABC
-from typing import Generic
+from typing import TYPE_CHECKING, Generic
 
 from pyepic._types import AccountT
 

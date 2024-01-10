@@ -1,29 +1,29 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
 
-from asyncio import sleep, create_task
+from asyncio import create_task, sleep
+from base64 import b64encode
 from collections import OrderedDict
 from dataclasses import dataclass
 from logging import getLogger
-from base64 import b64encode
 from time import time
+from typing import TYPE_CHECKING
 
-from .route import EpicGamesService, AccountService
-from .errors import HTTPException
-from .auth import AuthManager
-
-from aiohttp import ClientSession, ClientResponse, ClientResponseError
+from aiohttp import ClientResponse, ClientResponseError, ClientSession
 from aiohttp.helpers import sentinel
+
+from .auth import AuthManager
+from .errors import HTTPException
+from .route import AccountService, EpicGamesService
 
 if TYPE_CHECKING:
     from asyncio import Task
-    from typing import Self, Any
     from types import TracebackType
-
-    from .account import PartialAccount
-    from ._types import URL, Json, DCo, JCo, PartialCacheEntry
+    from typing import Any, Self
 
     from aiohttp import BaseConnector, ClientTimeout
+
+    from ._types import URL, DCo, JCo, Json, PartialCacheEntry
+    from .account import PartialAccount
 
 
 __all__ = ("HTTPRetryConfig", "CacheConfig", "HTTPClient")

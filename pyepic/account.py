@@ -1,22 +1,22 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
 
 from dataclasses import dataclass
 from datetime import datetime
 from logging import getLogger
+from typing import TYPE_CHECKING
 
-from .route import FriendsService
 from .errors import UnknownTemplateID
 from .fortnite.base import AccountBoundMixin
-from .fortnite.stw import Schematic, Survivor, LeadSurvivor
+from .fortnite.stw import LeadSurvivor, Schematic, Survivor
+from .route import FriendsService
 
 if TYPE_CHECKING:
+    from collections.abc import AsyncGenerator, Coroutine
     from typing import Any, Self
-    from collections.abc import Coroutine, AsyncGenerator
 
-    from .http import HTTPClient
+    from ._types import Attributes, DCo, Dict, FriendType, List, STWItemT_co
     from .auth import AuthSession
-    from ._types import STWItemT_co, Dict, List, DCo, Attributes, FriendType
+    from .http import HTTPClient
 
 
 __all__ = ("Friend", "PartialAccount", "FullAccount")

@@ -4,7 +4,6 @@ from abc import ABC
 from typing import ClassVar
 from urllib.parse import quote
 
-
 __all__ = (
     "Route",
     "EpicGamesService",

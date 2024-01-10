@@ -1,23 +1,23 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
 
 from datetime import datetime
 from logging import getLogger
 from time import time
+from typing import TYPE_CHECKING
 
-from .utils import utc_now
+from .account import FullAccount, PartialAccount
 from .errors import HTTPException
 from .route import AccountService, MCPService
-from .account import PartialAccount, FullAccount
+from .utils import utc_now
 
 if TYPE_CHECKING:
-    from typing import Any
+    from collections.abc import AsyncGenerator, Generator
     from types import TracebackType
-    from collections.abc import Generator, AsyncGenerator
+    from typing import Any
 
+    from ._types import DCo, Dict, JCo, Json, List
     from .http import HTTPClient
     from .route import Route
-    from ._types import Dict, List, Json, DCo, JCo
 
 
 __all__ = ("AuthManager", "AuthSession")
