@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from typing import Generic
+from dataclasses import dataclass
 
 from .base import BaseEntity, AccountBoundMixin
 from pyepic.errors import (
@@ -198,6 +199,15 @@ class SchematicPerk(Generic[AccountT]):
     # TODO: implement dunders here
 
 
+@dataclass(kw_only=True, slots=True, frozen=True)
+class SetBonusType:
+    type: str
+    name: str
+    bonus: int
+    fort_type: str | None
+    requirement: int
+
+
 class SurvivorBase(Generic[AccountT], Upgradable[AccountT]):
     __slots__ = ("personality", "squad_id", "squad_index")
 
@@ -212,9 +222,9 @@ class SurvivorBase(Generic[AccountT], Upgradable[AccountT]):
         super().__init__(account, item_id, template_id, raw_attributes)
 
         try:
-            self.personality: str = raw_attributes[
-                "personality"
-            ].split(".")[-1][2:]
+            self.personality: str = raw_attributes["personality"].split(".")[
+                -1
+            ][2:]
             _index = raw_attributes["squad_slot_idx"]
         except KeyError:
             raise BadItemAttributes(self)
@@ -224,9 +234,38 @@ class SurvivorBase(Generic[AccountT], Upgradable[AccountT]):
 
 
 class Survivor(Generic[AccountT], SurvivorBase[AccountT]):
-    __slots__ = ()
+    __slots__ = ("set_bonus_type",)
 
-    ...
+    def __init__(
+        self,
+        account: AccountT,
+        item_id: str,
+        template_id: str,
+        raw_attributes: Attributes,
+        /,
+    ) -> None:
+        super().__init__(account, item_id, template_id, raw_attributes)
+
+        try:
+            _set_bonus_type: str = (
+                raw_attributes["set_bonus"]
+                .split(".")[-1][2:]
+                .replace("Low", "")
+                .replace("High", "")
+            )
+            _set_bonus_data: dict[str, str | int] = lookup["SetBonuses"][
+                _set_bonus_type
+            ]
+        except KeyError:
+            raise BadItemAttributes(self)
+
+        self.set_bonus_type: SetBonusType = SetBonusType(type=_set_bonus_type, **_set_bonus_data)
+
+    @property
+    def base_power_level(self) -> int:
+        return lookup["ItemPowerLevels"]["Survivor"][self.rarity][
+            str(self.tier)
+        ][str(self.level)]
 
 
 class LeadSurvivor(Generic[AccountT], SurvivorBase[AccountT]):
