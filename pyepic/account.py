@@ -153,21 +153,21 @@ class PartialAccount:
         return items
 
     def schematics(
-        self, auth_session: AuthSession, /, **kwargs: bool
+        self, auth_session: AuthSession, /, **kwargs: Any
     ) -> Coroutine[Any, Any, list[Schematic[Self]]]:
         return self.fetch_stw_objects(
             "Schematic:sid", Schematic, auth_session, **kwargs
         )
 
     def survivors(
-        self, auth_session: AuthSession, /, **kwargs: bool
+        self, auth_session: AuthSession, /, **kwargs: Any
     ) -> Coroutine[Any, Any, list[Survivor[Self]]]:
         return self.fetch_stw_objects(
             "Worker:worker", Survivor, auth_session, **kwargs
         )
 
     def lead_survivors(
-        self, auth_session: AuthSession, /, **kwargs: bool
+        self, auth_session: AuthSession, /, **kwargs: Any
     ) -> Coroutine[Any, Any, list[LeadSurvivor[Self]]]:
         return self.fetch_stw_objects(
             "Worker:manager", LeadSurvivor, auth_session, **kwargs
