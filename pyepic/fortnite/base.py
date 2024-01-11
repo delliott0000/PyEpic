@@ -26,11 +26,12 @@ class AccountBoundMixin(ABC, Generic[AccountT]):
         self.account: AccountT = account  # noqa
         self.id: str = item_id  # noqa
 
-    def __hash__(self) -> int:
-        return hash(self.id)
-
     def __eq__(self, other: AccountBoundMixin, /) -> bool:
-        return isinstance(other, AccountBoundMixin) and self.id == other.id
+        return (
+            type(other) is type(self)
+            and self.account == other.account
+            and self.id == other.id
+        )
 
 
 class BaseEntity(ABC):
