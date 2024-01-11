@@ -207,6 +207,9 @@ class SetBonusType:
     fort_type: str | None
     requirement: int
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class SurvivorBase(Generic[AccountT], Upgradable[AccountT]):
     __slots__ = ("personality", "squad_id", "squad_index")
@@ -229,7 +232,7 @@ class SurvivorBase(Generic[AccountT], Upgradable[AccountT]):
         except KeyError:
             raise BadItemAttributes(self)
 
-        self.squad_id: str | None = raw_attributes.get("squad_id")
+        self.squad_id: str | None = raw_attributes.get("squad_id") or None
         self.squad_index: int | None = _index if _index != -1 else None
 
 
