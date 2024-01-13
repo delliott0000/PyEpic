@@ -23,7 +23,7 @@ If the bug report is missing this information then it'll be much more difficult 
 
 ## Submitting a Pull Request
 
-Pull requests are fairly simple, just make sure it focuses on a single aspect of the library and doesn't suffer from any scope creep. You should also ensure that changes to the code follow PEP-8 guidelines and are formatted using Black.
+Pull requests are fairly simple, just make sure it focuses on a single aspect of the library and doesn't suffer from any scope creep. You should also ensure that changes to the code follow PEP-8 guidelines and are formatted using Black & iSort.
 
 ### Commit Guidelines
 
