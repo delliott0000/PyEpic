@@ -16,7 +16,7 @@ from pyepic.resources import lookup
 from .base import AccountBoundMixin, BaseEntity
 
 if TYPE_CHECKING:
-    from collections.abc import Iterable
+    from collections.abc import Generator, Iterable
     from typing import ClassVar
 
     from pyepic._types import Attributes, DCo, Dict
@@ -317,13 +317,25 @@ class SurvivorSquad(Generic[AccountT], AccountBoundMixin[AccountT]):
         super().__init__(account, item_id)
 
         self.name: str = lookup["SquadDetails"][self.id]["name"]
-        self.lead_survivor: LeadSurvivor | None = lead_survivor
+        self.lead_survivor: LeadSurvivor[AccountT] | None = lead_survivor
 
         slots = [None] * 7
         for survivor in survivors:
             slots[survivor.squad_index - 1] = survivor  # noqa
 
-        self.survivors: tuple[Survivor | None, ...] = tuple(slots)
+        self.survivors: tuple[Survivor[AccountT] | None, ...] = tuple(slots)
 
     def __str__(self) -> str:
         return self.name
+
+    def __iter__(
+        self,
+    ) -> Generator[LeadSurvivor[AccountT] | Survivor[AccountT], None, None]:
+        if self.lead_survivor is not None:
+            yield self.lead_survivor
+        yield from filter(
+            lambda survivor: survivor is not None, self.survivors
+        )
+
+    def __contains__(self, survivor: SurvivorBase, /) -> bool:
+        return survivor == self.lead_survivor or survivor in self.survivors
