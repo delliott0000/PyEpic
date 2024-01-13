@@ -16,6 +16,7 @@ from pyepic.resources import lookup
 from .base import AccountBoundMixin, BaseEntity
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
     from typing import ClassVar
 
     from pyepic._types import Attributes, DCo, Dict
@@ -31,6 +32,7 @@ __all__ = (
     "SurvivorBase",
     "Survivor",
     "LeadSurvivor",
+    "SurvivorSquad",
 )
 
 
@@ -298,3 +300,30 @@ class LeadSurvivor(Generic[AccountT], SurvivorBase[AccountT]):
         return lookup["ItemPowerLevels"]["LeadSurvivor"][self.rarity][
             str(self.tier)
         ][str(self.level)]
+
+
+class SurvivorSquad(Generic[AccountT], AccountBoundMixin[AccountT]):
+    __slots__ = ("account", "id", "name", "lead_survivor", "survivors")
+
+    def __init__(
+        self,
+        account: AccountT,
+        item_id: str,
+        /,
+        *,
+        lead_survivor: LeadSurvivor | None,
+        survivors: Iterable[Survivor],
+    ) -> None:
+        super().__init__(account, item_id)
+
+        self.name: str = lookup["SquadDetails"][self.id]["name"]
+        self.lead_survivor: LeadSurvivor | None = lead_survivor
+
+        slots = [None] * 7
+        for survivor in survivors:
+            slots[survivor.squad_index - 1] = survivor  # noqa
+
+        self.survivors: tuple[Survivor | None, ...] = tuple(slots)
+
+    def __str__(self) -> str:
+        return self.name

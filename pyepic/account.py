@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 
 from .errors import UnknownTemplateID
 from .fortnite.base import AccountBoundMixin
-from .fortnite.stw import LeadSurvivor, Schematic, Survivor
+from .fortnite.stw import LeadSurvivor, Schematic, Survivor, SurvivorSquad
 from .route import FriendsService
 
 if TYPE_CHECKING:
@@ -172,6 +172,43 @@ class PartialAccount:
         return self.fetch_stw_objects(
             "Worker:manager", LeadSurvivor, auth_session, **kwargs
         )
+
+    async def survivor_squads(
+        self, auth_session: AuthSession, /, **kwargs: Any
+    ) -> list[SurvivorSquad[Self]]:
+        s1 = await self.survivors(auth_session, **kwargs)
+        s2 = await self.lead_survivors(auth_session, **kwargs)
+        survivors = s1 + s2
+
+        mapping = {}
+        squads = []
+
+        for survivor in survivors:
+            squad_id = survivor.squad_id
+            if squad_id is None:
+                continue
+
+            elif isinstance(survivor, Survivor):
+                try:
+                    mapping[squad_id]["survivors"].append(survivor)
+                except KeyError:
+                    mapping[squad_id] = {"lead": None, "survivors": [survivor]}
+            elif isinstance(survivor, LeadSurvivor):
+                try:
+                    mapping[squad_id]["lead"] = survivor
+                except KeyError:
+                    mapping[squad_id] = {"lead": survivor, "survivors": []}
+
+        for squad_id, squad_composition in mapping.items():
+            squad = SurvivorSquad(
+                self,
+                squad_id,
+                lead_survivor=squad_composition["lead"],
+                survivors=squad_composition["survivors"],
+            )
+            squads.append(squad)
+
+        return squads
 
 
 class FullAccount(PartialAccount):
