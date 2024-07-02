@@ -8,7 +8,6 @@ from pyepic.errors import (
     BadItemAttributes,
     InvalidUpgrade,
     ItemIsFavorited,
-    ItemIsReadOnly,
     UnknownTemplateID,
 )
 from pyepic.resources import lookup
@@ -20,7 +19,6 @@ if TYPE_CHECKING:
     from typing import ClassVar
 
     from pyepic._types import Attributes, DCo, Dict
-    from pyepic.auth import AuthSession
 
 
 __all__ = (
@@ -83,13 +81,6 @@ class Recyclable(
     Generic[AccountT], AccountBoundMixin[AccountT], SaveTheWorldItem
 ):
     __slots__ = ("account", "id")
-
-    @property
-    def _auth_checker(self) -> AuthSession:
-        try:
-            return self.account.auth_session
-        except AttributeError:
-            raise ItemIsReadOnly(self)
 
     def recycle(self, *, strict: bool = True) -> DCo:
         if self.favorite is True and strict is True:

@@ -6,14 +6,13 @@ if TYPE_CHECKING:
     from aiohttp import ClientResponse
 
     from ._types import Json
-    from .fortnite import BaseEntity
+    from .fortnite import AccountBoundMixin, BaseEntity, Recyclable, Upgradable
 
 
 __all__ = (
     "EpicException",
     "HTTPException",
     "FortniteException",
-    "FortniteItemException",
     "UnknownTemplateID",
     "BadItemAttributes",
     "ItemIsReadOnly",
@@ -53,31 +52,46 @@ class FortniteException(EpicException):
     pass
 
 
-class FortniteItemException(FortniteException):
+class UnknownTemplateID(FortniteException):
+
     def __init__(self, item: BaseEntity, /) -> None:
         self.item: BaseEntity = item
 
-
-class UnknownTemplateID(FortniteItemException):
     def __str__(self) -> str:
         return f"Unknown template ID: {self.item.template_id}"
 
 
-class BadItemAttributes(FortniteItemException):
+class BadItemAttributes(FortniteException):
+
+    def __init__(self, item: BaseEntity, /) -> None:
+        self.item: BaseEntity = item
+
     def __str__(self) -> str:
         return f"Malformed/invalid item attributes: {self.item.raw_attributes}"
 
 
-class ItemIsReadOnly(FortniteItemException):
+class ItemIsReadOnly(FortniteException):
+
+    def __init__(self, item: AccountBoundMixin, /) -> None:
+        self.item: AccountBoundMixin = item
+
     def __str__(self) -> str:
         return "Item can not be modified as it is not tied to a FullAccount"
 
 
-class ItemIsFavorited(FortniteItemException):
+class ItemIsFavorited(FortniteException):
+
+    def __init__(self, item: Recyclable, /) -> None:
+        self.item: Recyclable = item
+
     def __str__(self) -> str:
         return "Item is favorited so it can not be recycled."
 
 
-class InvalidUpgrade(FortniteItemException):
+class InvalidUpgrade(FortniteException):
+
+    def __init__(self, item: Upgradable, /) -> None:
+        self.item: Upgradable = item
+
     def __str__(self) -> str:
-        return "An invalid target level/tier was specified"
+        return "An invalid target level/tier was specified."
