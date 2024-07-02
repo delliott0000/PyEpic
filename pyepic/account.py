@@ -66,9 +66,9 @@ class PartialAccount:
         self.display_name: str = data.get("displayName", "")
 
         self.__raw_stw_data: Dict | None = None
-        self.__stw_object_cache: dict[
-            tuple[str, type[STWItemT_co]], list[STWItemT_co]
-        ] | None = None
+        self.__stw_object_cache: (
+            dict[tuple[str, type[STWItemT_co]], list[STWItemT_co]] | None
+        ) = None
 
     def __hash__(self) -> int:
         return hash(self.id)
