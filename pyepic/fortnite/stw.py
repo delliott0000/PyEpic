@@ -29,9 +29,12 @@ __all__ = (
     "Upgradable",
     "Schematic",
     "SchematicPerk",
+    "SetBonusType",
     "SurvivorBase",
     "Survivor",
     "LeadSurvivor",
+    "ActiveSetBonus",
+    "FortStat",
     "SurvivorSquad",
 )
 
@@ -203,14 +206,16 @@ class SchematicPerk(Generic[AccountT]):
 
 @dataclass(kw_only=True, slots=True, frozen=True)
 class SetBonusType:
-    type: str
+    id: str
     name: str
     bonus: int
-    fort_type: str | None
     requirement: int
 
     def __str__(self) -> str:
         return self.name
+
+    def __eq__(self, other: SetBonusType, /) -> bool:
+        return type(other) is type(self) and self.id == other.id
 
 
 class SurvivorBase(Generic[AccountT], Upgradable[AccountT]):
@@ -265,7 +270,7 @@ class Survivor(Generic[AccountT], SurvivorBase[AccountT]):
             raise BadItemAttributes(self)
 
         self.set_bonus_type: SetBonusType = SetBonusType(
-            type=_set_bonus_type, **_set_bonus_data
+            id=_set_bonus_type, **_set_bonus_data
         )
 
     @property
@@ -300,6 +305,42 @@ class LeadSurvivor(Generic[AccountT], SurvivorBase[AccountT]):
         return lookup["ItemPowerLevels"]["LeadSurvivor"][self.rarity][
             str(self.tier)
         ][str(self.level)]
+
+
+class ActiveSetBonus(Generic[AccountT]):
+    __slots__ = ("squad", "set_bonus_type")
+
+    def __init__(
+        self, squad: SurvivorSquad[AccountT], set_bonus_type: SetBonusType, /
+    ) -> None:
+        self.squad: SurvivorSquad[AccountT] = squad
+        self.set_bonus_type: SetBonusType = set_bonus_type
+
+    def __str__(self) -> str:
+        return str(self.set_bonus_type)
+
+    def __eq__(self, other: ActiveSetBonus, /) -> bool:
+        return (
+            type(other) is type(self)
+            and self.squad == other.squad
+            and self.set_bonus_type == other.set_bonus_type
+        )
+
+
+@dataclass(kw_only=True, slots=True, frozen=True)
+class FortStat:
+    tech: int
+    offense: int
+    fortitude: int
+    resistance: int
+
+    def __add__(self, other: FortStat, /) -> FortStat:
+        return FortStat(
+            tech=self.tech + other.tech,
+            offense=self.offense + other.offense,
+            fortitude=self.fortitude + other.fortitude,
+            resistance=self.resistance + other.resistance,
+        )
 
 
 class SurvivorSquad(Generic[AccountT], AccountBoundMixin[AccountT]):
@@ -339,3 +380,58 @@ class SurvivorSquad(Generic[AccountT], AccountBoundMixin[AccountT]):
 
     def __contains__(self, survivor: SurvivorBase, /) -> bool:
         return survivor == self.lead_survivor or survivor in self.survivors
+
+    @property
+    def active_set_bonuses(self) -> list[ActiveSetBonus[AccountT]]:
+        tally: dict[SetBonusType, int] = {}
+
+        for survivor in self.survivors:
+            if survivor is None:
+                continue
+            try:
+                tally[survivor.set_bonus_type] += 1
+            except KeyError:
+                tally[survivor.set_bonus_type] = 1
+
+        active_set_bonuses = []
+
+        for set_bonus_type, count in tally.items():
+
+            sets = count // set_bonus_type.requirement
+            for _ in range(sets):
+                active_set_bonus = ActiveSetBonus(self, set_bonus_type)
+                active_set_bonuses.append(active_set_bonus)
+
+        return active_set_bonuses
+
+    @property
+    def total_fort_stats(self) -> FortStat:
+        fort_stats_data = dict(tech=0, offense=0, fortitude=0, resistance=0)
+
+        count = 0
+
+        lead = self.lead_survivor
+        if lead is not None:
+            pl = lead.base_power_level
+            if lead.preferred_squad_id == self.id:
+                count += pl * 2
+            else:
+                count += pl
+
+        for survivor in self.survivors:
+            if survivor is None:
+                continue
+            pl = survivor.base_power_level
+            increments = lookup["LeadBonuses"]
+
+            if lead is not None and lead.personality == survivor.personality:
+                pl += increments[lead.rarity][0]
+            elif lead is not None:
+                pl += increments[lead.rarity][1]
+
+            count += pl
+
+        fort_type = lookup["SquadDetails"][self.id]["fort"]
+        fort_stats_data[fort_type] += count
+
+        return FortStat(**fort_stats_data)
