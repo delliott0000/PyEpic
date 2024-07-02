@@ -70,7 +70,7 @@ lookup = {
         },
         "Schematic:sid_floor_flamegrill_vr_t01": {
             "name": "Flame Grill Floor Trap",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_darts_uc_t01": {
@@ -85,7 +85,7 @@ lookup = {
         },
         "Schematic:sid_wall_electric_vr_t01": {
             "name": "Wall Dynamo",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_cannons_sr_t01": {
@@ -105,7 +105,7 @@ lookup = {
         },
         "Schematic:sid_floor_spikes_vr_t01": {
             "name": "Retractable Floor Spikes",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_ceiling_gas_uc_t01": {
@@ -145,7 +145,7 @@ lookup = {
         },
         "Schematic:sid_floor_freeze_vr_t01": {
             "name": "Floor Freeze Trap",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_floor_ward_r_t01": {
@@ -165,7 +165,7 @@ lookup = {
         },
         "Schematic:sid_floor_ward_vr_t01": {
             "name": "Anti-Air Trap",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_wood_spikes_c_t01": {
@@ -180,7 +180,7 @@ lookup = {
         },
         "Schematic:sid_wall_mechstructor_vr_t01": {
             "name": "Zap-o-max",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_electric_uc_t01": {
@@ -200,12 +200,12 @@ lookup = {
         },
         "Schematic:sid_wall_wood_spikes_vr_t01": {
             "name": "Wall Spikes",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_floor_health_vr_t01": {
             "name": "Healing Pad",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_floor_freeze_r_t01": {
@@ -230,7 +230,7 @@ lookup = {
         },
         "Schematic:sid_floor_tar_vr_t01": {
             "name": "Tar Pit",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_electric_r_t01": {
@@ -240,22 +240,22 @@ lookup = {
         },
         "Schematic:sid_floor_spikes_wood_vr_t01": {
             "name": "Wooden Floor Spikes",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_light_vr_t01": {
             "name": "Wall Lights",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_ceiling_electric_single_vr_t01": {
             "name": "Ceiling Zapper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_launcher_vr_t01": {
             "name": "Wall Launcher",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_ceiling_electric_single_c_t01": {
@@ -265,7 +265,7 @@ lookup = {
         },
         "Schematic:sid_floor_launcher_vr_t01": {
             "name": "Floor Launcher",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_floor_spikes_wood_c_t01": {
@@ -325,12 +325,12 @@ lookup = {
         },
         "Schematic:sid_wall_cannons_vr_t01": {
             "name": "Broadside",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_darts_vr_t01": {
             "name": "Wall Darts",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_mechstructor_sr_t01": {
@@ -375,7 +375,7 @@ lookup = {
         },
         "Schematic:sid_wall_speaker_vr_t01": {
             "name": "Sound Wall",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_cannons_r_t01": {
@@ -385,7 +385,7 @@ lookup = {
         },
         "Schematic:sid_ceiling_falling_vr_t01": {
             "name": "Ceiling Drop Trap",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_floor_health_sr_t01": {
@@ -405,7 +405,7 @@ lookup = {
         },
         "Schematic:sid_ceiling_electric_aoe_vr_t01": {
             "name": "Ceiling Electric Field",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_wood_spikes_sr_t01": {
@@ -415,7 +415,7 @@ lookup = {
         },
         "Schematic:sid_ceiling_gas_vr_t01": {
             "name": "Ceiling Gas Trap",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_floor_tar_sr_t01": {
@@ -440,7 +440,7 @@ lookup = {
         },
         "Schematic:sid_floor_campfire_vr_t01": {
             "name": "Cozy Campfire",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "trap",
         },
         "Schematic:sid_wall_launcher_sr_t01": {
@@ -465,7 +465,7 @@ lookup = {
         },
         "Schematic:sid_piercing_spear_dragon_vr_ore_t01": {
             "name": "Dragon's Fang",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_autodrum_sr_ore_t01": {
@@ -475,12 +475,12 @@ lookup = {
         },
         "Schematic:sid_shotgun_fleming_vr_ore_t01": {
             "name": "The Browbeater",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_hydraulic_vr_ore_t01": {
             "name": "Piston Spitter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_piercing_spear_blackmetal_r_ore_t01": {
@@ -490,7 +490,7 @@ lookup = {
         },
         "Schematic:sid_sniper_shredder_vr_ore_t01": {
             "name": "Super Shredder",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_scavenger_sr_ore_t01": {
@@ -505,7 +505,7 @@ lookup = {
         },
         "Schematic:sid_sniper_ratrod_vr_ore_t01": {
             "name": "Crankshot",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_break_uc_ore_t01": {
@@ -545,12 +545,12 @@ lookup = {
         },
         "Schematic:sid_assault_snowball_vr_ore_t01": {
             "name": "Blizzard Blitzer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_neonglow_vr_ore_t01": {
             "name": "Krypton Pistol",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_standard_scope_vt_sr_ore_t01": {
@@ -565,7 +565,7 @@ lookup = {
         },
         "Schematic:sid_edged_axe_heavy_vr_ore_t01": {
             "name": "Stormchaser's Revenge",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_break_flintlock_sr_ore_t01": {
@@ -580,7 +580,7 @@ lookup = {
         },
         "Schematic:sid_shotgun_military_vr_ore_t01": {
             "name": "Ground Pounder",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_primal_stinkbow_sr_ore_t01": {
@@ -605,7 +605,7 @@ lookup = {
         },
         "Schematic:sid_blunt_shovel_halloween_vr_ore_t01": {
             "name": "Six Feet Under",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_axe_heavy_r_ore_t01": {
@@ -640,7 +640,7 @@ lookup = {
         },
         "Schematic:sid_edged_scythe_laser_vr_ore_t01": {
             "name": "Reaper Scythe",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_military_auto_sr_ore_t01": {
@@ -655,7 +655,7 @@ lookup = {
         },
         "Schematic:sid_sniper_boombox_vr_ore_t01": {
             "name": "Crescendo",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_scavenger_sr_ore_t01": {
@@ -665,17 +665,17 @@ lookup = {
         },
         "Schematic:sid_edged_sword_medium_laser_founders_vr_ore_t01": {
             "name": "Founder's Blazing Masamune",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_neonglow_vr_ore_t01": {
             "name": "Argon Assault Rifle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_zapper_vr_ore_t01": {
             "name": "Zap Zapp",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_launcher_hydraulic_sr_ore_t01": {
@@ -690,12 +690,12 @@ lookup = {
         },
         "Schematic:sid_edged_axe_heavy_vacuumtube_vr_ore_t01": {
             "name": "Vacuum Tube Axe",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_steampunk_vr_ore_t01": {
             "name": "Steamroller",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_burst_r_ore_t01": {
@@ -705,12 +705,12 @@ lookup = {
         },
         "Schematic:sid_piercing_spear_boombox_vr_ore_t01": {
             "name": "Earsplitter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_light_rocketbat_vr_ore_t01": {
             "name": "Fortsville Slugger 3000",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_artdeco_sr_ore_t01": {
@@ -730,7 +730,7 @@ lookup = {
         },
         "Schematic:sid_blunt_hammer_heavy_vr_ore_t01": {
             "name": "Doomhammer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_piercing_spear_retroscifi_sr_ore_t01": {
@@ -740,7 +740,7 @@ lookup = {
         },
         "Schematic:sid_assault_hydraulic_drum_vr_ore_t01": {
             "name": "Nailer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_medium_r_ore_t01": {
@@ -760,12 +760,12 @@ lookup = {
         },
         "Schematic:sid_launcher_rocket_vr_ore_t01": {
             "name": "Bazooka",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_raygun_vr_ore_t01": {
             "name": "Deathray",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_medium_uc_ore_t01": {
@@ -780,12 +780,12 @@ lookup = {
         },
         "Schematic:sid_blunt_hammer_rocket_vr_ore_t01": {
             "name": "Husk Stomper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_military_silenced_vr_ore_t01": {
             "name": "Wraith",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_hammer_flintlock_sr_ore_t01": {
@@ -805,12 +805,12 @@ lookup = {
         },
         "Schematic:sid_edged_axe_vt_vr_ore_t01": {
             "name": "Vindertech Sever",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_boltaction_scope_vr_ore_t01": {
             "name": "One Shot",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_sixshooter_uc_ore_t01": {
@@ -840,22 +840,22 @@ lookup = {
         },
         "Schematic:sid_sniper_dragon_vr_ore_t01": {
             "name": "Dragon's Claw",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_dragon_vr_ore_t01": {
             "name": "Dragon's Might",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_autodrum_teddy_vr_ore_t01": {
             "name": "Papa Bear",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_ratrod_vr_ore_t01": {
             "name": "Two Step",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_hydraulic_sr_ore_t01": {
@@ -880,7 +880,7 @@ lookup = {
         },
         "Schematic:sid_blunt_hammer_heavy_founders_vr_ore_t01": {
             "name": "Founder's Warhammer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_piercing_spear_blackmetal_sr_ore_t01": {
@@ -890,7 +890,7 @@ lookup = {
         },
         "Schematic:sid_edged_sword_artdeco_vr_ore_t01": {
             "name": "The Killjoy",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_tactical_founders_r_ore_t01": {
@@ -900,7 +900,7 @@ lookup = {
         },
         "Schematic:sid_assault_boombox_vr_ore_t01": {
             "name": "Beat Blaster",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_ratrod_sr_ore_t01": {
@@ -910,7 +910,7 @@ lookup = {
         },
         "Schematic:sid_assault_auto_vr_ore_t01": {
             "name": "Siegebreaker",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_light_boombox_r_ore_t01": {
@@ -925,7 +925,7 @@ lookup = {
         },
         "Schematic:sid_piercing_spear_vacuumtube_vr_ore_t01": {
             "name": "Vacuum Tube Spear",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_blackmetal_sr_ore_t01": {
@@ -950,12 +950,12 @@ lookup = {
         },
         "Schematic:sid_edged_sword_dragon_vr_ore_t01": {
             "name": "Dragon's Tooth",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_hammer_steampunk_vr_ore_t01": {
             "name": "The Baron",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_artdeco_sr_ore_t01": {
@@ -965,17 +965,17 @@ lookup = {
         },
         "Schematic:sid_sniper_standard_founders_vr_ore_t01": {
             "name": "Founder's Wasp",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_standard_vr_ore_t01": {
             "name": "Dragonfly",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_artdeco_vr_ore_t01": {
             "name": "The Brush Off",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_piercing_spear_steampunk_sr_ore_t01": {
@@ -1010,7 +1010,7 @@ lookup = {
         },
         "Schematic:sid_pistol_rapid_founders_vr_ore_t01": {
             "name": "Founder's Revolt",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_launcher_rocket_sr_ore_t01": {
@@ -1020,17 +1020,17 @@ lookup = {
         },
         "Schematic:sid_shotgun_break_scavenger_vr_ore_t01": {
             "name": "Old Smokey",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_piercing_spear_military_vr_ore_t01": {
             "name": "Dissector",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_boxing_glove_club_vr_ore_t01": {
             "name": "The Contender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_bbgun_r_ore_t01": {
@@ -1055,12 +1055,12 @@ lookup = {
         },
         "Schematic:sid_shotgun_artdeco_break_vr_ore_t01": {
             "name": "The Big Shot",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_scythe_neonglow_vr_ore_t01": {
             "name": "Neon Scythe",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_medieval_sr_ore_t01": {
@@ -1075,12 +1075,12 @@ lookup = {
         },
         "Schematic:sid_explosive_launcher_military_vr_ore_t01": {
             "name": "Quad Launcher",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_light_vr_ore_t01": {
             "name": "Wrecking Bar",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_shredder_sr_ore_t01": {
@@ -1095,17 +1095,17 @@ lookup = {
         },
         "Schematic:sid_assault_lmg_vr_ore_t01": {
             "name": "Terminator",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_amr_vr_ore_t01": {
             "name": "Zapotron",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_auto_vr_ore_t01": {
             "name": "Deathwing",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_medium_laser_founders_sr_ore_t01": {
@@ -1115,17 +1115,17 @@ lookup = {
         },
         "Schematic:sid_pistol_firecracker_vr_ore_t01": {
             "name": "Freedom's Herald",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_dragon_drum_vr_ore_t01": {
             "name": "DragonFire",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_standard_vt_vr_ore_t01": {
             "name": "Vindertech Disintegrator",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_zapper_sr_ore_t01": {
@@ -1145,12 +1145,12 @@ lookup = {
         },
         "Schematic:sid_smg_fleming_burstfire_vr_ore_t01": {
             "name": "The Trinity",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_doubleshot_vr_ore_t01": {
             "name": "Ranger",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_scythe_laser_sr_ore_t01": {
@@ -1160,7 +1160,7 @@ lookup = {
         },
         "Schematic:sid_pistol_vacuumtube_auto_vr_ore_t01": {
             "name": "Lightning Pistol",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_axe_heavy_vacuumtube_sr_ore_t01": {
@@ -1180,7 +1180,7 @@ lookup = {
         },
         "Schematic:sid_shotgun_standard_vr_ore_t01": {
             "name": "Templar",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_steampunk_sr_ore_t01": {
@@ -1195,12 +1195,12 @@ lookup = {
         },
         "Schematic:sid_shotgun_break_ou_vr_ore_t01": {
             "name": "Maverick",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_flintlock_scope_vr_ore_t01": {
             "name": "Spyglass",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_break_r_ore_t01": {
@@ -1210,7 +1210,7 @@ lookup = {
         },
         "Schematic:sid_sniper_military_vr_ore_t01": {
             "name": "Obliterator",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_boltaction_scope_sr_ore_t01": {
@@ -1225,7 +1225,7 @@ lookup = {
         },
         "Schematic:sid_pistol_semiauto_vr_ore_t01": {
             "name": "Jackal",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_ratrod_sr_ore_t01": {
@@ -1235,27 +1235,27 @@ lookup = {
         },
         "Schematic:sid_edged_sword_heavy_vr_ore_t01": {
             "name": "Huskcleaver",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_medium_vr_ore_t01": {
             "name": "Socket Slugger",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_longarm_vr_ore_t01": {
             "name": "Longarm Enforcer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_medium_laser_vr_ore_t01": {
             "name": "Stormblade",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_lmg_military_vr_ore_t01": {
             "name": "HackSAW",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_dragon_sr_ore_t01": {
@@ -1270,12 +1270,12 @@ lookup = {
         },
         "Schematic:sid_edged_axe_light_ratrod_vr_ore_t01": {
             "name": "Axle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_light_retroscifi_vr_ore_t01": {
             "name": "Astro Bat 9000",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_autodrum_teddy_sr_ore_t01": {
@@ -1285,7 +1285,7 @@ lookup = {
         },
         "Schematic:sid_pistol_vacuumtube_revolver_vr_ore_t01": {
             "name": "Vacuum Tube Revolver",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_dragon_sr_ore_t01": {
@@ -1315,12 +1315,12 @@ lookup = {
         },
         "Schematic:sid_edged_axe_artdeco_vr_ore_t01": {
             "name": "The Great Axeby",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_heavy_founders_vr_ore_t01": {
             "name": "Founder's Greatsword",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_boombox_sr_ore_t01": {
@@ -1330,7 +1330,7 @@ lookup = {
         },
         "Schematic:sid_pistol_bolt_vr_ore_t01": {
             "name": "Bolt Bolt",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_auto_uc_ore_t01": {
@@ -1345,7 +1345,7 @@ lookup = {
         },
         "Schematic:sid_sniper_standard_scope_vr_ore_t01": {
             "name": "Scoped Dragonfly",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_boombox_sr_ore_t01": {
@@ -1355,12 +1355,12 @@ lookup = {
         },
         "Schematic:sid_assault_medieval_smg_vr_ore_t01": {
             "name": "Hemlock",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_scythe_vr_ore_t01": {
             "name": "Elegant Scythe",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_hammer_steampunk_sr_ore_t01": {
@@ -1385,17 +1385,17 @@ lookup = {
         },
         "Schematic:sid_pistol_auto_vr_ore_t01": {
             "name": "Viper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_launcher_vacuumtube_vr_ore_t01": {
             "name": "Vacuum Tube Launcher",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_airplane_axe_vr_ore_t01": {
             "name": "Supersonic Slasher",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_artdeco_sr_ore_t01": {
@@ -1410,7 +1410,7 @@ lookup = {
         },
         "Schematic:sid_sniper_steampunk_vr_ore_t01": {
             "name": "Bon Voyage",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_standard_sr_ore_t01": {
@@ -1425,7 +1425,7 @@ lookup = {
         },
         "Schematic:sid_assault_smg_silenced_military_vr_ore_t01": {
             "name": "Silenced Specter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_burst_blackmetal_r_ore_t01": {
@@ -1445,7 +1445,7 @@ lookup = {
         },
         "Schematic:sid_blunt_hammer_artdeco_vr_ore_t01": {
             "name": "The Heavyweight",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_hammer_rocket_sr_ore_t01": {
@@ -1480,7 +1480,7 @@ lookup = {
         },
         "Schematic:sid_pistol_flintlock_vr_ore_t01": {
             "name": "Duelist",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_dragon_drum_sr_ore_t01": {
@@ -1515,7 +1515,7 @@ lookup = {
         },
         "Schematic:sid_blunt_hammer_ratrod_vr_ore_t01": {
             "name": "Lead Sled",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_explosive_launcher_military_sr_ore_t01": {
@@ -1530,12 +1530,12 @@ lookup = {
         },
         "Schematic:sid_assault_semiauto_founders_vr_ore_t01": {
             "name": "Founder's Raptor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_rapid_vr_ore_t01": {
             "name": "Haywire Storm",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_light_sr_ore_t01": {
@@ -1545,7 +1545,7 @@ lookup = {
         },
         "Schematic:sid_sniper_hydraulic_vr_ore_t01": {
             "name": "Tsunami",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_boltrevolver_uc_ore_t01": {
@@ -1590,7 +1590,7 @@ lookup = {
         },
         "Schematic:sid_assault_semiauto_vr_ore_t01": {
             "name": "Hunter-killer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_scythe_r_ore_t01": {
@@ -1610,7 +1610,7 @@ lookup = {
         },
         "Schematic:sid_pistol_handcannon_vr_ore_t01": {
             "name": "Judge",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_axe_medium_r_ore_t01": {
@@ -1620,7 +1620,7 @@ lookup = {
         },
         "Schematic:sid_sniper_bbgun_vr_ore_t01": {
             "name": "Ralphie's Revenge",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_break_ou_uc_ore_t01": {
@@ -1630,12 +1630,12 @@ lookup = {
         },
         "Schematic:sid_shotgun_semiauto_scavenger_vr_ore_t01": {
             "name": "Husk Buster",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_piercing_junkyard_vr_ore_t01": {
             "name": "Scrapper Spear",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_piercing_spear_uc_ore_t01": {
@@ -1660,7 +1660,7 @@ lookup = {
         },
         "Schematic:sid_assault_surgical_vr_ore_t01": {
             "name": "Deathstalker",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_autoheavy_r_ore_t01": {
@@ -1705,7 +1705,7 @@ lookup = {
         },
         "Schematic:sid_sniper_tripleshot_vr_ore_t01": {
             "name": "Triple Tap",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_lmg_military_sr_ore_t01": {
@@ -1715,7 +1715,7 @@ lookup = {
         },
         "Schematic:sid_piercing_spear_laser_vr_ore_t01": {
             "name": "Farmer's Glory",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_artdeco_break_sr_ore_t01": {
@@ -1750,7 +1750,7 @@ lookup = {
         },
         "Schematic:sid_edged_sword_neonglow_vr_ore_t01": {
             "name": "Krypton Sword",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_halloween_handcannon_sr_ore_t01": {
@@ -1765,7 +1765,7 @@ lookup = {
         },
         "Schematic:sid_edged_axe_medium_vr_ore_t01": {
             "name": "Revenant's Wrath",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_standard_scope_sr_ore_t01": {
@@ -1775,7 +1775,7 @@ lookup = {
         },
         "Schematic:sid_blunt_hammer_heavy_dragon_vr_ore_t01": {
             "name": "Dragon's Fist",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_auto_r_ore_t01": {
@@ -1805,22 +1805,22 @@ lookup = {
         },
         "Schematic:sid_piercing_spear_vr_ore_t01": {
             "name": "Whirling Doom",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_smg_fleming_sidefeed_vr_ore_t01": {
             "name": "The Pepper Sprayer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_semiauto_steampunk_vr_ore_t01": {
             "name": "Steam Piston",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_axe_medium_laser_vr_ore_t01": {
             "name": "Armaggeddon",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_launcher_rocket_r_ore_t01": {
@@ -1850,7 +1850,7 @@ lookup = {
         },
         "Schematic:sid_sniper_retroscifi_vr_ore_t01": {
             "name": "Blastotron 9000",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_launcher_vacuumtube_sr_ore_t01": {
@@ -1865,12 +1865,12 @@ lookup = {
         },
         "Schematic:sid_pistol_handcannon_semi_vt_vr_ore_t01": {
             "name": "Vindertech Burster",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_heavy_flintlock_vr_ore_t01": {
             "name": "Sir Hootie",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_longarm_sr_ore_t01": {
@@ -1885,7 +1885,7 @@ lookup = {
         },
         "Schematic:sid_launcher_rocket_dragon_vr_ore_t01": {
             "name": "Dragon's Fury",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_military_sr_ore_t01": {
@@ -1900,7 +1900,7 @@ lookup = {
         },
         "Schematic:sid_sniper_vacuumtube_vr_ore_t01": {
             "name": "Vacuum Tube Sniper Rifle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_medium_uc_ore_t01": {
@@ -1910,7 +1910,7 @@ lookup = {
         },
         "Schematic:sid_assault_shockwave_vr_ore_t01": {
             "name": "Lectro Shock Rifle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_scythe_blackmetal_sr_ore_t01": {
@@ -1940,7 +1940,7 @@ lookup = {
         },
         "Schematic:sid_shotgun_steampunk_vr_ore_t01": {
             "name": "Double Boiler",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_tripleshot_sr_ore_t01": {
@@ -1980,17 +1980,17 @@ lookup = {
         },
         "Schematic:sid_pistol_handcannon_semi_vr_ore_t01": {
             "name": "Falcon",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_auto_vr_ore_t01": {
             "name": "Tigerjaw",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_fleming_vr_ore_t01": {
             "name": "The Cleaner",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_break_c_ore_t01": {
@@ -2015,7 +2015,7 @@ lookup = {
         },
         "Schematic:sid_pistol_medieval_vr_ore_t01": {
             "name": "Basilisk",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_hammer_artdeco_sr_ore_t01": {
@@ -2035,7 +2035,7 @@ lookup = {
         },
         "Schematic:sid_edged_sword_medium_vacuumtube_vr_ore_t01": {
             "name": "Vacuum Tube Sword",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_semiauto_sr_ore_t01": {
@@ -2070,7 +2070,7 @@ lookup = {
         },
         "Schematic:sid_edged_axe_medieval_vr_ore_t01": {
             "name": "Wicked Wind",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_standard_uc_ore_t01": {
@@ -2080,7 +2080,7 @@ lookup = {
         },
         "Schematic:sid_edged_sword_light_founders_vr_ore_t01": {
             "name": "Founder's Nightcleave",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_hydraulic_bow_sr_ore_t01": {
@@ -2100,12 +2100,12 @@ lookup = {
         },
         "Schematic:sid_blunt_light_boombox_vr_ore_t01": {
             "name": "Mic Drop",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_flintlock_vr_ore_t01": {
             "name": "Ol' Betsy",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_winter_sr_ore_t01": {
@@ -2115,12 +2115,12 @@ lookup = {
         },
         "Schematic:sid_blunt_hammer_medieval_vr_ore_t01": {
             "name": "Smasher Basher",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_piercing_spear_hydraulic_vr_ore_t01": {
             "name": "Sawtooth",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_piercing_spear_medieval_sr_ore_t01": {
@@ -2130,17 +2130,17 @@ lookup = {
         },
         "Schematic:sid_pistol_silenced_military_vr_ore_t01": {
             "name": "Whisper .45",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_artdeco_vr_ore_t01": {
             "name": "The Take Down",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_club_light_vr_ore_t01": {
             "name": "Masters Driver",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_standard_r_ore_t01": {
@@ -2155,12 +2155,12 @@ lookup = {
         },
         "Schematic:sid_edged_axe_scavenger_vr_ore_t01": {
             "name": "Hack Axe",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_neonglow_vr_ore_t01": {
             "name": "Helium Shotgun",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_axe_medium_sr_ore_t01": {
@@ -2205,7 +2205,7 @@ lookup = {
         },
         "Schematic:sid_pistol_autoheavy_founders_vr_ore_t01": {
             "name": "Founder's QuickShot",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_surgical_sr_ore_t01": {
@@ -2225,7 +2225,7 @@ lookup = {
         },
         "Schematic:sid_assault_burst_vr_ore_t01": {
             "name": "Razorblade",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_flintlock_r_ore_t01": {
@@ -2265,7 +2265,7 @@ lookup = {
         },
         "Schematic:sid_sniper_neonglow_vr_ore_t01": {
             "name": "Neon Sniper Rifle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_medium_c_ore_t01": {
@@ -2275,12 +2275,12 @@ lookup = {
         },
         "Schematic:sid_shotgun_tactical_founders_vr_ore_t01": {
             "name": "Founder's Deconstructor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_auto_retroscifi_vr_ore_t01": {
             "name": "Blastotron Mini",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_stormking_sr_ore_t01": {
@@ -2300,7 +2300,7 @@ lookup = {
         },
         "Schematic:sid_edged_axe_neonglow_vr_ore_t01": {
             "name": "Argon Axe",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_retroscifi_sr_ore_t01": {
@@ -2310,7 +2310,7 @@ lookup = {
         },
         "Schematic:sid_pistol_scavenger_vr_ore_t01": {
             "name": "Riptide",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_semiauto_c_ore_t01": {
@@ -2345,7 +2345,7 @@ lookup = {
         },
         "Schematic:sid_blunt_medium_ratrod_vr_ore_t01": {
             "name": "Drifter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_blackmetal_sr_ore_t01": {
@@ -2360,12 +2360,12 @@ lookup = {
         },
         "Schematic:sid_sniper_auto_founders_vr_ore_t01": {
             "name": "Founder's Exterminator",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_gatling_vr_ore_t01": {
             "name": "Monsoon",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_light_boombox_sr_ore_t01": {
@@ -2375,7 +2375,7 @@ lookup = {
         },
         "Schematic:sid_edged_sword_medium_vr_ore_t01": {
             "name": "Slice n' Dice",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_steampunk_sr_ore_t01": {
@@ -2420,7 +2420,7 @@ lookup = {
         },
         "Schematic:sid_explosive_artdeco_vr_ore_t01": {
             "name": "The Sod Buster",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_shockwave_sr_ore_t01": {
@@ -2510,12 +2510,12 @@ lookup = {
         },
         "Schematic:sid_shotgun_burst_blackmetal_vr_ore_t01": {
             "name": "Black Drum",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_military_surgical_vr_ore_t01": {
             "name": "Tiger",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_hammer_medieval_sr_ore_t01": {
@@ -2525,7 +2525,7 @@ lookup = {
         },
         "Schematic:sid_assault_steampunk_drum_vr_ore_t01": {
             "name": "Duet",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_vindertech_bow_sr_ore_t01": {
@@ -2540,32 +2540,32 @@ lookup = {
         },
         "Schematic:sid_assault_neonglow_lmg_vr_ore_t01": {
             "name": "Mercury LMG",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_launcher_grenade_vr_ore_t01": {
             "name": "Thumper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_hammer_retroscifi_vr_ore_t01": {
             "name": "Husk Warper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_scythe_flintlock_vr_ore_t01": {
             "name": "Fishing Hook",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_singleshot_vr_ore_t01": {
             "name": "Hammercrush",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_ratrod_autodrum_vr_ore_t01": {
             "name": "Swan",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_burst_uc_ore_t01": {
@@ -2585,17 +2585,17 @@ lookup = {
         },
         "Schematic:sid_pistol_space_vr_ore_t01": {
             "name": "Space Invader",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_medium_vt_vr_ore_t01": {
             "name": "Vindertech Slicer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_launcher_scavenger_vr_ore_t01": {
             "name": "Trash Cannon",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_auto_c_ore_t01": {
@@ -2610,37 +2610,37 @@ lookup = {
         },
         "Schematic:sid_explosive_launcher_neonglow_vr_ore_t01": {
             "name": "Noble Launcher",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_auto_vt_vr_ore_t01": {
             "name": "Vindertech Pulsar",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_flintlock_vr_ore_t01": {
             "name": "Bundlebuss",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_singleshot_blackmetal_vr_ore_t01": {
             "name": "Blackout",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_handcannon_founders_vr_ore_t01": {
             "name": "Founder's Lawbringer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_tactical_precision_vr_ore_t01": {
             "name": "Nightclaw",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_crossbow_military_vr_ore_t01": {
             "name": "Crossbow",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_explosive_stormking_sr_ore_t01": {
@@ -2660,12 +2660,12 @@ lookup = {
         },
         "Schematic:sid_shotgun_break_vr_ore_t01": {
             "name": "Thunderbolt",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_semiauto_vr_ore_t01": {
             "name": "Stampede",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_autoheavy_founders_r_ore_t01": {
@@ -2675,7 +2675,7 @@ lookup = {
         },
         "Schematic:sid_launcher_flintlock_vr_ore_t01": {
             "name": "Bowler",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_launcher_grenade_r_ore_t01": {
@@ -2695,7 +2695,7 @@ lookup = {
         },
         "Schematic:sid_pistol_winter_gingerbread_vr_ore_t01": {
             "name": "Ginger Blaster",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_axe_neonglow_sr_ore_t01": {
@@ -2705,7 +2705,7 @@ lookup = {
         },
         "Schematic:sid_pistol_fleming_scoped_vr_ore_t01": {
             "name": "The Cyclops",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_burst_sr_ore_t01": {
@@ -2720,7 +2720,7 @@ lookup = {
         },
         "Schematic:sid_edged_sword_light_vr_ore_t01": {
             "name": "Stabsworth the III",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_autoheavy_founders_sr_ore_t01": {
@@ -2735,12 +2735,12 @@ lookup = {
         },
         "Schematic:sid_blunt_hammer_hydraulic_vr_ore_t01": {
             "name": "Pulverizer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_scythe_blackmetal_vr_ore_t01": {
             "name": "Brood Slicer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_club_light_sr_ore_t01": {
@@ -2770,7 +2770,7 @@ lookup = {
         },
         "Schematic:sid_shotgun_winter_vr_ore_t01": {
             "name": "Popshot",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_auto_retroscifi_sr_ore_t01": {
@@ -2790,7 +2790,7 @@ lookup = {
         },
         "Schematic:sid_pistol_fleming_tactical_vr_ore_t01": {
             "name": "The Turncoat",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_launcher_grenade_sr_ore_t01": {
@@ -2800,7 +2800,7 @@ lookup = {
         },
         "Schematic:sid_shotgun_boombox_break_vr_ore_t01": {
             "name": "Woofer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_ratrod_sr_ore_t01": {
@@ -2810,12 +2810,12 @@ lookup = {
         },
         "Schematic:sid_shotgun_vacuumtube_vr_ore_t01": {
             "name": "Vacuum Tube Shotgun",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_burst_retroscifi_vr_ore_t01": {
             "name": "Gammatron 9000",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_space_sr_ore_t01": {
@@ -2830,7 +2830,7 @@ lookup = {
         },
         "Schematic:sid_pistol_dragon_vr_ore_t01": {
             "name": "Dragon's Breath",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_standard_c_ore_t01": {
@@ -2845,12 +2845,12 @@ lookup = {
         },
         "Schematic:sid_assault_fleming_vr_ore_t01": {
             "name": "The Grunt",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_hydraulic_vr_ore_t01": {
             "name": "Pressure Cutter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_stormking_sr_ore_t01": {
@@ -2860,7 +2860,7 @@ lookup = {
         },
         "Schematic:sid_assault_vacuumtube_vr_ore_t01": {
             "name": "Vacuum Tube Rifle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_heavy_paddle_c_ore_t01": {
@@ -2875,12 +2875,12 @@ lookup = {
         },
         "Schematic:sid_pistol_retroscifi_vr_ore_t01": {
             "name": "Plasmatron 9000",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_axe_light_vr_ore_t01": {
             "name": "Claxe",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_flintlock_sr_ore_t01": {
@@ -2890,7 +2890,7 @@ lookup = {
         },
         "Schematic:sid_sniper_standard_scope_vt_vr_ore_t01": {
             "name": "Vindertech Jolter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_gatling_sr_ore_t01": {
@@ -2900,22 +2900,22 @@ lookup = {
         },
         "Schematic:sid_assault_scavenger_vr_ore_t01": {
             "name": "Buzzcut",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_dragon_vr_ore_t01": {
             "name": "Dragon's Roar",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_boombox_drum_vr_ore_t01": {
             "name": "Staccato Shotto",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_lmg_drum_founders_vr_ore_t01": {
             "name": "Founder's Drumroll",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_medium_sr_ore_t01": {
@@ -2980,7 +2980,7 @@ lookup = {
         },
         "Schematic:sid_pistol_autoheavy_vt_vr_ore_t01": {
             "name": "Vindertech Blazer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_neonglow_sr_ore_t01": {
@@ -3030,7 +3030,7 @@ lookup = {
         },
         "Schematic:sid_piercing_spear_retroscifi_vr_ore_t01": {
             "name": "Atomic Light Expander",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_medium_laser_founders_r_ore_t01": {
@@ -3065,7 +3065,7 @@ lookup = {
         },
         "Schematic:sid_pistol_handcannon_de_vr_ore_t01": {
             "name": "Bald Eagle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_winter_sr_ore_t01": {
@@ -3075,7 +3075,7 @@ lookup = {
         },
         "Schematic:sid_shotgun_break_flintlock_vr_ore_t01": {
             "name": "Dragoon",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_auto_vt_sr_ore_t01": {
@@ -3095,7 +3095,7 @@ lookup = {
         },
         "Schematic:sid_shotgun_medieval_vr_ore_t01": {
             "name": "Stalwart Squire",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_axe_blackmetal_sr_ore_t01": {
@@ -3105,12 +3105,12 @@ lookup = {
         },
         "Schematic:sid_edged_scythe_steampunk_vr_ore_t01": {
             "name": "Steam Thrasher",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_semiauto_founders_vr_ore_t01": {
             "name": "Founder's Vendetta",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_smg_unsilenced_military_r_ore_t01": {
@@ -3125,7 +3125,7 @@ lookup = {
         },
         "Schematic:sid_assault_military_auto_vr_ore_t01": {
             "name": "Bobcat",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_axe_light_c_ore_t01": {
@@ -3160,7 +3160,7 @@ lookup = {
         },
         "Schematic:sid_blunt_scavenger_vr_ore_t01": {
             "name": "Pipe Down!",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_steampunk_bow_sr_ore_t01": {
@@ -3170,17 +3170,17 @@ lookup = {
         },
         "Schematic:sid_piercing_spear_blackmetal_vr_ore_t01": {
             "name": "Nightfall",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_military_burst_vr_ore_t01": {
             "name": "Lynx",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_artdeco_vr_ore_t01": {
             "name": "The Floor Flusher",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_light_bat_uc_ore_t01": {
@@ -3190,7 +3190,7 @@ lookup = {
         },
         "Schematic:sid_shotgun_hydraulic_vr_ore_t01": {
             "name": "Pummeller",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_hydraulic_sr_ore_t01": {
@@ -3205,7 +3205,7 @@ lookup = {
         },
         "Schematic:sid_piercing_spear_scavenger_vr_ore_t01": {
             "name": "Head Clipper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_sword_light_sr_ore_t01": {
@@ -3215,12 +3215,12 @@ lookup = {
         },
         "Schematic:sid_sniper_blackmetal_vr_ore_t01": {
             "name": "Midnight Stalker",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_sniper_scavenger_vr_ore_t01": {
             "name": "Sunsetter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_pistol_fleming_scoped_sr_ore_t01": {
@@ -3250,7 +3250,7 @@ lookup = {
         },
         "Schematic:sid_pistol_artdeco_vr_ore_t01": {
             "name": "The Mouth Piece",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_vacuumtube_sr_ore_t01": {
@@ -3285,12 +3285,12 @@ lookup = {
         },
         "Schematic:sid_shotgun_auto_founders_vr_ore_t01": {
             "name": "Founder's Bearcat",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_blunt_hammer_flintlock_vr_ore_t01": {
             "name": "Walloper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_fleming_sr_ore_t01": {
@@ -3300,7 +3300,7 @@ lookup = {
         },
         "Schematic:sid_blunt_hammer_rocket_vt_vr_ore_t01": {
             "name": "Vindertech Slammer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_edged_axe_light_sr_ore_t01": {
@@ -3320,7 +3320,7 @@ lookup = {
         },
         "Schematic:sid_edged_axe_medium_founders_vr_ore_t01": {
             "name": "Founder's Skullcleave",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_launcher_flintlock_sr_ore_t01": {
@@ -3330,7 +3330,7 @@ lookup = {
         },
         "Schematic:sid_launcher_hydraulic_vr_ore_t01": {
             "name": "Dam Buster",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_assault_dragon_sr_ore_t01": {
@@ -3345,7 +3345,7 @@ lookup = {
         },
         "Schematic:sid_pistol_autoheavy_vr_ore_t01": {
             "name": "Thrasher",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "weapon",
         },
         "Schematic:sid_shotgun_tactical_precision_sr_ore_t01": {
@@ -3355,12 +3355,12 @@ lookup = {
         },
         "Hero:hid_constructor_030_radconstructor_vr_t01": {
             "name": "Power Pop Penny",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_029_retroscifioutlander_vr_t01": {
             "name": "Cyberclops",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_sony_sr_t01": {
@@ -3370,17 +3370,17 @@ lookup = {
         },
         "Hero:hid_constructor_007hw_vr_t01": {
             "name": "Kyle the 13th",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_034_period_fleming_vr_t01": {
             "name": "Undercover Buzz",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_grenadegun_vr_t01": {
             "name": "Rescue Trooper Ramirez",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_rushbase_sr_t01": {
@@ -3400,12 +3400,12 @@ lookup = {
         },
         "Hero:hid_constructor_036_dino_constructor_vr_t01": {
             "name": "Ankylo Kyle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_040_pirate_br_vr_t01": {
             "name": "Buccaneer Ramirez",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_024_sr_t01": {
@@ -3425,7 +3425,7 @@ lookup = {
         },
         "Hero:hid_constructor_038_gumshoe_vr_t01": {
             "name": "Sleuth",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_xbox_sr_t01": {
@@ -3435,7 +3435,7 @@ lookup = {
         },
         "Hero:hid_constructor_basehyper_vr_t01": {
             "name": "Hotfixer Hazard",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_xbox_r_t01": {
@@ -3465,7 +3465,7 @@ lookup = {
         },
         "Hero:hid_ninja_010_f_vr_t01": {
             "name": "Deadly Blade Crash",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_021_sr_t01": {
@@ -3475,7 +3475,7 @@ lookup = {
         },
         "Hero:hid_constructor_basehyperhw_vr_t01": {
             "name": "Catstructor Penny",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_014_r_t01": {
@@ -3495,7 +3495,7 @@ lookup = {
         },
         "Hero:hid_constructor_040_lars_vr_t01": {
             "name": "Lars",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_gcgrenade_sr_t01": {
@@ -3515,7 +3515,7 @@ lookup = {
         },
         "Hero:hid_outlander_016_m_v1_vr_t01": {
             "name": "Shockgunner Grizzly",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_037_director_sr_t01": {
@@ -3525,7 +3525,7 @@ lookup = {
         },
         "Hero:hid_outlander_009_vr_t01": {
             "name": "Vanguard Southie",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_010_sr_t01": {
@@ -3545,7 +3545,7 @@ lookup = {
         },
         "Hero:hid_ninja_016_m_v1_vr_t01": {
             "name": "Piercing Lotus Edge",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_017_f_v1_sr_t01": {
@@ -3555,7 +3555,7 @@ lookup = {
         },
         "Hero:hid_commando_039_pajama_party_vr_t01": {
             "name": "Tricera Ops Ramirez",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_guntough_rs01_sr_t01": {
@@ -3580,12 +3580,12 @@ lookup = {
         },
         "Hero:hid_ninja_034_toymonkey_vr_t01": {
             "name": "Monks",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_013_vr_t01": {
             "name": "Warden Kyle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_018_sr_t01": {
@@ -3610,7 +3610,7 @@ lookup = {
         },
         "Hero:hid_ninja_starsrain_vr_t01": {
             "name": "Shuriken Master Sarah",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_010_m_sr_t01": {
@@ -3620,7 +3620,7 @@ lookup = {
         },
         "Hero:hid_outlander_punchdamage_vr_t01": {
             "name": "Striker A.C.",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_029_dinosoldier_sr_t01": {
@@ -3635,27 +3635,27 @@ lookup = {
         },
         "Hero:hid_outlander_015_f_v1_vr_t01": {
             "name": "T.E.D.D. Shot Jess",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_008_vr_t01": {
             "name": "Special Forces Banshee",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_guntough_vr_t01": {
             "name": "Survivalist Jonesy",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_038_male_ninja_pirate_vr_t01": {
             "name": "Freebooter Ken",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_015_f_v1_vr_t01": {
             "name": "Harvester Sarah",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_guntough_m_4thjuly_sr_t01": {
@@ -3665,7 +3665,7 @@ lookup = {
         },
         "Hero:hid_constructor_034_mechstructor_vr_t01": {
             "name": "Machinist Mina",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_zoneharvest_sr_t01": {
@@ -3690,7 +3690,7 @@ lookup = {
         },
         "Hero:hid_constructor_028_retroscificonstructor_vr_t01": {
             "name": "ED-EE",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_011_sr_t01": {
@@ -3705,7 +3705,7 @@ lookup = {
         },
         "Hero:hid_commando_gunheadshot_vr_t01": {
             "name": "Urban Assault Headhunter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_zoneharvest_blockbuster_sr_t01": {
@@ -3735,7 +3735,7 @@ lookup = {
         },
         "Hero:hid_outlander_025_pirateoutlander_vr_t01": {
             "name": "Crossbones Barret",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_024_sr_t01": {
@@ -3760,7 +3760,7 @@ lookup = {
         },
         "Hero:hid_outlander_017_m_v1_vr_t01": {
             "name": "Wild Fragment Deadeye",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_042_assembler_sr_t01": {
@@ -3775,7 +3775,7 @@ lookup = {
         },
         "Hero:hid_commando_038_shock_wave_vr_t01": {
             "name": "Powerhouse",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_xbox_r_t01": {
@@ -3785,27 +3785,27 @@ lookup = {
         },
         "Hero:hid_commando_016_f_v1_vr_t01": {
             "name": "Double Agent Evelynn",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_042_major_vr_t01": {
             "name": "Major Oswald",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_017_m_v1_vr_t01": {
             "name": "Infiltrator Ken",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_040_assemblek_vr_t01": {
             "name": "Robo-Kevin",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_008_vr_t01": {
             "name": "Stonefoot Crash",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_013_sr_t01": {
@@ -3825,7 +3825,7 @@ lookup = {
         },
         "Hero:hid_ninja_slashbreath_vr_t01": {
             "name": "Dragon Scorch",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_xbox_sr_t01": {
@@ -3835,7 +3835,7 @@ lookup = {
         },
         "Hero:hid_commando_031_radsoldier_vr_t01": {
             "name": "Breakbeat Wildcat",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_sony_sr_t01": {
@@ -3875,7 +3875,7 @@ lookup = {
         },
         "Hero:hid_constructor_hammerplasma_vr_t01": {
             "name": "Electro-pulse Penny",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_slashtail_uc_t01": {
@@ -3885,7 +3885,7 @@ lookup = {
         },
         "Hero:hid_ninja_031_radninja_vr_t01": {
             "name": "Varsity Hiro",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_025_pirateninja_sr_t01": {
@@ -3900,7 +3900,7 @@ lookup = {
         },
         "Hero:hid_commando_027_piratesoldier_vr_t01": {
             "name": "Buccaneer Jonesy",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_myth03_sr_t01": {
@@ -3925,7 +3925,7 @@ lookup = {
         },
         "Hero:hid_commando_017_f_v1_vr_t01": {
             "name": "First Shot Rio",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_041_deco_sr_t01": {
@@ -3940,12 +3940,12 @@ lookup = {
         },
         "Hero:hid_constructor_009_vr_t01": {
             "name": "Sentinel Hype",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_011_vr_t01": {
             "name": "Shrapnel Headhunter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_014_sr_t01": {
@@ -3965,7 +3965,7 @@ lookup = {
         },
         "Hero:hid_commando_sony_vr_t01": {
             "name": "Commando Ramirez",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_028_razor_sr_t01": {
@@ -3980,7 +3980,7 @@ lookup = {
         },
         "Hero:hid_ninja_011_vr_t01": {
             "name": "Energy Thief Mari",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_013_sr_t01": {
@@ -3995,7 +3995,7 @@ lookup = {
         },
         "Hero:hid_commando_gcgrenade_t_vr_t01": {
             "name": "Sub Commando Jonesy",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_015_m_v1_sr_t01": {
@@ -4020,7 +4020,7 @@ lookup = {
         },
         "Hero:hid_commando_044_gumshoe_dark_vr_t01": {
             "name": "Noir",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_039_dino_ninja_sr_t01": {
@@ -4030,7 +4030,7 @@ lookup = {
         },
         "Hero:hid_outlander_035_palespooky_outlander_holiday_vr_t01": {
             "name": "Red Willow",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_020_sr_t01": {
@@ -4050,7 +4050,7 @@ lookup = {
         },
         "Hero:hid_commando_xbox_vr_t01": {
             "name": "Commando Renegade",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_017_f_v1_r_t01": {
@@ -4085,7 +4085,7 @@ lookup = {
         },
         "Hero:hid_ninja_starsrainhw_vr_t01": {
             "name": "Swift Shuriken Llamurai",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_033_halloweenquestsoldier_sr_t01": {
@@ -4110,12 +4110,12 @@ lookup = {
         },
         "Hero:hid_commando_041_pirate_02_br_vr_t01": {
             "name": "Sea Wolf Jonesy",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_zonepistol_vr_t01": {
             "name": "Ranger Deadeye",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_slashtail_sr_t01": {
@@ -4135,12 +4135,12 @@ lookup = {
         },
         "Hero:hid_ninja_starsassassin_vr_t01": {
             "name": "Assassin Sarah",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_033_villain_fleming_vr_t01": {
             "name": "Gold Knox",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_013_stpatricks_m_sr_t01": {
@@ -4165,7 +4165,7 @@ lookup = {
         },
         "Hero:hid_commando_014_vr_t01": {
             "name": "Onslaught Headhunter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_019_sr_t01": {
@@ -4180,7 +4180,7 @@ lookup = {
         },
         "Hero:hid_outlander_008_vr_t01": {
             "name": "Recon Scout Eagle Eye",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_037_fuzzy_bear_teddy_sr_t01": {
@@ -4190,7 +4190,7 @@ lookup = {
         },
         "Hero:hid_outlander_036_dino_outlander_vr_t01": {
             "name": "Parasaur Jess",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_029_dinoninja_sr_t01": {
@@ -4210,7 +4210,7 @@ lookup = {
         },
         "Hero:hid_commando_007_vr_t01": {
             "name": "Support Specialist Hawk",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_punchphase_sr_t01": {
@@ -4235,7 +4235,7 @@ lookup = {
         },
         "Hero:hid_commando_030_retroscifisoldier_vr_t01": {
             "name": "Extraterrestrial Rio",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_guntough_f_4thjuly_sr_t01": {
@@ -4270,7 +4270,7 @@ lookup = {
         },
         "Hero:hid_ninja_043_cranium_vr_t01": {
             "name": "Deimos",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_034_period_fleming_sr_t01": {
@@ -4285,7 +4285,7 @@ lookup = {
         },
         "Hero:hid_ninja_030_retroscifininja_vr_t01": {
             "name": "Intergalactic Ken",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_040_pirate_br_sr_t01": {
@@ -4300,7 +4300,7 @@ lookup = {
         },
         "Hero:hid_ninja_014_vr_t01": {
             "name": "Whirlwind Scorch",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_023_sr_t01": {
@@ -4325,7 +4325,7 @@ lookup = {
         },
         "Hero:hid_commando_gunheadshothw_vr_t01": {
             "name": "Skull Trooper Jonesy",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_029_retroscifioutlander_sr_t01": {
@@ -4350,7 +4350,7 @@ lookup = {
         },
         "Hero:hid_ninja_040_dennis_vr_t01": {
             "name": "Dennis",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_010_bday_sr_t01": {
@@ -4360,7 +4360,7 @@ lookup = {
         },
         "Hero:hid_outlander_zonepistolhw_vr_t01": {
             "name": "Beetlejess",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_010_m_4thjuly_sr_t01": {
@@ -4370,22 +4370,22 @@ lookup = {
         },
         "Hero:hid_outlander_011_vr_t01": {
             "name": "Gunblazer Southie",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_rushbase_f_vr_t01": {
             "name": "Marathon Hype",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_034_toytinkerer_vr_t01": {
             "name": "Ted",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_026_bombsquadconstructor_vr_t01": {
             "name": "BombSquad Kyle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_014_f_sr_t01": {
@@ -4400,7 +4400,7 @@ lookup = {
         },
         "Hero:hid_constructor_hammertank_vr_t01": {
             "name": "Tank Penny",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_starsrain_sr_t01": {
@@ -4425,7 +4425,7 @@ lookup = {
         },
         "Hero:hid_commando_shockdamage_vr_t01": {
             "name": "Shock Trooper Renegade",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_009_sr_t01": {
@@ -4440,12 +4440,12 @@ lookup = {
         },
         "Hero:hid_constructor_015_vr_t01": {
             "name": "Heavy B.A.S.E. Kyle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_smokedimmak_vr_t01": {
             "name": "Dim Mak Mari",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_039_pajama_party_sr_t01": {
@@ -4480,12 +4480,12 @@ lookup = {
         },
         "Hero:hid_commando_010_vr_t01": {
             "name": "Sergeant Jonesy",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_slashbreathhw_vr_t01": {
             "name": "Sarah Hotep",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_013_sr_t01": {
@@ -4505,7 +4505,7 @@ lookup = {
         },
         "Hero:hid_outlander_spherefragment_vr_t01": {
             "name": "Trailblazer Quinn",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_016_m_v1_sr_t01": {
@@ -4520,12 +4520,12 @@ lookup = {
         },
         "Hero:hid_commando_024_vr_t01": {
             "name": "Sgt. Winter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_016_f_v1_vr_t01": {
             "name": "Demolitionist Penny",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_011_uc_t01": {
@@ -4540,12 +4540,12 @@ lookup = {
         },
         "Hero:hid_ninja_007_vr_t01": {
             "name": "Brawler Luna",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_007hw_vr_t01": {
             "name": "Ghoul Trooper Ramirez",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_034_mechstructor_sr_t01": {
@@ -4560,7 +4560,7 @@ lookup = {
         },
         "Hero:hid_constructor_008_vr_t01": {
             "name": "Power B.A.S.E. Knox",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_017_m_v1_sr_t01": {
@@ -4600,12 +4600,12 @@ lookup = {
         },
         "Hero:hid_constructor_rushbase_vr_t01": {
             "name": "B.A.S.E. Kyle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_xbox_vr_t01": {
             "name": "Guardian Knox",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_gunheadshot_sr_t01": {
@@ -4615,7 +4615,7 @@ lookup = {
         },
         "Hero:hid_constructor_sony_vr_t01": {
             "name": "Guardian Penny",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_guntough_sr_t01": {
@@ -4665,12 +4665,12 @@ lookup = {
         },
         "Hero:hid_commando_009_m_vr_t01": {
             "name": "Centurion Hawk",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_017_f_v1_vr_t01": {
             "name": "Vintage-Tech Penny",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_042_major_sr_t01": {
@@ -4695,7 +4695,7 @@ lookup = {
         },
         "Hero:hid_commando_gcgrenade_vr_t01": {
             "name": "Commando Spitfire",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_009_r_t01": {
@@ -4705,7 +4705,7 @@ lookup = {
         },
         "Hero:hid_outlander_014_vr_t01": {
             "name": "Fireflower Eagle Eye",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_016_f_v1_sr_t01": {
@@ -4715,7 +4715,7 @@ lookup = {
         },
         "Hero:hid_ninja_010_vr_t01": {
             "name": "Deadly Star Scorpion",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_038_shock_wave_sr_t01": {
@@ -4725,17 +4725,17 @@ lookup = {
         },
         "Hero:hid_outlander_030_radoutlander_vr_t01": {
             "name": "Main Stage Quinn",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_007_vr_t01": {
             "name": "Enforcer Grizzly",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_010_m_vr_t01": {
             "name": "Trailblaster A.C.",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_025_pirateoutlander_sr_t01": {
@@ -4755,7 +4755,7 @@ lookup = {
         },
         "Hero:hid_constructor_037_director_vr_t01": {
             "name": "Director Riggs",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_032_toyoutlander_sr_t01": {
@@ -4765,12 +4765,12 @@ lookup = {
         },
         "Hero:hid_outlander_039_female_gumshoe_vr_t01": {
             "name": "Gumshoe",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_024_pirateconstructor_vr_t01": {
             "name": "Privateer Hype",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_025_sr_t01": {
@@ -4840,7 +4840,7 @@ lookup = {
         },
         "Hero:hid_outlander_038_clip_vr_t01": {
             "name": 'Cassie "Clip" Lipman',
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_031_radninja_sr_t01": {
@@ -4850,7 +4850,7 @@ lookup = {
         },
         "Hero:hid_constructor_011_vr_t01": {
             "name": "Machinist Harper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_008_r_t01": {
@@ -4880,7 +4880,7 @@ lookup = {
         },
         "Hero:hid_commando_013_vr_t01": {
             "name": "Demolisher Jonesy",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_013_stpatricks_sr_t01": {
@@ -4920,7 +4920,7 @@ lookup = {
         },
         "Hero:hid_outlander_010_vr_t01": {
             "name": "Shockblaster Buzz",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_007_uc_t01": {
@@ -4945,12 +4945,12 @@ lookup = {
         },
         "Hero:hid_ninja_013_vr_t01": {
             "name": "Alchemist Sarah",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_042_assembler_vr_t01": {
             "name": "Robo-Ray",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_022_sr_t01": {
@@ -4975,7 +4975,7 @@ lookup = {
         },
         "Hero:hid_outlander_zoneharvest_vr_t01": {
             "name": "Pathfinder Jess",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_044_gumshoe_dark_sr_t01": {
@@ -4995,7 +4995,7 @@ lookup = {
         },
         "Hero:hid_commando_023_vr_t01": {
             "name": "Jolly Headhunter",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_016_m_v1_sr_t01": {
@@ -5005,7 +5005,7 @@ lookup = {
         },
         "Hero:hid_outlander_xbox_vr_t01": {
             "name": "Trailblazer Jess",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_011_sr_t01": {
@@ -5025,7 +5025,7 @@ lookup = {
         },
         "Hero:hid_constructor_007_vr_t01": {
             "name": "Controller Harper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_sony_r_t01": {
@@ -5045,12 +5045,12 @@ lookup = {
         },
         "Hero:hid_constructor_039_assemble_l_vr_t01": {
             "name": "Lok-Bot",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_009_vr_t01": {
             "name": "Colonel Wildcat",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_011_f_v1_roadtrip_sr_t01": {
@@ -5065,12 +5065,12 @@ lookup = {
         },
         "Hero:hid_ninja_041_deco_vr_t01": {
             "name": "Venturion",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_xbox_vr_t01": {
             "name": "Jade Assassin Sarah",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_zonepistol_sr_t01": {
@@ -5105,7 +5105,7 @@ lookup = {
         },
         "Hero:hid_ninja_025_pirateninja_vr_t01": {
             "name": "Swashbuckler Keelhaul",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_014_sr_t01": {
@@ -5115,7 +5115,7 @@ lookup = {
         },
         "Hero:hid_ninja_037_junk_samurai_vr_t01": {
             "name": "Samurai Scrapper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_smokedimmak_r_t01": {
@@ -5150,7 +5150,7 @@ lookup = {
         },
         "Hero:hid_constructor_014_vr_t01": {
             "name": "Riot Response Hazard",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_021_sr_t01": {
@@ -5175,7 +5175,7 @@ lookup = {
         },
         "Hero:hid_outlander_sony_vr_t01": {
             "name": "Trailblazer A.C.",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_plasmadamage_r_t01": {
@@ -5215,12 +5215,12 @@ lookup = {
         },
         "Hero:hid_outlander_013_vr_t01": {
             "name": "Fragment Flurry Jess",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_035_birthday_constructor_vr_t01": {
             "name": "Birthday Brigade Penny",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_gunheadshothw_sr_t01": {
@@ -5240,7 +5240,7 @@ lookup = {
         },
         "Hero:hid_commando_015_m_v1_vr_t01": {
             "name": "Bullet Storm Jonesy",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_015_r_t01": {
@@ -5260,7 +5260,7 @@ lookup = {
         },
         "Hero:hid_ninja_sony_vr_t01": {
             "name": "Bluestreak Ken",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_hammerplasma_4thjuly_sr_t01": {
@@ -5285,12 +5285,12 @@ lookup = {
         },
         "Hero:hid_constructor_plasmadamage_vr_t01": {
             "name": "Plasma Specialist Izza",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_039_dino_ninja_vr_t01": {
             "name": "Jurassic Ken",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_040_dennis_sr_t01": {
@@ -5310,7 +5310,7 @@ lookup = {
         },
         "Hero:hid_constructor_032_toyconstructor_vr_t01": {
             "name": "Sgt. Tank Gatling",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_030_retroscifisoldier_sr_t01": {
@@ -5330,7 +5330,7 @@ lookup = {
         },
         "Hero:hid_outlander_punchphase_vr_t01": {
             "name": "Shock Specialist A.C.",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_013_r_t01": {
@@ -5375,7 +5375,7 @@ lookup = {
         },
         "Hero:hid_outlander_037_fuzzy_bear_teddy_vr_t01": {
             "name": "Metal Team Leader",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_constructor_026_bombsquadconstructor_sr_t01": {
@@ -5390,7 +5390,7 @@ lookup = {
         },
         "Hero:hid_ninja_slashtail_vr_t01": {
             "name": "Fleetfoot Ken",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_commando_shockdamage_sr_t01": {
@@ -5400,7 +5400,7 @@ lookup = {
         },
         "Hero:hid_constructor_010_vr_t01": {
             "name": "Guardian Bull",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_outlander_spherefragment_sr_t01": {
@@ -5410,7 +5410,7 @@ lookup = {
         },
         "Hero:hid_ninja_009_vr_t01": {
             "name": "Skirmisher Edge",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "hero",
         },
         "Hero:hid_ninja_starsassassin_r_t01": {
@@ -5495,7 +5495,7 @@ lookup = {
         },
         "Worker:managerinventor_r_t01": {
             "name": "Lead Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:workerhalloween_uc_t01": {
@@ -5520,7 +5520,7 @@ lookup = {
         },
         "Worker:managerexplorer_r_t01": {
             "name": "Lead Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managersoldier_sr_ramsie_t01": {
@@ -5545,7 +5545,7 @@ lookup = {
         },
         "Worker:worker_halloween_husky_vr_t01": {
             "name": "Husky",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managermartialartist_uc_t01": {
@@ -5585,7 +5585,7 @@ lookup = {
         },
         "Worker:managergadgeteer_r_t01": {
             "name": "Lead Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managerexplorer_sr_eagle_t01": {
@@ -5615,7 +5615,7 @@ lookup = {
         },
         "Worker:managertrainer_r_t01": {
             "name": "Lead Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managersoldier_c_t01": {
@@ -5630,7 +5630,7 @@ lookup = {
         },
         "Worker:worker_halloween_lobber_vr_t01": {
             "name": "Lobber",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:worker_halloween_troll_sr_t01": {
@@ -5660,7 +5660,7 @@ lookup = {
         },
         "Worker:managerdoctor_r_t01": {
             "name": "Lead Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managerexplorer_uc_t01": {
@@ -5705,7 +5705,7 @@ lookup = {
         },
         "Worker:managermartialartist_r_t01": {
             "name": "Lead Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managerinventor_c_t01": {
@@ -5745,7 +5745,7 @@ lookup = {
         },
         "Worker:managerengineer_r_t01": {
             "name": "Lead Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managermartialartist_sr_dragon_t01": {
@@ -5790,7 +5790,7 @@ lookup = {
         },
         "Worker:workerbasic_vr_t01": {
             "name": "Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managergadgeteer_vr_t01": {
@@ -5815,7 +5815,7 @@ lookup = {
         },
         "Worker:worker_leprechaun_vr_t01": {
             "name": "Leprechaun",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managerengineer_sr_sobs_t01": {
@@ -5855,7 +5855,7 @@ lookup = {
         },
         "Worker:managerquestdoctor_r_t01": {
             "name": "Dr. Blackwell",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managertrainer_vr_t01": {
@@ -5865,7 +5865,7 @@ lookup = {
         },
         "Worker:managersoldier_r_t01": {
             "name": "Lead Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managerdoctor_c_t01": {
@@ -5875,7 +5875,7 @@ lookup = {
         },
         "Worker:workerhalloween_vr_t01": {
             "name": "Lobber",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managerdoctor_vr_t01": {
@@ -5895,7 +5895,7 @@ lookup = {
         },
         "Worker:worker_halloween_troll_vr_t01": {
             "name": "Troll",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "survivor",
         },
         "Worker:managermartialartist_c_t01": {
@@ -5935,7 +5935,7 @@ lookup = {
         },
         "Defender:did_defendermelee_basic_vr_t01": {
             "name": "Defender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "defender",
         },
         "Defender:did_defenderassault_basic_r_t01": {
@@ -5960,7 +5960,7 @@ lookup = {
         },
         "Defender:did_defenderassault_founders_vr_t01": {
             "name": "Jill",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "defender",
         },
         "Defender:did_defenderassault_basic_m_sr_t01": {
@@ -5990,12 +5990,12 @@ lookup = {
         },
         "Defender:did_defenderpistol_basic_vr_t01": {
             "name": "Defender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "defender",
         },
         "Defender:did_defenderpistol_basic_f_vr_t01": {
             "name": "Defender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "defender",
         },
         "Defender:did_defendermelee_basic_sr_t01": {
@@ -6015,12 +6015,12 @@ lookup = {
         },
         "Defender:did_defenderassault_basic_vr_t01": {
             "name": "Defender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "defender",
         },
         "Defender:did_defendershotgun_basic_vr_t01": {
             "name": "Defender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "defender",
         },
         "Defender:did_defendersniper_basic_r_t01": {
@@ -6030,12 +6030,12 @@ lookup = {
         },
         "Defender:did_defendersniper_basic_vr_t01": {
             "name": "Defender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "defender",
         },
         "Defender:did_defendersniper_basic_m_vr_t01": {
             "name": "Defender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "defender",
         },
         "Defender:did_defenderassault_basic_m_r_t01": {
@@ -6065,12 +6065,12 @@ lookup = {
         },
         "Defender:did_defenderassault_basic_m_vr_t01": {
             "name": "Defender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "defender",
         },
         "Defender:did_defendershotgun_basic_f_vr_t01": {
             "name": "Defender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "defender",
         },
         "Defender:did_defendersniper_basic_m_r_t01": {
@@ -6095,7 +6095,7 @@ lookup = {
         },
         "Defender:did_defenderpistol_founders_vr_t01": {
             "name": "Idris",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "defender",
         },
         "Defender:did_defendersniper_basic_c_t01": {
@@ -6135,7 +6135,7 @@ lookup = {
         },
         "AccountResource:reagent_c_t03": {
             "name": "Eye of the Storm",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:voucher_generic_schematic_sr": {
@@ -6180,7 +6180,7 @@ lookup = {
         },
         "AccountResource:reagent_c_t04": {
             "name": "Storm Shard",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:voucher_generic_trap_sr": {
@@ -6240,7 +6240,7 @@ lookup = {
         },
         "AccountResource:reagent_evolverarity_vr": {
             "name": "Epic Flux",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:voucher_founders_ninja_weapon_sr": {
@@ -6280,12 +6280,12 @@ lookup = {
         },
         "AccountResource:reagent_alteration_upgrade_vr": {
             "name": "Epic PERK-UP!",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:voucher_generic_defender_vr": {
             "name": "Epic Defender Token",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:voucher_generic_defender_r": {
@@ -6325,7 +6325,7 @@ lookup = {
         },
         "AccountResource:voucher_generic_manager_vr": {
             "name": "Epic Lead Survivor Token",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:voucher_founders_constructor_bundle": {
@@ -6335,7 +6335,7 @@ lookup = {
         },
         "AccountResource:voucher_generic_melee_vr": {
             "name": "Epic Melee Weapon Token",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:reagent_evolverarity_sr": {
@@ -6390,7 +6390,7 @@ lookup = {
         },
         "AccountResource:feather_persistentresource": {
             "name": "Feathers",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:athenabattlepassxp": {
@@ -6405,7 +6405,7 @@ lookup = {
         },
         "AccountResource:currency_xrayllama": {
             "name": "X-Ray Tickets",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:eventcurrency_scavenger": {
@@ -6435,7 +6435,7 @@ lookup = {
         },
         "AccountResource:voucher_generic_hero_vr": {
             "name": "Epic Hero Token",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:voucher_generic_melee_sr": {
@@ -6450,7 +6450,7 @@ lookup = {
         },
         "AccountResource:voucher_generic_weapon_vr": {
             "name": "Epic Weapon Token",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:phoenixxp": {
@@ -6460,7 +6460,7 @@ lookup = {
         },
         "AccountResource:voucher_generic_worker_vr": {
             "name": "Epic Survivor Token",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:eventcurrency_candy": {
@@ -6490,7 +6490,7 @@ lookup = {
         },
         "AccountResource:voucher_generic_ranged_vr": {
             "name": "Epic Ranged Weapon Token",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:voucher_generic_ranged_r": {
@@ -6505,7 +6505,7 @@ lookup = {
         },
         "AccountResource:eventcurrency_founders": {
             "name": "Founder's Coins",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:eventcurrency_blockbuster": {
@@ -6525,12 +6525,12 @@ lookup = {
         },
         "AccountResource:reagent_c_t01": {
             "name": "Pure Drop of Rain",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:voucher_generic_schematic_vr": {
             "name": "Epic Schematic Token",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:voucher_generic_weapon_sr": {
@@ -6570,7 +6570,7 @@ lookup = {
         },
         "AccountResource:reagent_c_t02": {
             "name": "Lightning in a Bottle",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "AccountResource:athenawellrestedbooster": {
@@ -6625,7 +6625,7 @@ lookup = {
         },
         "AccountResource:voucher_generic_trap_vr": {
             "name": "Epic Trap Token",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "accountresource",
         },
         "ConsumableAccountItem:smallxpboost_gift": {
@@ -6650,7 +6650,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_season11_winter_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_anniversary2019_schematic_sr": {
@@ -6675,7 +6675,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_winter": {
             "name": "Winter Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_founders_outlander_bundle": {
@@ -6695,7 +6695,7 @@ lookup = {
         },
         "CardPack:cardpack_manager_inventor_r": {
             "name": "Epic Inventor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_jackpot_winter2018_tickets": {
@@ -6730,7 +6730,7 @@ lookup = {
         },
         "CardPack:cardpack_event_scavenger_melee_vr": {
             "name": "Epic Scavenger Melee Weapon Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_ranged_r": {
@@ -6765,7 +6765,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_spring_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_mtx_500": {
@@ -6785,7 +6785,7 @@ lookup = {
         },
         "CardPack:cardpack_manager_trainer_r": {
             "name": "Epic Personal Trainer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_wargames_banner_tornado": {
@@ -6795,12 +6795,12 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_season10_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_silver_collectionbook": {
             "name": "Upgrade Pack",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_manager_soldier_sr": {
@@ -6810,7 +6810,7 @@ lookup = {
         },
         "CardPack:cardpack_weapons_collectionbook": {
             "name": "Weapon Pack",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_flamegrill_sr": {
@@ -6845,12 +6845,12 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_hero_commando_vr": {
             "name": "Epic Soldier",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_ranged_shotgun_vr": {
             "name": "Epic Shotgun Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_achievement_banner_lootlegend": {
@@ -6870,7 +6870,7 @@ lookup = {
         },
         "CardPack:cardpack_ranged_vr": {
             "name": "Epic Ranged Weapon Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_horde_banner_2018_twinepeaks": {
@@ -6890,7 +6890,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_scavenger_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_sword_c": {
@@ -6905,12 +6905,12 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_military": {
             "name": "Military Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_persistent_rad_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_wargames_banner_generators": {
@@ -6945,7 +6945,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_spring_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defendermelee_sr": {
@@ -6985,7 +6985,7 @@ lookup = {
         },
         "CardPack:cardpack_trap_floor_vr": {
             "name": "Epic Floor Trap Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_ranged_pistol_sr": {
@@ -7005,17 +7005,17 @@ lookup = {
         },
         "CardPack:cardpack_silver_halloween": {
             "name": "Silver Pack",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_hero_ninja_vr": {
             "name": "Epic Ninja",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_persistent_pirate_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_manager_inventor_sr": {
@@ -7040,7 +7040,7 @@ lookup = {
         },
         "CardPack:cardpack_event_season12_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_schematics_season11_ww_sr": {
@@ -7050,7 +7050,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_persistent_fortnitemares_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_eventscaling_500": {
@@ -7075,7 +7075,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_season11_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_stormzone_banners_plankerton": {
@@ -7090,12 +7090,12 @@ lookup = {
         },
         "CardPack:cardpack_event_persistent_fortnitemares_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_season12": {
             "name": "Spy Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_jackpot_event": {
@@ -7105,12 +7105,12 @@ lookup = {
         },
         "CardPack:cardpack_choice_schematics_steampunk_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_schematics_persistent_blackmetal_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_melee_sword_sr": {
@@ -7140,7 +7140,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2017_halloween": {
             "name": "Fortnitemares Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_all_r": {
@@ -7155,7 +7155,7 @@ lookup = {
         },
         "CardPack:cardpack_survivor_vr": {
             "name": "Epic Person",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_ranged_sniper_c": {
@@ -7180,12 +7180,12 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_military_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_vindertech_sniper_standard_scope_vr": {
             "name": "Vindertech Sniper Rifle Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_weapon_r": {
@@ -7220,17 +7220,17 @@ lookup = {
         },
         "CardPack:cardpack_vindertech_shotgun_standard_vr": {
             "name": "Vindertech Scattergun Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_persistent_lunar_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_schematics_neon_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_hero_commando_sr": {
@@ -7240,7 +7240,7 @@ lookup = {
         },
         "CardPack:cardpack_founders_pistol_rapid_vr": {
             "name": "Copper Founder's Revolt",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_wargames_banner_pods": {
@@ -7260,12 +7260,12 @@ lookup = {
         },
         "CardPack:cardpack_ranged_smg_vr": {
             "name": "Epic SMG Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hero_persistent_pirate_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_ranged_pistol_uc": {
@@ -7280,12 +7280,12 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_pirate_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2019_season11_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_mtx_700": {
@@ -7330,7 +7330,7 @@ lookup = {
         },
         "CardPack:cardpack_halloweenworker_veryrare": {
             "name": "Epic Monster 'Cosplayer'",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2019_season11_winter_sr": {
@@ -7340,7 +7340,7 @@ lookup = {
         },
         "CardPack:cardpack_melee_tool_vr": {
             "name": "Epic Hardware Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_axe_uc": {
@@ -7350,7 +7350,7 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_ranged_sniper_vr": {
             "name": "Epic Sniper Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_pistol_handcannon_de_military_sr": {
@@ -7360,12 +7360,12 @@ lookup = {
         },
         "CardPack:cardpack_ranged_assault_vr": {
             "name": "Epic Assault Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_manager_gadgeteer_r": {
             "name": "Epic Gadgeteer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_winter2018_banner_cooker": {
@@ -7375,7 +7375,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_schematics_season12_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_c": {
@@ -7430,7 +7430,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2018_halloween": {
             "name": "Fortnitemares Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_eventscaling_700": {
@@ -7470,7 +7470,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_pirate_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_trap_floor_sr": {
@@ -7500,7 +7500,7 @@ lookup = {
         },
         "CardPack:cardpack_vindertech_edged_sword_medium_vr": {
             "name": "Vindertech Sword Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_mtx_1000": {
@@ -7510,7 +7510,7 @@ lookup = {
         },
         "CardPack:cardpack_vindertech_pistol_autoheavy_vr": {
             "name": "Vindertech Repeater Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defenderassault_uc": {
@@ -7520,7 +7520,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_season9_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_edged_sword_neonglow_sr": {
@@ -7565,12 +7565,12 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_trap_wall_vr": {
             "name": "Epic Wall Trap Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_persistent_holiday_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_hero_ninja_sr": {
@@ -7615,12 +7615,12 @@ lookup = {
         },
         "CardPack:cardpack_vindertech_blunt_hammer_rocket_vr": {
             "name": "Vindertech Rocket Hammer Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_anniversary2019_heroes_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_wargames_banner_meteor": {
@@ -7635,12 +7635,12 @@ lookup = {
         },
         "CardPack:cardpack_event_persistent_pirate": {
             "name": "Pirate Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_trap_wall_vr": {
             "name": "Epic Wall Trap Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_trap_uc": {
@@ -7655,7 +7655,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_spring": {
             "name": "Lunar Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_mayday2019_banner_maydayiconnormal": {
@@ -7670,7 +7670,7 @@ lookup = {
         },
         "CardPack:cardpack_melee_sword_vr": {
             "name": "Epic Sword Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_schematics_persistent_blackmetal_sr": {
@@ -7695,7 +7695,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2018_winter": {
             "name": "Winter Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defendersniper_r": {
@@ -7720,7 +7720,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_manager_r": {
             "name": "Epic Lead Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_horde_banner_2018_stonewood": {
@@ -7735,7 +7735,7 @@ lookup = {
         },
         "CardPack:cardpack_cache_perk_vr": {
             "name": "Epic Perk Cache",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hero_persistent_pirate_sr": {
@@ -7745,7 +7745,7 @@ lookup = {
         },
         "CardPack:cardpack_cache_materials_t01": {
             "name": "Evolution Materials Cache",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_sniper_crossbow_military_sr": {
@@ -7785,7 +7785,7 @@ lookup = {
         },
         "CardPack:cardpack_bronze_weekly": {
             "name": "Weekly Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_manager_explorer_vr": {
@@ -7795,7 +7795,7 @@ lookup = {
         },
         "CardPack:cardpack_defenderpistol_vr": {
             "name": "Epic Gunslinger",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_eventscaling_1300": {
@@ -7815,12 +7815,12 @@ lookup = {
         },
         "CardPack:cardpack_hero_outlander_vr": {
             "name": "Epic Outlander",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_schematics_artdeco_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_trap_ceiling_r": {
@@ -7830,7 +7830,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_season12_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_ranged_sniper_sr": {
@@ -7845,7 +7845,7 @@ lookup = {
         },
         "CardPack:cardpack_event_founders": {
             "name": "Founder's Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_tool_sr": {
@@ -7875,12 +7875,12 @@ lookup = {
         },
         "CardPack:cardpack_event_vindertech": {
             "name": "VIndertech Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_silver_xp": {
             "name": "Silver XP Candy Pack",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_scythe_c": {
@@ -7900,7 +7900,7 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_melee_spear_vr": {
             "name": "Epic Spear Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_stormzone_banners_stonewood": {
@@ -7930,12 +7930,12 @@ lookup = {
         },
         "CardPack:cardpack_defenderfoundersassault_vr": {
             "name": "Epic Founders Rifleman",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_schematics_persistent_toys_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_vindertech_pistol_autoheavy_sr": {
@@ -7945,12 +7945,12 @@ lookup = {
         },
         "CardPack:cardpack_choice_schematics_persistent_boombox_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hero_shadowops_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_spear_uc": {
@@ -7960,7 +7960,7 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_ranged_shotgun_vr": {
             "name": "Epic Shotgun Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_achievement_banner_talentedbuilder": {
@@ -7975,7 +7975,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_vr": {
             "name": "Epic Hero",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_horde_banner_2018_plankerton": {
@@ -7985,12 +7985,12 @@ lookup = {
         },
         "CardPack:cardpack_cache_materials_t02": {
             "name": "Evolution Materials Cache",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_trap_floor_vr": {
             "name": "Epic Floor Trap Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_ranged_pistol_c": {
@@ -8000,7 +8000,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_test3": {
             "name": "Epic Item (Test)",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_wargames_banner_saucer": {
@@ -8015,7 +8015,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_season11_winter_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_manager_explorer_c": {
@@ -8025,7 +8025,7 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_hero_ninja_vr": {
             "name": "Epic Ninja",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_mtx_900": {
@@ -8035,7 +8035,7 @@ lookup = {
         },
         "CardPack:cardpack_hero_vr": {
             "name": "Epic Hero",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_cache_gold": {
@@ -8125,7 +8125,7 @@ lookup = {
         },
         "CardPack:cardpack_cache_materials_t03": {
             "name": "Evolution Materials Cache",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2019_season9_sr": {
@@ -8145,7 +8145,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_gumshoe_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hero_pirate_sr": {
@@ -8160,7 +8160,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_schematics_military_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_anniversary2019_heroes_sr": {
@@ -8185,12 +8185,12 @@ lookup = {
         },
         "CardPack:cardpack_choice_event_founders": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2018_roadtrip": {
             "name": "Road Trip Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_sword_sr": {
@@ -8205,7 +8205,7 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_melee_axe_vr": {
             "name": "Epic Axe Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_cache_schematic_r": {
@@ -8220,7 +8220,7 @@ lookup = {
         },
         "CardPack:cardpack_trap_floor_freeze_vr": {
             "name": "Floor Freeze Trap Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_mtx_400": {
@@ -8230,12 +8230,12 @@ lookup = {
         },
         "CardPack:cardpack_bronze_halloween": {
             "name": "Fortnitemares Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_persistent_lunar": {
             "name": "Lunar Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_trap_wall_sr": {
@@ -8245,12 +8245,12 @@ lookup = {
         },
         "CardPack:cardpack_choice_schematics_season9_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2020_artdeco_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_winter2018_banner_gingerbreadman": {
@@ -8260,12 +8260,12 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_cyberpunk_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_melee_vr": {
             "name": "Epic Melee Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_winter2018_banner_snowmanburied": {
@@ -8275,12 +8275,12 @@ lookup = {
         },
         "CardPack:cardpack_choice_vindertech_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hero_winter_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hero_season11_winter_sr": {
@@ -8315,12 +8315,12 @@ lookup = {
         },
         "CardPack:cardpack_event_scavenger": {
             "name": "Scavenger Choice Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hero_persistent_rad_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_eventscaling_400": {
@@ -8330,7 +8330,7 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_ranged_assault_vr": {
             "name": "Epic Assault Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_founders_banners_t03": {
@@ -8355,12 +8355,12 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_season9": {
             "name": "Sci-Fi Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_melee_tool_vr": {
             "name": "Epic Hardware Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_starter_assault_auto_r": {
@@ -8370,7 +8370,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_season11_ww_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_bronze_melee": {
@@ -8390,7 +8390,7 @@ lookup = {
         },
         "CardPack:cardpack_defendershotgun_vr": {
             "name": "Epic Shotgunner",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_trap_r": {
@@ -8405,7 +8405,7 @@ lookup = {
         },
         "CardPack:cardpack_defendersniper_basic_m_vr": {
             "name": "Epic Sniper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_sniper_standard_winter_sr": {
@@ -8435,12 +8435,12 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_ranged_smg_vr": {
             "name": "Epic SMG Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_silver_ranged": {
             "name": "Silver Ranged Weapons Pack",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_halloweenworker_rare": {
@@ -8455,7 +8455,7 @@ lookup = {
         },
         "CardPack:cardpack_cache_materials_t04": {
             "name": "Evolution Materials Cache",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_hero_outlander_sr": {
@@ -8465,7 +8465,7 @@ lookup = {
         },
         "CardPack:cardpack_manager_explorer_r": {
             "name": "Epic Explorer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_ranged_explosive_r": {
@@ -8490,12 +8490,12 @@ lookup = {
         },
         "CardPack:cardpack_manager_martialartist_r": {
             "name": "Epic Martial Artist",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_persistent_holiday": {
             "name": "Holiday Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defendermelee_r": {
@@ -8505,7 +8505,7 @@ lookup = {
         },
         "CardPack:cardpack_hero_constructor_vr": {
             "name": "Epic Constructor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_weapon_uc": {
@@ -8550,7 +8550,7 @@ lookup = {
         },
         "CardPack:cardpack_ranged_pistol_vr": {
             "name": "Epic Pistol Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_winter2018_banner_beartrapfoot": {
@@ -8565,12 +8565,12 @@ lookup = {
         },
         "CardPack:cardpack_melee_axe_vr": {
             "name": "Epic Axe Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_hero_constructor_vr": {
             "name": "Epic Constructor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_assault_neonglow_sr": {
@@ -8580,7 +8580,7 @@ lookup = {
         },
         "CardPack:cardpack_silver_melee": {
             "name": "Silver Melee Pack",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_melee_spear_sr": {
@@ -8590,7 +8590,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_schematics_season10_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_schematics_persistent_toys_sr": {
@@ -8600,7 +8600,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_persistent_lunar_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defenderpistol_r": {
@@ -8610,7 +8610,7 @@ lookup = {
         },
         "CardPack:cardpack_defendersniper_vr": {
             "name": "Epic Sniper",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hero_season12_sr": {
@@ -8620,7 +8620,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_schematics_persistent_dragon_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2019_anniversary": {
@@ -8635,12 +8635,12 @@ lookup = {
         },
         "CardPack:cardpack_event_2017_winter": {
             "name": "Holiday Survival Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hydraulic_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_storm2018_banner_easy": {
@@ -8650,7 +8650,7 @@ lookup = {
         },
         "CardPack:cardpack_manager_doctor_r": {
             "name": "Epic Doctor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_hero_sr": {
@@ -8675,12 +8675,12 @@ lookup = {
         },
         "CardPack:cardpack_defenderassault_vr": {
             "name": "Epic Rifleman",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2020_artdeco": {
             "name": "Art Deco Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defendershotgun_sr": {
@@ -8690,7 +8690,7 @@ lookup = {
         },
         "CardPack:cardpack_trap_ceiling_falling_vr": {
             "name": "Ceiling Drop Trap Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_edged_axe_neonglow_sr": {
@@ -8705,17 +8705,17 @@ lookup = {
         },
         "CardPack:cardpack_choice_scavenger_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defenderfounderspistol_vr": {
             "name": "Epic Founders Gunslinger",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_schematics_toys_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_manager_engineer_vr": {
@@ -8750,7 +8750,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_weapon_vr": {
             "name": "Epic Weapon Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2021_anniversary": {
@@ -8765,7 +8765,7 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_hero_outlander_vr": {
             "name": "Epic Outlander",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_hero_r": {
@@ -8790,12 +8790,12 @@ lookup = {
         },
         "CardPack:cardpack_schematic_vr": {
             "name": "Epic Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_hero_commando_vr": {
             "name": "Epic Soldier",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_bronze_traps": {
@@ -8805,12 +8805,12 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_firststorm_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2019_season10": {
             "name": "Rad Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_mtx_600": {
@@ -8825,7 +8825,7 @@ lookup = {
         },
         "CardPack:cardpack_founders_outlander_weapon_vr": {
             "name": "Copper Quickshot",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_winter2018_banner_wave30endgame": {
@@ -8840,7 +8840,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2018_spring": {
             "name": "Spring Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_melee_tool_sr": {
@@ -8850,7 +8850,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_halloween_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_endurancewave30banner_theater02": {
@@ -8865,7 +8865,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_season9_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_schematics_persistent_dragon_sr": {
@@ -8895,12 +8895,12 @@ lookup = {
         },
         "CardPack:cardpack_traps_collectionbook": {
             "name": "Trap Pack",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_firststorm": {
             "name": "Storm Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_eventscaling_600": {
@@ -8910,7 +8910,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_trap_vr": {
             "name": "Epic Trap Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hero_season11_ww_sr": {
@@ -8920,7 +8920,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_season11_ww": {
             "name": "Wild West Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defender_r": {
@@ -8930,7 +8930,7 @@ lookup = {
         },
         "CardPack:cardpack_manager_r": {
             "name": "Epic Lead Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defenderassault_r": {
@@ -8940,17 +8940,17 @@ lookup = {
         },
         "CardPack:cardpack_silver_traps": {
             "name": "Silver Trap Pack",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_trap_vr": {
             "name": "Epic Trap Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_anniversary2018_schematic_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_melee_sr": {
@@ -8985,7 +8985,7 @@ lookup = {
         },
         "CardPack:cardpack_melee_club_vr": {
             "name": "Epic Club Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defendershotgun_c": {
@@ -8995,7 +8995,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_medieval_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hero_winter_sr": {
@@ -9015,7 +9015,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_schematics_persistent_flintlock_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_club_c": {
@@ -9025,7 +9025,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_ranged_vr": {
             "name": "Epic Ranged Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_vindertech_sr": {
@@ -9055,7 +9055,7 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_trap_ceiling_vr": {
             "name": "Epic Ceiling Trap Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defendersniper_sr": {
@@ -9065,12 +9065,12 @@ lookup = {
         },
         "CardPack:cardpack_manager_engineer_r": {
             "name": "Epic Engineer",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_defendershotgun_basic_f_vr": {
             "name": "Epic Shotgunner",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_survivor_uc": {
@@ -9080,12 +9080,12 @@ lookup = {
         },
         "CardPack:cardpack_choice_schematics_halloween_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_schematics_roadtrip2018_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_bronze_05x": {
@@ -9135,7 +9135,7 @@ lookup = {
         },
         "CardPack:cardpack_melee_spear_vr": {
             "name": "Epic Spear Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_founders_soldier_bundle": {
@@ -9145,12 +9145,12 @@ lookup = {
         },
         "CardPack:cardpack_cache_schematic_vr": {
             "name": "Epic Schematic Cache",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_vr": {
             "name": "Epic Melee Weapon Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_test_doublechoice1": {
@@ -9160,7 +9160,7 @@ lookup = {
         },
         "CardPack:cardpack_event_scavenger_ranged_vr": {
             "name": "Epic Scavenger Ranged Weapon Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2018_anniversary": {
@@ -9170,7 +9170,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_dragon_spring_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_scavenger_sr": {
@@ -9180,7 +9180,7 @@ lookup = {
         },
         "CardPack:cardpack_event_founders_nonexclusive": {
             "name": "Launch Event Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_weapon_sr": {
@@ -9195,7 +9195,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_anniversary2021_heroes_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_hero_constructor_sr": {
@@ -9205,12 +9205,12 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_melee_scythe_vr": {
             "name": "Epic Scythe Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_manager_soldier_r": {
             "name": "Epic Marksman",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_bronze_ranged": {
@@ -9220,17 +9220,17 @@ lookup = {
         },
         "CardPack:cardpack_silver_weapons": {
             "name": "Silver Weapons Pack",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2018_storm": {
             "name": "Neon Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_event_2019_season11": {
             "name": "Fortnitemares Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hydraulic_sr": {
@@ -9245,7 +9245,7 @@ lookup = {
         },
         "CardPack:cardpack_vindertech_edged_axe_vr": {
             "name": "Vindertech Axe Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_hero_outlander_r": {
@@ -9255,7 +9255,7 @@ lookup = {
         },
         "CardPack:cardpack_founders_soldier_weapon_vr": {
             "name": "Copper Drumroll",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_pistol_silenced_military_sr": {
@@ -9275,7 +9275,7 @@ lookup = {
         },
         "CardPack:cardpack_founders_ninja_weapon_vr": {
             "name": "Copper Blazing Masamune",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_ranged_assault_uc": {
@@ -9325,7 +9325,7 @@ lookup = {
         },
         "CardPack:cardpack_vindertech_assault_auto_vr": {
             "name": "Vindertech Pulse Rifle Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_halloweenworker_uncommon": {
@@ -9365,7 +9365,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_vacuumtube_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_endurancewave30banner_theater04": {
@@ -9380,7 +9380,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_season11_ww_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_trap_r": {
@@ -9395,7 +9395,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2018_blockbuster": {
             "name": "Blockbuster Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_hero_halloween_sr": {
@@ -9405,7 +9405,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_anniversary2019_schematic_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_custom_firecracker_r": {
@@ -9425,7 +9425,7 @@ lookup = {
         },
         "CardPack:cardpack_defender_vr": {
             "name": "Epic Defender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_eventscaling_800": {
@@ -9440,7 +9440,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_defender_vr": {
             "name": "Epic Defender",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_bronze_collectionbook": {
@@ -9455,7 +9455,7 @@ lookup = {
         },
         "CardPack:cardpack_event_persistent_rad": {
             "name": "Rad Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_test_doublechoice2": {
@@ -9465,7 +9465,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_season10_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_rare_heroes": {
@@ -9520,12 +9520,12 @@ lookup = {
         },
         "CardPack:cardpack_defendermelee_vr": {
             "name": "Epic Bruiser",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_scythe_vr": {
             "name": "Epic Scythe Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_trapceilinggas_uc": {
@@ -9535,12 +9535,12 @@ lookup = {
         },
         "CardPack:cardpack_event_2018_storm_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_vindertech_pistol_handcannon_semi_vr": {
             "name": "Vindertech Burst Pistol Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_anniversary2018_schematic_sr": {
@@ -9555,7 +9555,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_schematics_season11_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_basic_silver": {
@@ -9575,7 +9575,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_roadtrip2018_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_sr": {
@@ -9595,7 +9595,7 @@ lookup = {
         },
         "CardPack:cardpack_trap_ceiling_vr": {
             "name": "Epic Ceiling Trap Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_test_doublechoice3": {
@@ -9610,12 +9610,12 @@ lookup = {
         },
         "CardPack:cardpack_silver": {
             "name": "Silver Pack",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_all_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_trap_sr": {
@@ -9670,7 +9670,7 @@ lookup = {
         },
         "CardPack:cardpack_event_2019_pirate": {
             "name": "Pirate Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_battlebreakers_jesshero": {
@@ -9680,12 +9680,12 @@ lookup = {
         },
         "CardPack:cardpack_ranged_sniper_vr": {
             "name": "Epic Sniper Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_silver_personnel": {
             "name": "Silver Survivor Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_winter2018_banner_tower": {
@@ -9730,7 +9730,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_hero_persistent_holiday_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_melee_scythe_sr": {
@@ -9745,7 +9745,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_anniversary2018_hero_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_mayday2019_banner_maydayiconhard": {
@@ -9760,7 +9760,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_anniversary2021_schematic_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_cache_schematic_sr": {
@@ -9780,12 +9780,12 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_ranged_pistol_vr": {
             "name": "Epic Pistol Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_subchoice_melee_sword_vr": {
             "name": "Epic Sword Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_stormzone_banners_cannyvalley": {
@@ -9795,7 +9795,7 @@ lookup = {
         },
         "CardPack:cardpack_subchoice_melee_club_vr": {
             "name": "Epic Club Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_melee_sword_uc": {
@@ -9810,7 +9810,7 @@ lookup = {
         },
         "CardPack:cardpack_weapon_vr": {
             "name": "Epic Weapon Schematic",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_comp_eventscaling_1400": {
@@ -9825,7 +9825,7 @@ lookup = {
         },
         "CardPack:cardpack_founders_constructor_weapon_vr": {
             "name": "Copper Deconstructor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_founders_ninja_weapon_sr": {
@@ -9855,7 +9855,7 @@ lookup = {
         },
         "CardPack:cardpack_event_persistent_fortnitemares": {
             "name": "Fortnitemares Llama",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_cache_perk_uc": {
@@ -9865,7 +9865,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_schematics_season11_ww_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_founders_soldier_weapon_sr": {
@@ -9875,7 +9875,7 @@ lookup = {
         },
         "CardPack:cardpack_worker_vr": {
             "name": "Epic Survivor",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_anniversary_heroes_sr": {
@@ -9890,7 +9890,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_anniversary_heroes_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
         "CardPack:cardpack_choice_anniversary_schematic_sr": {
@@ -9900,7 +9900,7 @@ lookup = {
         },
         "CardPack:cardpack_choice_anniversary_schematic_vr": {
             "name": "Epic Item",
-            "rarity": "pyepic",
+            "rarity": "epic",
             "type": "cardpack",
         },
     },
@@ -9920,35 +9920,35 @@ lookup = {
     "SquadDetails": {
         "squad_attribute_medicine_emtsquad": {
             "name": "EMT Squad",
-            "fort": "Fortitude",
+            "fort": "fortitude",
         },
         "squad_attribute_medicine_trainingteam": {
             "name": "Training Team",
-            "fort": "Fortitude",
+            "fort": "fortitude",
         },
         "squad_attribute_arms_fireteamalpha": {
             "name": "Fire Team Alpha",
-            "fort": "Offense",
+            "fort": "offense",
         },
         "squad_attribute_arms_closeassaultsquad": {
             "name": "Close Assault Squad",
-            "fort": "Offense",
+            "fort": "offense",
         },
         "squad_attribute_scavenging_gadgeteers": {
             "name": "Gadgeteers",
-            "fort": "Resistance",
+            "fort": "resistance",
         },
         "squad_attribute_scavenging_scoutingparty": {
             "name": "Scouting Party",
-            "fort": "Resistance",
+            "fort": "resistance",
         },
         "squad_attribute_synthesis_corpsofengineering": {
             "name": "Corps Of Engineering",
-            "fort": "Tech",
+            "fort": "tech",
         },
         "squad_attribute_synthesis_thethinktank": {
             "name": "The Think Tank",
-            "fort": "Tech",
+            "fort": "tech",
         },
     },
     "LeadPreferredSquads": {
@@ -9972,49 +9972,41 @@ lookup = {
         "TrapDurability": {
             "name": "Trap Durability",
             "bonus": 8,
-            "fort_type": None,
             "requirement": 2,
         },
         "RangedDamage": {
             "name": "Ranged Damage",
             "bonus": 5,
-            "fort_type": "Offense",
             "requirement": 3,
         },
         "MeleeDamage": {
             "name": "Melee Damage",
             "bonus": 5,
-            "fort_type": "Offense",
             "requirement": 3,
         },
         "TrapDamage": {
             "name": "Trap Damage",
             "bonus": 5,
-            "fort_type": "Tech",
             "requirement": 3,
         },
         "AbilityDamage": {
             "name": "Ability Damage",
             "bonus": 5,
-            "fort_type": "Tech",
             "requirement": 3,
         },
         "Fortitude": {
             "name": "Health",
             "bonus": 5,
-            "fort_type": "Fortitude",
             "requirement": 2,
         },
         "Resistance": {
             "name": "Shield",
             "bonus": 5,
-            "fort_type": "Resistance",
             "requirement": 2,
         },
         "ShieldRegen": {
             "name": "Shield Regeneration",
             "bonus": 5,
-            "fort_type": "Resistance",
             "requirement": 2,
         },
     },
