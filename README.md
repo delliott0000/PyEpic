@@ -19,7 +19,7 @@ It is recommended to install the library within a virtual environment instead of
 # Windows
 py -m pip install py-epic
 
-#Linux/MacOS
+# Linux/MacOS
 python3 -m pip install py-epic
 ```
 
