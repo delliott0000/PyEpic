@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from collections.abc import Generator, Iterable
     from typing import ClassVar
 
-    from pyepic._types import Attributes, DCo, Dict
+    from pyepic._types import Attributes, Dict
 
 
 __all__ = (
@@ -82,15 +82,19 @@ class Recyclable(
 ):
     __slots__ = ("account", "id")
 
-    def recycle(self, *, strict: bool = True) -> DCo:
+    async def recycle(self, *, strict: bool = True) -> Dict:
         if self.favorite is True and strict is True:
             raise ItemIsFavorited(self)
 
-        return self._auth_checker.mcp_operation(
+        data = await self._auth_checker.mcp_operation(
             operation="RecycleItem",
             profile_id="campaign",
             json={"targetItemId": self.id},
         )
+
+        self.account.uncache_stw_object(self)
+
+        return data
 
 
 class Upgradable(Generic[AccountT], Recyclable[AccountT]):

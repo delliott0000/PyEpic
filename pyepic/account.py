@@ -16,6 +16,7 @@ if TYPE_CHECKING:
 
     from ._types import Attributes, DCo, Dict, FriendType, List, STWItemT_co
     from .auth import AuthSession
+    from .fortnite.stw import SaveTheWorldItem
     from .http import HTTPClient
 
 
@@ -151,6 +152,20 @@ class PartialAccount:
                 cache[key] = items
 
         return items
+
+    def uncache_stw_object(self, obj: SaveTheWorldItem, /) -> None:
+        cls = type(obj)
+        cache = self.__stw_object_cache
+
+        if cache is None:
+            return
+
+        for key in cache:
+            if key[1] is cls:
+                try:
+                    cache[key].remove(obj)
+                except ValueError:
+                    continue
 
     def schematics(
         self, auth_session: AuthSession, /, **kwargs: Any
