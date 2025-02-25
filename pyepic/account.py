@@ -5,6 +5,8 @@ from datetime import datetime
 from logging import getLogger
 from typing import TYPE_CHECKING
 
+from pyepic.resources import lookup
+
 from .errors import UnknownTemplateID
 from .fortnite.base import AccountBoundMixin
 from .fortnite.stw import LeadSurvivor, Schematic, Survivor, SurvivorSquad
@@ -195,8 +197,10 @@ class PartialAccount:
         s2 = await self.lead_survivors(auth_session, **kwargs)
         survivors = s1 + s2
 
-        mapping = {}
-        squads = []
+        mapping: dict = {
+            squad_id: {"lead": None, "survivors": []}
+            for squad_id in lookup["SquadDetails"]
+        }
 
         for survivor in survivors:
             squad_id = survivor.squad_id
@@ -204,15 +208,11 @@ class PartialAccount:
                 continue
 
             elif isinstance(survivor, Survivor):
-                try:
-                    mapping[squad_id]["survivors"].append(survivor)
-                except KeyError:
-                    mapping[squad_id] = {"lead": None, "survivors": [survivor]}
+                mapping[squad_id]["survivors"].append(survivor)
             elif isinstance(survivor, LeadSurvivor):
-                try:
-                    mapping[squad_id]["lead"] = survivor
-                except KeyError:
-                    mapping[squad_id] = {"lead": survivor, "survivors": []}
+                mapping[squad_id]["lead"] = survivor
+
+        squads = []
 
         for squad_id, squad_composition in mapping.items():
             squad = SurvivorSquad(
@@ -224,6 +224,22 @@ class PartialAccount:
             squads.append(squad)
 
         return squads
+
+    async def survivor_squad_from_id(
+        self, value: str, auth_session: AuthSession, /, **kwargs: Any
+    ) -> SurvivorSquad[Self]:
+        squads = await self.survivor_squads(auth_session, **kwargs)
+
+        try:
+            squad = next(
+                squad
+                for squad in squads
+                if (squad.id == value or squad.name == value)
+            )
+        except StopIteration:
+            raise ValueError("An invalid squad ID/name was passed.")
+
+        return squad
 
 
 class FullAccount(PartialAccount):

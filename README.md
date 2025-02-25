@@ -8,7 +8,7 @@ An asynchronous, object-oriented API wrapper for the Epic/Fortnite HTTP services
 # Key Features
 - Use of the `asyncio` framework to handle many IO-bound tasks concurrently.
 - Automatic, configurable rate limit handling and caching.
-- Optimised for speed and memory.
+- Optimised for a balance of speed and memory.
 
 # Installing
 **Python 3.10 or higher is required. For project dependencies, see [requirements.txt](https://github.com/delliott0000/PyEpic/blob/master/requirements.txt).**
@@ -44,7 +44,9 @@ asyncio.run(main())
 ```
 
 # Notes
-- PyEpic does not currently support Epic Games' XMPP services. This includes real-time in-game events such as party invites or whispers.
+- PyEpic does not (currently) support Epic Games' XMPP services. This includes real-time in-game events such as party invites or whispers.
 
 # Disclaimers
-- The APIs that PyEpic interacts with are not officially documented, nor are they intended to be used outside the official clients. As a result, the package could experience major breaking changes (or stop working!) at any moment.
+- The APIs that PyEpic interacts with are not officially documented, nor are they intended to be used outside the official clients.
+  - The package could experience major breaking changes (or stop working!) at any moment.
+  - The developer can not take responsibility for any damages that result from using the package.

@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Generic
+from typing import TYPE_CHECKING, Any, Generic
 
 from pyepic._types import AccountT
 from pyepic.errors import (
     BadItemAttributes,
     InvalidUpgrade,
     ItemIsFavorited,
+    ItemIsReadOnly,
     UnknownTemplateID,
 )
 from pyepic.resources import lookup
@@ -19,6 +20,7 @@ if TYPE_CHECKING:
     from typing import ClassVar
 
     from pyepic._types import Attributes, Dict
+    from pyepic.auth import AuthSession
 
 
 __all__ = (
@@ -100,7 +102,7 @@ class Recyclable(
 class Upgradable(Generic[AccountT], Recyclable[AccountT]):
     __slots__ = ()
 
-    __tier_mapping__: ClassVar = {
+    __tier_mapping__: ClassVar[dict[int, str]] = {
         1: "i",
         2: "ii",
         3: "iii",
@@ -236,6 +238,34 @@ class SurvivorBase(Generic[AccountT], Upgradable[AccountT]):
 
         self.squad_id: str | None = raw_attributes.get("squad_id") or None
         self.squad_index: int | None = _index if _index != -1 else None
+
+    async def squad(
+        self,
+        auth_session: AuthSession | None = None,
+        /,
+        *,
+        raise_read_only: bool = False,
+        **kwargs: Any,
+    ) -> SurvivorSquad[AccountT] | None:
+        if self.squad_id is None:
+            return
+
+        try:
+            return await self.account.survivor_squad_from_id(
+                self.squad_id, auth_session or self._auth_checker, **kwargs
+            )
+        except ItemIsReadOnly as error:
+            if raise_read_only is True:
+                raise error
+            raise ValueError("An authorization session needs to be passed")
+
+    async def recycle(self, *, strict: bool = True) -> Dict:
+        data = await super().recycle(strict=strict)
+
+        squad = await self.squad(raise_read_only=True)
+        squad.unslot_local(self)
+
+        return data
 
 
 class Survivor(Generic[AccountT], SurvivorBase[AccountT]):
@@ -430,3 +460,70 @@ class SurvivorSquad(Generic[AccountT], AccountBoundMixin[AccountT]):
         fort_stats_data[fort_type] += count
 
         return FortStat(**fort_stats_data)
+
+    def slot_local(self, survivor: SurvivorBase, index: int, /) -> None:
+        if index == 0:
+            self.lead_survivor = survivor
+        else:
+            survivors = list(self.survivors)
+            survivors[index - 1] = survivor
+            self.survivors = tuple(survivors)
+
+    def unslot_local(self, survivor: SurvivorBase, /) -> None:
+        if survivor == self.lead_survivor:
+            self.lead_survivor = None
+        else:
+            self.survivors = tuple(
+                None if survivor == old_survivor else old_survivor
+                for old_survivor in self.survivors
+            )
+
+    def unslot_all_local(self) -> None:
+        self.lead_survivor = None
+        self.survivors = None, None, None, None, None, None, None
+
+    async def slot(self, survivor: SurvivorBase, index: int, /) -> Dict:
+        previous_squad = await survivor.squad(raise_read_only=True)
+        if previous_squad is not None:
+            previous_squad.unslot_local(survivor)
+
+        data = await self._auth_checker.mcp_operation(
+            operation="AssignWorkerToSquad",
+            profile_id="campaign",
+            json={
+                "characterId": survivor.id,
+                "squadId": self.id,
+                "slotIndex": index,
+            },
+        )
+
+        self.slot_local(survivor, index)
+
+        return data
+
+    async def unslot(self, survivor: SurvivorBase, /) -> Dict:
+        if survivor == self.lead_survivor:
+            index = 0
+        else:
+            index = self.survivors.index(survivor) + 1
+
+        data = await self._auth_checker.mcp_operation(
+            operation="AssignWorkerToSquad",
+            profile_id="campaign",
+            json={"characterId": survivor.id, "squadId": "", "index": index},
+        )
+
+        self.unslot_local(survivor)
+
+        return data
+
+    async def unslot_all(self) -> Dict:
+        data = await self._auth_checker.mcp_operation(
+            operation="UnassignAllSquads",
+            profile_id="campaign",
+            json={"squadIds": [self.id]},
+        )
+
+        self.unslot_all_local()
+
+        return data
