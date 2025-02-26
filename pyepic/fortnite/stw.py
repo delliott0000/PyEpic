@@ -175,6 +175,8 @@ class Schematic(Generic[AccountT], Upgradable[AccountT]):
         ]
 
 
+# TODO: find a way to implement perk description
+# TODO: implement special methods
 class SchematicPerk(Generic[AccountT]):
     __slots__ = ("schematic", "id", "rarity", "description")
 
@@ -195,10 +197,7 @@ class SchematicPerk(Generic[AccountT]):
         except (IndexError, ValueError):
             self.rarity: str = "Common"
 
-        # TODO: implement perk description
-        self.description: str
-
-    # TODO: implement dunders here
+        self.description: str = ...
 
 
 @dataclass(kw_only=True, slots=True, frozen=True)
@@ -332,14 +331,11 @@ class LeadSurvivor(Generic[AccountT], SurvivorBase[AccountT]):
         ][str(self.level)]
 
 
+@dataclass(kw_only=True, slots=True, frozen=True)
 class ActiveSetBonus(Generic[AccountT]):
-    __slots__ = ("squad", "set_bonus_type")
 
-    def __init__(
-        self, squad: SurvivorSquad[AccountT], set_bonus_type: SetBonusType, /
-    ) -> None:
-        self.squad: SurvivorSquad[AccountT] = squad
-        self.set_bonus_type: SetBonusType = set_bonus_type
+    squad: SurvivorSquad[AccountT]
+    set_bonus_type: SetBonusType
 
     def __str__(self) -> str:
         return str(self.set_bonus_type)
@@ -424,7 +420,9 @@ class SurvivorSquad(Generic[AccountT], AccountBoundMixin[AccountT]):
 
             sets = count // set_bonus_type.requirement
             for _ in range(sets):
-                active_set_bonus = ActiveSetBonus(self, set_bonus_type)
+                active_set_bonus = ActiveSetBonus(
+                    squad=self, set_bonus_type=set_bonus_type
+                )
                 active_set_bonuses.append(active_set_bonus)
 
         return active_set_bonuses
