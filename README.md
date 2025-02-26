@@ -1,5 +1,6 @@
 [![Python Version: >=3.10](https://img.shields.io/pypi/pyversions/py-epic.svg)](https://pypi.python.org/pypi/py-epic)
 [![Code Style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Imports: isort](https://img.shields.io/badge/imports-isort-ef8336.svg)](https://github.com/PyCQA/isort)
 
 **Still in early development.**
 
