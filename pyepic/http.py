@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING
 from aiohttp import ClientResponse, ClientResponseError, ClientSession
 from aiohttp.helpers import sentinel
 
-from .auth import AuthManager
+from .auth import AuthManager, AuthSession
 from .errors import HTTPException
 from .route import AccountService, EpicGamesService
 
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
     from aiohttp import BaseConnector, ClientTimeout
 
-    from ._types import URL, DCo, JCo, Json, PartialCacheEntry
+    from ._types import URL, AuthT, DCo, JCo, Json, PartialCacheEntry
     from .account import PartialAccount
 
 
@@ -278,7 +278,12 @@ class HTTPClient:
             f"{self.client_id}:{self.client_secret}".encode()
         ).decode()
 
-    def create_auth_session(self, auth_code: str, /) -> AuthManager:
+    def create_auth_session(
+        self, auth_code: str, /, *, cls: type[AuthT] = AuthSession
+    ) -> AuthManager[AuthT]:
+        if not issubclass(cls, AuthSession):
+            raise TypeError("Class should be a subclass of AuthSession")
+
         request_coro: DCo = self.post(
             self.auth_exchange_path,
             headers={
@@ -287,7 +292,8 @@ class HTTPClient:
             },
             data={"grant_type": "authorization_code", "code": auth_code},
         )
-        return AuthManager(self, request_coro)
+
+        return AuthManager(self, request_coro, cls)
 
     def renew_auth_session(self, refresh_token: str, /) -> DCo:
         return self.post(

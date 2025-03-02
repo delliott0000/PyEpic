@@ -3,10 +3,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 from logging import getLogger
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Generic
 
 from pyepic.resources import lookup
 
+from ._types import AuthT
 from .errors import UnknownTemplateID
 from .fortnite.base import AccountBoundMixin
 from .fortnite.stw import LeadSurvivor, Schematic, Survivor, SurvivorSquad
@@ -29,8 +30,8 @@ _logger = getLogger(__name__)
 
 
 @dataclass(kw_only=True, slots=True, frozen=True)
-class Friend:
-    original: FullAccount
+class Friend(Generic[AuthT]):
+    original: FullAccount[AuthT]
     account: PartialAccount
     type: FriendType
 
@@ -242,7 +243,7 @@ class PartialAccount:
         return squad
 
 
-class FullAccount(PartialAccount):
+class FullAccount(Generic[AuthT], PartialAccount):
     __slots__ = (
         "auth_session",
         "display_name_changes",
@@ -259,10 +260,10 @@ class FullAccount(PartialAccount):
         "display_name_last_updated",
     )
 
-    def __init__(self, auth_session: AuthSession, data: Dict, /) -> None:
+    def __init__(self, auth_session: AuthT, data: Dict, /) -> None:
         super().__init__(auth_session.client, data)
 
-        self.auth_session: AuthSession = auth_session
+        self.auth_session: AuthT = auth_session
 
         self.display_name_changes: int = data.get(
             "numberOfDisplayNameChanges", 0
@@ -296,7 +297,7 @@ class FullAccount(PartialAccount):
 
     async def friends(
         self, *, friend_type: FriendType = "friends", use_cache: bool = True
-    ) -> AsyncGenerator[Friend, None]:
+    ) -> AsyncGenerator[Friend[AuthT], None]:
         route = FriendsService(
             "/friends/api/v1/{account_id}/summary", account_id=self.id
         )

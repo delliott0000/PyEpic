@@ -3,8 +3,9 @@ from __future__ import annotations
 from datetime import datetime
 from logging import getLogger
 from time import time
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Generic, Self
 
+from ._types import AuthT
 from .account import FullAccount, PartialAccount
 from .errors import HTTPException
 from .route import AccountService, MCPService
@@ -26,18 +27,21 @@ __all__ = ("AuthManager", "AuthSession")
 _logger = getLogger(__name__)
 
 
-class AuthManager:
-    __slots__ = ("__client", "__request_coro", "__auth_session")
+class AuthManager(Generic[AuthT]):
+    __slots__ = ("__client", "__request_coro", "__cls", "__auth_session")
 
-    def __init__(self, client: HTTPClient, request_coro: DCo, /) -> None:
+    def __init__(
+        self, client: HTTPClient, request_coro: DCo, cls: type[AuthT], /
+    ) -> None:
         self.__client: HTTPClient = client
         self.__request_coro: DCo = request_coro
-        self.__auth_session: AuthSession | None = None
+        self.__cls: type[AuthT] = cls
+        self.__auth_session: AuthT | None = None
 
-    def __await__(self) -> Generator[Any, None, AuthSession]:
+    def __await__(self) -> Generator[Any, None, AuthT]:
         return self.__construct__().__await__()
 
-    async def __aenter__(self) -> AuthSession:
+    async def __aenter__(self) -> AuthT:
         self.__auth_session = await self.__construct__()
         return self.__auth_session
 
@@ -49,9 +53,9 @@ class AuthManager:
     ) -> None:
         await self.__auth_session.kill()
 
-    async def __construct__(self) -> AuthSession:
+    async def __construct__(self) -> AuthT:
         data = await self.__request_coro
-        return AuthSession(self.__client, data)
+        return self.__cls(self.__client, data)
 
 
 class AuthSession:
@@ -76,7 +80,7 @@ class AuthSession:
 
         self._killed = False
 
-        self.__cached_account: FullAccount | None = None
+        self.__cached_account: FullAccount[Self] | None = None
         self.__cached_account_expires: float | None = None
 
     def _renew_data(self, data: Dict, /) -> None:
@@ -243,7 +247,7 @@ class AuthSession:
         data: Dict = await self.access_request("get", route)
         return FullAccount(self, data)
 
-    async def account(self, *, use_cache: bool = True) -> FullAccount:
+    async def account(self, *, use_cache: bool = True) -> FullAccount[Self]:
         if (
             use_cache is True
             and self.__cached_account is not None
