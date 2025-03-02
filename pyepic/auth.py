@@ -42,8 +42,7 @@ class AuthManager(Generic[AuthT]):
         return self.__construct__().__await__()
 
     async def __aenter__(self) -> AuthT:
-        self.__auth_session = await self.__construct__()
-        return self.__auth_session
+        return await self.__construct__()
 
     async def __aexit__(
         self,
@@ -55,7 +54,8 @@ class AuthManager(Generic[AuthT]):
 
     async def __construct__(self) -> AuthT:
         data = await self.__request_coro
-        return self.__cls(self.__client, data)
+        self.__auth_session = self.__cls(self.__client, data)
+        return self.__auth_session
 
 
 class AuthSession:
