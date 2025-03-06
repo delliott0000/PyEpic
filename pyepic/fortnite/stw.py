@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Generic
+from typing import TYPE_CHECKING, Generic
 
 from pyepic._types import AccountT
 from pyepic.errors import (
@@ -17,7 +17,7 @@ from .base import AccountBoundMixin, BaseEntity
 
 if TYPE_CHECKING:
     from collections.abc import Generator, Iterable
-    from typing import ClassVar
+    from typing import Any, ClassVar
 
     from pyepic._types import Attributes, Dict
     from pyepic.auth import AuthSession
