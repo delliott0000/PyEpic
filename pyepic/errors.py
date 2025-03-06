@@ -85,7 +85,7 @@ class ItemIsFavorited(FortniteException):
         self.item: Recyclable = item
 
     def __str__(self) -> str:
-        return "Item is favorited so it can not be recycled."
+        return "Item is favorited so it can not be recycled"
 
 
 class InvalidUpgrade(FortniteException):
@@ -94,4 +94,4 @@ class InvalidUpgrade(FortniteException):
         self.item: Upgradable = item
 
     def __str__(self) -> str:
-        return "An invalid target level/tier was specified."
+        return "An invalid target level/tier was specified"
