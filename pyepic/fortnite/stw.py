@@ -129,7 +129,9 @@ class Upgradable(Generic[AccountT], Recyclable[AccountT]):
             },
         )
 
-        self.template_id = self.template_id.replace(f"_t0{self.tier}", f"_t0{new_tier}")
+        self.template_id = self.template_id.replace(
+            f"_t0{self.tier}", f"_t0{new_tier}"
+        )
         self.level, self.tier = new_level, new_tier
         if (
             isinstance(self, Schematic)
