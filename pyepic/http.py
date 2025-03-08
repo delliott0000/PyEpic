@@ -59,6 +59,10 @@ class CacheConfig:
     enable_mcp_caching: bool = True
 
 
+@dataclass(kw_only=True, slots=True, frozen=True)
+class XMPPConfig: ...
+
+
 class HTTPClient:
     __slots__ = (
         "__loop",
@@ -71,6 +75,7 @@ class HTTPClient:
         "client_secret",
         "__partial_cache",
         "__prune_task",
+        "__xmpp_config"
     )
 
     def __init__(
@@ -79,12 +84,14 @@ class HTTPClient:
         loop: AbstractEventLoop | None = None,
         retry_config: HTTPRetryConfig | None = None,
         cache_config: CacheConfig | None = None,
+        xmpp_config: XMPPConfig | None = None,
         connector: BaseConnector | None = None,
         timeout: ClientTimeout | None = None,
     ) -> None:
         self.__loop: AbstractEventLoop = loop or get_running_loop()
         self.retry_config: HTTPRetryConfig = retry_config or HTTPRetryConfig()
         self.__cache_config: CacheConfig = cache_config or CacheConfig()
+        self.__xmpp_config: XMPPConfig = xmpp_config or XMPPConfig()
 
         self.__connector: BaseConnector | None = connector
         self.__timeout: ClientTimeout | None = timeout
@@ -116,6 +123,10 @@ class HTTPClient:
     @property
     def cache_config(self) -> CacheConfig:
         return self.__cache_config
+
+    @property
+    def xmpp_config(self) -> XMPPConfig:
+        return self.__xmpp_config
 
     @property
     def connector(self) -> BaseConnector:
