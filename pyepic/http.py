@@ -75,7 +75,7 @@ class HTTPClient:
         "client_secret",
         "__partial_cache",
         "__prune_task",
-        "__xmpp_config"
+        "__xmpp_config",
     )
 
     def __init__(
