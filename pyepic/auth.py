@@ -161,7 +161,10 @@ class AuthSession:
                 method, route, headers=headers, **kwargs
             )
 
-    async def kill(self) -> None:
+    async def kill(self, *, force: bool = False) -> None:
+        if self.expired is True and force is False:
+            return
+
         route = AccountService(
             "/account/api/oauth/sessions/kill/{access_token}",
             access_token=self.access_token,
@@ -169,12 +172,10 @@ class AuthSession:
         try:
             await self.access_request("delete", route)
         except HTTPException:
-            # Session is already expired; do nothing
             pass
 
-        if self._killed is False:
-            self._killed = True
-            self.action_logger("killed")
+        self._killed = True
+        self.action_logger("killed")
 
     async def fetch_account(
         self,
