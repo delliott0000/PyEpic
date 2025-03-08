@@ -121,11 +121,11 @@ class AuthSession:
         )
 
     @property
-    def is_active(self) -> bool:
+    def active(self) -> bool:
         return not self._killed and self.access_expires > utc_now()
 
     @property
-    def is_expired(self) -> bool:
+    def expired(self) -> bool:
         return self._killed or self.refresh_expires < utc_now()
 
     @property
@@ -133,7 +133,7 @@ class AuthSession:
         return {"Authorization": f"bearer {self.access_token}"}
 
     async def renew(self, *, force: bool = False) -> Dict | None:
-        if self.is_active is True and force is False:
+        if self.active is True and force is False:
             return
 
         data = await self.client.renew_auth_session(self.refresh_token)
@@ -153,7 +153,7 @@ class AuthSession:
                 method, route, headers=headers, **kwargs
             )
         except HTTPException as error:
-            if error.response.status != 401 or self.is_expired is True:
+            if error.response.status != 401 or self.expired is True:
                 raise error
 
             await self.renew()
