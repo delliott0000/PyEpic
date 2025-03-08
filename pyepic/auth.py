@@ -3,18 +3,19 @@ from __future__ import annotations
 from datetime import datetime
 from logging import getLogger
 from time import time
-from typing import TYPE_CHECKING, Generic, Self
+from typing import TYPE_CHECKING, Generic
 
 from ._types import AuthT
 from .account import FullAccount, PartialAccount
 from .errors import HTTPException
 from .route import AccountService, MCPService
 from .utils import utc_now
+from .xmpp import XMPPWebsocketClient
 
 if TYPE_CHECKING:
     from collections.abc import AsyncGenerator, Generator
     from types import TracebackType
-    from typing import Any
+    from typing import Any, Self
 
     from ._types import DCo, Dict, JCo, Json, List
     from .http import HTTPClient
@@ -28,14 +29,27 @@ _logger = getLogger(__name__)
 
 
 class AuthManager(Generic[AuthT]):
-    __slots__ = ("__client", "__request_coro", "__cls", "__auth_session")
+    __slots__ = (
+        "__client",
+        "__request_coro",
+        "__cls",
+        "__start_xmpp",
+        "__auth_session",
+    )
 
     def __init__(
-        self, client: HTTPClient, request_coro: DCo, cls: type[AuthT], /
+        self,
+        client: HTTPClient,
+        request_coro: DCo,
+        /,
+        *,
+        cls: type[AuthT],
+        start_xmpp: bool,
     ) -> None:
         self.__client: HTTPClient = client
         self.__request_coro: DCo = request_coro
         self.__cls: type[AuthT] = cls
+        self.__start_xmpp: bool = start_xmpp
         self.__auth_session: AuthT | None = None
 
     def __await__(self) -> Generator[Any, None, AuthT]:
@@ -54,7 +68,7 @@ class AuthManager(Generic[AuthT]):
 
     async def __construct__(self) -> AuthT:
         data = await self.__request_coro
-        self.__auth_session = self.__cls(self.__client, data)
+        self.__auth_session: AuthT = self.__cls(self.__client, data)
         return self.__auth_session
 
 
@@ -70,18 +84,21 @@ class AuthSession:
         "_killed",
         "__cached_account",
         "__cached_account_expires",
+        "xmpp",
     )
 
     def __init__(self, client: HTTPClient, data: Dict, /) -> None:
         self.client: HTTPClient = client
 
         self._renew_data(data)
-        self._action_logger("initialised")
+        self.action_logger("initialised")
 
         self._killed = False
 
         self.__cached_account: FullAccount[Self] | None = None
         self.__cached_account_expires: float | None = None
+
+        self.xmpp: XMPPWebsocketClient = XMPPWebsocketClient(self)
 
     def _renew_data(self, data: Dict, /) -> None:
         self.data: Dict = data
@@ -95,7 +112,7 @@ class AuthSession:
             data.get("refresh_expires_at")
         )
 
-    def _action_logger(self, action: str, /) -> None:
+    def action_logger(self, action: str, /) -> None:
         _logger.debug(
             "Auth session %s %s. (Account ID: %s)",
             self.access_token,
@@ -122,7 +139,7 @@ class AuthSession:
         data = await self.client.renew_auth_session(self.refresh_token)
 
         self._renew_data(data)
-        self._action_logger("renewed")
+        self.action_logger("renewed")
 
         return data
 
@@ -157,7 +174,7 @@ class AuthSession:
 
         if self._killed is False:
             self._killed = True
-            self._action_logger("killed")
+            self.action_logger("killed")
 
     async def fetch_account(
         self,
@@ -169,7 +186,7 @@ class AuthSession:
         lookup = account_id or display_name
 
         if lookup is None:
-            raise ValueError("An account ID or display name is required.")
+            raise ValueError("An account ID or display name is required")
 
         elif use_cache is True:
             account = self.client.get_account(lookup)

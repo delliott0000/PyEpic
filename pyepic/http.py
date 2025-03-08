@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from asyncio import create_task, sleep
+from asyncio import AbstractEventLoop, create_task, get_running_loop, sleep
 from base64 import b64encode
 from collections import OrderedDict
 from dataclasses import dataclass
@@ -61,6 +61,7 @@ class CacheConfig:
 
 class HTTPClient:
     __slots__ = (
+        "__loop",
         "retry_config",
         "__cache_config",
         "__connector",
@@ -75,11 +76,13 @@ class HTTPClient:
     def __init__(
         self,
         *,
+        loop: AbstractEventLoop | None = None,
         retry_config: HTTPRetryConfig | None = None,
         cache_config: CacheConfig | None = None,
         connector: BaseConnector | None = None,
         timeout: ClientTimeout | None = None,
     ) -> None:
+        self.__loop: AbstractEventLoop = loop or get_running_loop()
         self.retry_config: HTTPRetryConfig = retry_config or HTTPRetryConfig()
         self.__cache_config: CacheConfig = cache_config or CacheConfig()
 
@@ -107,8 +110,16 @@ class HTTPClient:
         await self.close_connection()
 
     @property
+    def loop(self) -> AbstractEventLoop:
+        return self.__loop
+
+    @property
     def cache_config(self) -> CacheConfig:
         return self.__cache_config
+
+    @property
+    def connector(self) -> BaseConnector:
+        return self.__connector
 
     @property
     def is_open(self) -> bool:
@@ -279,7 +290,12 @@ class HTTPClient:
         ).decode()
 
     def create_auth_session(
-        self, auth_code: str, /, *, cls: type[AuthT] = AuthSession
+        self,
+        auth_code: str,
+        /,
+        *,
+        cls: type[AuthT] = AuthSession,
+        start_xmpp: bool = True,
     ) -> AuthManager[AuthT]:
         if not issubclass(cls, AuthSession):
             raise TypeError("Class should be a subclass of AuthSession")
@@ -293,7 +309,7 @@ class HTTPClient:
             data={"grant_type": "authorization_code", "code": auth_code},
         )
 
-        return AuthManager(self, request_coro, cls)
+        return AuthManager(self, request_coro, cls=cls, start_xmpp=start_xmpp)
 
     def renew_auth_session(self, refresh_token: str, /) -> DCo:
         return self.post(
