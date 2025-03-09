@@ -16,10 +16,16 @@ if TYPE_CHECKING:
     from .http import XMPPConfig
 
 
-__all__ = ("XMPPWebsocketClient",)
+__all__ = ("XMLGenerator", "XMLProcessor", "XMPPWebsocketClient")
 
 
 _logger = getLogger(__name__)
+
+
+class XMLGenerator: ...
+
+
+class XMLProcessor: ...
 
 
 class XMPPWebsocketClient:
@@ -56,7 +62,9 @@ class XMPPWebsocketClient:
         except IndexError:
             return None
 
-    async def ping(self) -> None: ...
+    async def ping(self) -> None:
+        # TODO: implement this
+        ...
 
     async def send(self, data: str, /) -> None:
         await self.ws.send_str(data)
