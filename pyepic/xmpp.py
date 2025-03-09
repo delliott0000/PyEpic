@@ -27,7 +27,6 @@ class XMPPWebsocketClient:
         "config",
         "session",
         "ws",
-        "main_task",
         "recv_task",
         "ping_task",
         "errors",
@@ -40,7 +39,6 @@ class XMPPWebsocketClient:
         self.session: ClientSession | None = None
         self.ws: ClientWebSocketResponse | None = None
 
-        self.main_task: Task | None = None
         self.recv_task: Task | None = None
         self.ping_task: Task | None = None
 
