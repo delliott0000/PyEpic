@@ -13,7 +13,7 @@ from .utils import utc_now
 from .xmpp import XMPPWebsocketClient
 
 if TYPE_CHECKING:
-    from collections.abc import AsyncGenerator, Generator
+    from collections.abc import AsyncGenerator, Callable, Generator
     from types import TracebackType
     from typing import Any, Self
 
@@ -114,8 +114,8 @@ class AuthSession:
             data.get("refresh_expires_at")
         )
 
-    def action_logger(self, action: str, /) -> None:
-        _logger.debug(
+    def action_logger(self, action: str, /, *, level: Callable[..., None] = _logger.debug) -> None:
+        level(
             "Auth session %s %s. (Account ID: %s)",
             self.access_token,
             action,

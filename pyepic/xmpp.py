@@ -68,7 +68,7 @@ class XMPPWebsocketClient:
                 ...
 
         except Exception as error:  # noqa
-            self.auth_session.action_logger("XMPP encountered a fatal error")
+            self.auth_session.action_logger("XMPP encountered a fatal error", level=_logger.error)
 
             ...
 
