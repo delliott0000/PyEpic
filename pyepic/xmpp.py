@@ -60,8 +60,7 @@ class XMPPWebsocketClient:
     async def ping(self) -> None: ...
 
     async def send(self, data: str, /) -> None:
-        ...
-
+        await self.ws.send_str(data)
         self.auth_session.action_logger("SENT: {0}".format(data))
 
     async def ping_loop(self) -> None:
