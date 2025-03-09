@@ -9,10 +9,10 @@ from aiohttp import ClientSession
 if TYPE_CHECKING:
     from asyncio import Task
 
+    from aiohttp import ClientWebSocketResponse
+
     from .auth import AuthSession
     from .http import XMPPConfig
-
-    from aiohttp import ClientWebSocketResponse
 
 
 __all__ = ("XMPPWebsocketClient",)
