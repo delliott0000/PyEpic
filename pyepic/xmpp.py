@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from asyncio import sleep
+from asyncio import create_task, sleep
 from logging import getLogger
 from typing import TYPE_CHECKING
 
@@ -106,13 +106,19 @@ class XMPPWebsocketClient:
             protocols=("xmpp",),
         )
 
+        self.ping_task = create_task(self.ping_loop())
+
         self.auth_session.action_logger("XMPP started")
 
     async def stop(self) -> None:
         if self.running is False:
             return
 
+        self.ping_task.cancel()
+
         await self.ws.close()
         await self.session.close()
+
+        self.ping_task = None
 
         self.auth_session.action_logger("XMPP stopped")
