@@ -78,6 +78,7 @@ class XMPPWebsocketClient:
 
                 ...
 
+        # This won't catch asyncio.CancelledError
         except Exception as error:  # noqa
             self.errors.append(error)
             self.auth_session.action_logger(
@@ -85,6 +86,8 @@ class XMPPWebsocketClient:
             )
 
             ...
+
+            create_task(self.cleanup(_on_error=True))  # noqa
 
         finally:
             self.auth_session.action_logger("Websocket receiver stopped")
@@ -97,8 +100,7 @@ class XMPPWebsocketClient:
         xmpp = self.config
 
         self.session = ClientSession(
-            connector=http.connector,
-            connector_owner=http.connector is None
+            connector=http.connector, connector_owner=http.connector is None
         )
         self.ws = await self.session.ws_connect(
             "wss://{0}:{1}".format(xmpp.domain, xmpp.port),
@@ -106,6 +108,7 @@ class XMPPWebsocketClient:
             protocols=("xmpp",),
         )
 
+        self.recv_task = create_task(self.recv_loop())
         self.ping_task = create_task(self.ping_loop())
 
         self.auth_session.action_logger("XMPP started")
@@ -113,12 +116,23 @@ class XMPPWebsocketClient:
     async def stop(self) -> None:
         if self.running is False:
             return
+        await self.cleanup()
+
+    async def cleanup(self, *, _on_error: bool = False) -> None:
+        # Allow this task to exit naturally
+        # If we are cleaning up after a fatal error
+        if _on_error is False:
+            self.recv_task.cancel()
 
         self.ping_task.cancel()
 
         await self.ws.close()
         await self.session.close()
 
+        self.session = None
+        self.ws = None
+
+        self.recv_task = None
         self.ping_task = None
 
         self.auth_session.action_logger("XMPP stopped")
