@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from asyncio import Task
+from asyncio import Task, sleep
 from logging import getLogger
 from typing import TYPE_CHECKING
 
@@ -53,7 +53,10 @@ class XMPPWebsocketClient:
 
         self.auth_session.action_logger("SENT: {0}".format(data))
 
-    async def ping_loop(self) -> None: ...
+    async def ping_loop(self) -> None:
+        while True:
+            await sleep(self.config.ping_interval)
+            await self.ping()
 
     async def recv_loop(self) -> None:
         self.auth_session.action_logger("Websocket receiver running")
