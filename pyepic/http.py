@@ -69,6 +69,9 @@ class XMPPConfig:
     connect_timeout: float = 10.0
     ping_interval: float = 60.0
 
+    xml_version: str = "1.0"
+    xmpp_version: str = "1.0"
+
 
 class HTTPClient:
     __slots__ = (
