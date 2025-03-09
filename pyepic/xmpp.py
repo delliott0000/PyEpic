@@ -71,10 +71,9 @@ class XMPPWebsocketClient:
             self.auth_session.action_logger(
                 "XMPP encountered a fatal error", level=_logger.error
             )
+            self.exception = error
 
             ...
-
-            self.exception = error
 
         finally:
             self.auth_session.action_logger("Websocket receiver stopped")
