@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from asyncio import Task
 from logging import getLogger
 from typing import TYPE_CHECKING
 
@@ -17,7 +18,16 @@ _logger = getLogger(__name__)
 
 
 class XMPPWebsocketClient:
-    __slots__ = ("auth_session", "config", "session", "ws", "processor")
+    __slots__ = (
+        "auth_session",
+        "config",
+        "session",
+        "ws",
+        "main_task",
+        "recv_task",
+        "ping_task",
+        "exception",
+    )
 
     def __init__(self, auth_session: AuthSession, /) -> None:
         self.auth_session: AuthSession = auth_session
@@ -26,9 +36,46 @@ class XMPPWebsocketClient:
         self.session: ClientSession | None = None
         self.ws: ClientWebSocketResponse | None = None
 
+        self.main_task: Task | None = None
+        self.recv_task: Task | None = None
+        self.ping_task: Task | None = None
+
+        self.exception: Exception | None = None
+
     @property
     def running(self) -> bool:
         return self.ws is not None and not self.ws.closed
+
+    async def ping(self) -> None: ...
+
+    async def send(self, data: str, /) -> None:
+        ...
+
+        self.auth_session.action_logger("SENT: {0}".format(data))
+
+    async def ping_loop(self) -> None: ...
+
+    async def recv_loop(self) -> None:
+        self.auth_session.action_logger("Websocket receiver running")
+
+        try:
+            while True:
+                message = await self.ws.receive()
+                data = message.data
+
+                self.auth_session.action_logger("RECV: {0}".format(data))
+
+                ...
+
+        except Exception as error:  # noqa
+            self.auth_session.action_logger("XMPP encountered a fatal error")
+
+            ...
+
+            self.exception = error
+
+        finally:
+            self.auth_session.action_logger("Websocket receiver stopped")
 
     async def start(self) -> None:
         if self.running is True:
