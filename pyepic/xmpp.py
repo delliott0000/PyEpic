@@ -1,14 +1,18 @@
 from __future__ import annotations
 
-from asyncio import Task, sleep
+from asyncio import sleep
 from logging import getLogger
 from typing import TYPE_CHECKING
 
-from aiohttp import ClientSession, ClientWebSocketResponse
+from aiohttp import ClientSession
 
 if TYPE_CHECKING:
+    from asyncio import Task
+
     from .auth import AuthSession
     from .http import XMPPConfig
+
+    from aiohttp import ClientWebSocketResponse
 
 
 __all__ = ("XMPPWebsocketClient",)
