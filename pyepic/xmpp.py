@@ -30,7 +30,7 @@ class XMPPWebsocketClient:
         "main_task",
         "recv_task",
         "ping_task",
-        "exception",
+        "errors",
     )
 
     def __init__(self, auth_session: AuthSession, /) -> None:
@@ -44,11 +44,18 @@ class XMPPWebsocketClient:
         self.recv_task: Task | None = None
         self.ping_task: Task | None = None
 
-        self.exception: Exception | None = None
+        self.errors: list[Exception] = []
 
     @property
     def running(self) -> bool:
         return self.ws is not None and not self.ws.closed
+
+    @property
+    def latest_error(self) -> Exception | None:
+        try:
+            return self.errors[-1]
+        except IndexError:
+            return None
 
     async def ping(self) -> None: ...
 
@@ -75,10 +82,10 @@ class XMPPWebsocketClient:
                 ...
 
         except Exception as error:  # noqa
+            self.errors.append(error)
             self.auth_session.action_logger(
                 "XMPP encountered a fatal error", level=_logger.error
             )
-            self.exception = error
 
             ...
 
