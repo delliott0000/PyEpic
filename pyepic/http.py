@@ -66,6 +66,8 @@ class XMPPConfig:
     host: str = "prod.ol.epicgames.com"
     port: int = 443
 
+    ping_interval: float = 60.0
+
 
 class HTTPClient:
     __slots__ = (
