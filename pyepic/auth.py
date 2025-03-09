@@ -69,6 +69,8 @@ class AuthManager(Generic[AuthT]):
     async def __construct__(self) -> AuthT:
         data = await self.__request_coro
         self.__auth_session: AuthT = self.__cls(self.__client, data)
+        if self.__start_xmpp is True:
+            await self.__auth_session.xmpp.start()
         return self.__auth_session
 
 
@@ -161,7 +163,12 @@ class AuthSession:
                 method, route, headers=headers, **kwargs
             )
 
-    async def kill(self, *, force: bool = False) -> None:
+    async def kill(
+        self, *, stop_xmpp: bool = True, force: bool = False
+    ) -> None:
+        if stop_xmpp is True:
+            await self.xmpp.stop()
+
         if self.expired is True and force is False:
             return
 
