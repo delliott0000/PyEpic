@@ -91,16 +91,28 @@ class XMPPWebsocketClient:
 
     async def start(self) -> None:
         if self.running is True:
-            ...
+            return
 
-        ...
+        http = self.auth_session.client
+        xmpp = self.config
+
+        self.session = ClientSession(
+            connector=http.connector,
+            connector_owner=http.connector is None
+        )
+        self.ws = await self.session.ws_connect(
+            "wss://{0}:{1}".format(xmpp.domain, xmpp.port),
+            timeout=xmpp.connect_timeout,
+            protocols=("xmpp",),
+        )
 
         self.auth_session.action_logger("XMPP started")
 
     async def stop(self) -> None:
         if self.running is False:
-            ...
+            return
 
-        ...
+        await self.ws.close()
+        await self.session.close()
 
         self.auth_session.action_logger("XMPP stopped")
