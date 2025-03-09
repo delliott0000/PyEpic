@@ -66,6 +66,7 @@ class XMPPConfig:
     host: str = "prod.ol.epicgames.com"
     port: int = 443
 
+    connect_timeout: float = 10.0
     ping_interval: float = 60.0
 
 
