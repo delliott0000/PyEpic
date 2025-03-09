@@ -26,7 +26,7 @@ if TYPE_CHECKING:
     from .account import PartialAccount
 
 
-__all__ = ("HTTPRetryConfig", "CacheConfig", "HTTPClient")
+__all__ = ("HTTPRetryConfig", "CacheConfig", "XMPPConfig", "HTTPClient")
 
 
 _logger = getLogger(__name__)
