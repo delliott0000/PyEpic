@@ -113,6 +113,8 @@ class XMPPWebsocketClient:
 
         self.auth_session.action_logger("XMPP started")
 
+        # TODO: Send initial XML stream here
+
     async def stop(self) -> None:
         if self.running is False:
             return
