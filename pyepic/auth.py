@@ -114,7 +114,9 @@ class AuthSession:
             data.get("refresh_expires_at")
         )
 
-    def action_logger(self, action: str, /, *, level: Callable[..., None] = _logger.debug) -> None:
+    def action_logger(
+        self, action: str, /, *, level: Callable[..., None] = _logger.debug
+    ) -> None:
         level(
             "Auth session %s %s. (Account ID: %s)",
             self.access_token,
