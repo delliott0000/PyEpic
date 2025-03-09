@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from asyncio import create_task, sleep
 from logging import getLogger
-from traceback import print_exc
+from traceback import print_exception
 from typing import TYPE_CHECKING
 
 from aiohttp import ClientSession
@@ -85,7 +85,7 @@ class XMPPWebsocketClient:
             self.auth_session.action_logger(
                 "XMPP encountered a fatal error", level=_logger.error
             )
-            print_exc()
+            print_exception(error)
 
             create_task(self.cleanup(_on_error=True))  # noqa
 
