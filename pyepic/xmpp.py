@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from asyncio import create_task, sleep
 from logging import getLogger
+from traceback import print_exc
 from typing import TYPE_CHECKING
 
 from aiohttp import ClientSession
@@ -76,7 +77,7 @@ class XMPPWebsocketClient:
 
                 self.auth_session.action_logger("RECV: {0}".format(data))
 
-                ...
+                # TODO: Process message here
 
         # This won't catch asyncio.CancelledError
         except Exception as error:  # noqa
@@ -84,8 +85,7 @@ class XMPPWebsocketClient:
             self.auth_session.action_logger(
                 "XMPP encountered a fatal error", level=_logger.error
             )
-
-            ...
+            print_exc()
 
             create_task(self.cleanup(_on_error=True))  # noqa
 
