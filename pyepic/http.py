@@ -60,7 +60,11 @@ class CacheConfig:
 
 
 @dataclass(kw_only=True, slots=True, frozen=True)
-class XMPPConfig: ...
+class XMPPConfig:
+
+    domain: str = "xmpp-service-prod.ol.epicgames.com"
+    host: str = "prod.ol.epicgames.com"
+    port: int = 443
 
 
 class HTTPClient:
