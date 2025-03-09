@@ -118,6 +118,9 @@ class XMPPWebsocketClient:
     async def stop(self) -> None:
         if self.running is False:
             return
+
+        # TODO: Send </stream> here
+
         await self.cleanup()
 
     async def cleanup(self, *, _on_error: bool = False) -> None:
