@@ -104,7 +104,7 @@ class XMPPWebsocketClient:
                 )
                 print_exception(error)
 
-            create_task(self.cleanup(_on_error=True))  # noqa
+            create_task(self.cleanup(_on_exception=True))  # noqa
 
         finally:
             self.auth_session.action_logger("Websocket receiver stopped")
@@ -140,10 +140,10 @@ class XMPPWebsocketClient:
 
         await self.cleanup()
 
-    async def cleanup(self, *, _on_error: bool = False) -> None:
+    async def cleanup(self, *, _on_exception: bool = False) -> None:
         # Allow this task to exit naturally
         # If we are cleaning up after a fatal error
-        if _on_error is False:
+        if _on_exception is False:
             self.recv_task.cancel()
 
         self.ping_task.cancel()
