@@ -141,8 +141,6 @@ class XMPPWebsocketClient:
         await self.cleanup()
 
     async def cleanup(self, *, _on_exception: bool = False) -> None:
-        # Allow this task to exit naturally
-        # If we are cleaning up after a fatal error
         if _on_exception is False:
             self.recv_task.cancel()
 
