@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from asyncio import AbstractEventLoop, create_task, get_running_loop, sleep
+from asyncio import create_task, get_running_loop, sleep
 from base64 import b64encode
 from collections import OrderedDict
 from dataclasses import dataclass
@@ -8,7 +8,7 @@ from logging import getLogger
 from time import time
 from typing import TYPE_CHECKING
 
-from aiohttp import ClientResponse, ClientResponseError, ClientSession
+from aiohttp import ClientResponseError, ClientSession
 from aiohttp.helpers import sentinel
 
 from .auth import AuthManager, AuthSession
@@ -16,11 +16,11 @@ from .errors import HTTPException
 from .route import AccountService, EpicGamesService
 
 if TYPE_CHECKING:
-    from asyncio import Task
+    from asyncio import AbstractEventLoop, Task
     from types import TracebackType
     from typing import Any, Self
 
-    from aiohttp import BaseConnector, ClientTimeout
+    from aiohttp import BaseConnector, ClientResponse, ClientTimeout
 
     from ._types import URL, AuthT, DCo, JCo, Json, PartialCacheEntry
     from .account import PartialAccount
