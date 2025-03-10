@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from aiohttp import ClientResponse
+    from aiohttp import ClientResponse, WSMessage
 
     from ._types import Json
     from .fortnite import AccountBoundMixin, BaseEntity, Recyclable, Upgradable
@@ -12,6 +12,9 @@ if TYPE_CHECKING:
 __all__ = (
     "EpicException",
     "HTTPException",
+    "XMPPException",
+    "XMPPClosed",
+    "XMPPConnectionError",
     "FortniteException",
     "UnknownTemplateID",
     "BadItemAttributes",
@@ -46,6 +49,23 @@ class HTTPException(EpicException):
 
     def __str__(self) -> str:
         return f"{self.response.status} {self.response.reason} - {self.server_message}"
+
+
+# TODO: Implement special methods on XMPP Exception classes
+
+
+class XMPPException(EpicException):
+
+    def __init__(self, message: WSMessage, /) -> None:
+        self.message: WSMessage = message
+
+
+class XMPPClosed(XMPPException):
+    pass
+
+
+class XMPPConnectionError(XMPPException):
+    pass
 
 
 class FortniteException(EpicException):

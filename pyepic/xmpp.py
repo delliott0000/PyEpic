@@ -7,6 +7,8 @@ from typing import TYPE_CHECKING
 
 from aiohttp import ClientSession
 
+from .errors import XMPPClosed, XMPPConnectionError
+
 if TYPE_CHECKING:
     from asyncio import Task
 
@@ -88,23 +90,19 @@ class XMPPWebsocketClient:
                 if message.type == WSMsgType.TEXT:
                     ...
 
+                elif message.type == WSMsgType.CLOSED:
+                    raise XMPPClosed(message)
+
                 elif message.type == WSMsgType.ERROR:
-                    ...
+                    raise XMPPConnectionError(message)
 
-                elif message.type in (
-                    WSMsgType.CLOSE,
-                    WSMsgType.CLOSED,
-                    WSMsgType.CLOSING,
-                ):
-                    ...
-
-        # This won't catch asyncio.CancelledError
         except Exception as error:  # noqa
-            self.errors.append(error)
-            self.auth_session.action_logger(
-                "XMPP encountered a fatal error", level=_logger.error
-            )
-            print_exception(error)
+            if not isinstance(error, XMPPClosed):
+                self.errors.append(error)
+                self.auth_session.action_logger(
+                    "XMPP encountered a fatal error", level=_logger.error
+                )
+                print_exception(error)
 
             create_task(self.cleanup(_on_error=True))  # noqa
 
@@ -138,7 +136,7 @@ class XMPPWebsocketClient:
         if self.running is False:
             return
 
-        # TODO: Send </stream> here
+        # TODO: Send </stream:stream> here
 
         await self.cleanup()
 
