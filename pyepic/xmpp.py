@@ -10,7 +10,7 @@ from aiohttp import ClientSession
 if TYPE_CHECKING:
     from asyncio import Task
 
-    from aiohttp import ClientWebSocketResponse
+    from aiohttp import ClientWebSocketResponse, WSMsgType
 
     from .auth import AuthSession
     from .http import XMPPConfig
@@ -85,7 +85,18 @@ class XMPPWebsocketClient:
 
                 self.auth_session.action_logger("RECV: {0}".format(data))
 
-                # TODO: Process message here
+                if message.type == WSMsgType.TEXT:
+                    ...
+
+                elif message.type == WSMsgType.ERROR:
+                    ...
+
+                elif message.type in (
+                    WSMsgType.CLOSE,
+                    WSMsgType.CLOSED,
+                    WSMsgType.CLOSING,
+                ):
+                    ...
 
         # This won't catch asyncio.CancelledError
         except Exception as error:  # noqa
