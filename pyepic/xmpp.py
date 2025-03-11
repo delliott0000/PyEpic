@@ -97,14 +97,18 @@ class XMPPWebsocketClient:
                     raise XMPPConnectionError(message)
 
         except Exception as error:  # noqa
-            if not isinstance(error, XMPPClosed):
-                self.errors.append(error)
+            if isinstance(error, XMPPClosed):
+                self.auth_session.action_logger(
+                    "Websocket received closing message"
+                )
+            else:
                 self.auth_session.action_logger(
                     "XMPP encountered a fatal error", level=_logger.error
                 )
+                self.errors.append(error)
                 print_exception(error)
 
-            create_task(self.cleanup(_on_exception=True))  # noqa
+            create_task(self.cleanup())  # noqa
 
         finally:
             self.auth_session.action_logger("Websocket receiver stopped")
@@ -140,10 +144,8 @@ class XMPPWebsocketClient:
 
         await self.cleanup()
 
-    async def cleanup(self, *, _on_exception: bool = False) -> None:
-        if _on_exception is False:
-            self.recv_task.cancel()
-
+    async def cleanup(self) -> None:
+        self.recv_task.cancel()
         self.ping_task.cancel()
 
         await self.ws.close()
