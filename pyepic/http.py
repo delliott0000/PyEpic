@@ -68,6 +68,7 @@ class XMPPConfig:
 
     connect_timeout: float = 10.0
     ping_interval: float = 60.0
+    stop_timeout: float = 1.0
 
 
 class HTTPClient:
