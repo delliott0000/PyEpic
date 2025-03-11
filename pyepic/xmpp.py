@@ -96,7 +96,7 @@ class XMPPWebsocketClient:
                 elif message.type == WSMsgType.ERROR:
                     raise XMPPConnectionError(message)
 
-        except Exception as error:  # noqa
+        except Exception as error:
             if isinstance(error, XMPPClosed):
                 self.auth_session.action_logger(
                     "Websocket received closing message"
