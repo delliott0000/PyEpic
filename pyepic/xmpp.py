@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from asyncio import create_task, sleep
+from asyncio import Event, create_task, sleep, wait_for
 from logging import getLogger
 from traceback import print_exception
 from typing import TYPE_CHECKING
@@ -16,6 +16,10 @@ if TYPE_CHECKING:
 
     from .auth import AuthSession
     from .http import XMPPConfig
+
+
+if __import__("sys").version_info <= (3, 11):
+    from asyncio import TimeoutError
 
 
 __all__ = ("XMLGenerator", "XMLProcessor", "XMPPWebsocketClient")
@@ -38,6 +42,7 @@ class XMPPWebsocketClient:
         "ws",
         "recv_task",
         "ping_task",
+        "cleanup_event",
         "errors",
     )
 
@@ -50,6 +55,7 @@ class XMPPWebsocketClient:
 
         self.recv_task: Task | None = None
         self.ping_task: Task | None = None
+        self.cleanup_event: Event | None = None
 
         self.errors: list[Exception] = []
 
@@ -88,6 +94,7 @@ class XMPPWebsocketClient:
                 self.auth_session.action_logger("RECV: {0}".format(data))
 
                 if message.type == WSMsgType.TEXT:
+                    # TODO: Process message here
                     ...
 
                 elif message.type == WSMsgType.CLOSED:
@@ -131,6 +138,7 @@ class XMPPWebsocketClient:
 
         self.recv_task = create_task(self.recv_loop())
         self.ping_task = create_task(self.ping_loop())
+        self.cleanup_event = Event()
 
         self.auth_session.action_logger("XMPP started")
 
@@ -142,11 +150,20 @@ class XMPPWebsocketClient:
 
         # TODO: Send </stream:stream> here
 
-        await self.cleanup()
+        try:
+            await wait_for(self.wait_for_cleanup(), self.config.stop_timeout)
+        except TimeoutError:
+            await self.cleanup()
+
+    async def wait_for_cleanup(self) -> None:
+        if self.cleanup_event is None:
+            return
+        await self.cleanup_event.wait()
 
     async def cleanup(self) -> None:
         self.recv_task.cancel()
         self.ping_task.cancel()
+        self.cleanup_event.set()
 
         await self.ws.close()
         await self.session.close()
@@ -156,5 +173,6 @@ class XMPPWebsocketClient:
 
         self.recv_task = None
         self.ping_task = None
+        self.cleanup_event = None
 
         self.auth_session.action_logger("XMPP stopped")
