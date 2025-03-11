@@ -260,13 +260,13 @@ class AuthSession:
 
                     yield account
 
-    def __cache(self, account: FullAccount, /) -> None:
+    def __cache_self(self, account: FullAccount, /) -> None:
         self.__cached_account = account
         self.__cached_account_expires = (
             time() + self.client.cache_config.full_cache_max_age
         )
 
-    async def __fetch_self(self) -> FullAccount:
+    async def __fetch_self(self) -> FullAccount[Self]:
         route = AccountService(
             "/account/api/public/account/{account_id}",
             account_id=self.account_id,
@@ -284,7 +284,7 @@ class AuthSession:
 
         account = await self.__fetch_self()
         if self.client.cache_config.enable_full_caching is True:
-            self.__cache(account)
+            self.__cache_self(account)
         return account
 
     def mcp_operation(
