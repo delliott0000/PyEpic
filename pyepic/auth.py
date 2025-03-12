@@ -64,7 +64,7 @@ class AuthManager(Generic[AuthT]):
         exc_val: BaseException | None,
         exc_tb: TracebackType | None,
     ) -> None:
-        await self.__auth_session.kill()
+        await self.__auth_session.kill(stop_xmpp=self.__start_xmpp)
 
     async def __construct__(self) -> AuthT:
         data = await self.__request_coro
