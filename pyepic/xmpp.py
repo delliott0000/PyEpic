@@ -33,8 +33,10 @@ _logger = getLogger(__name__)
 
 
 class XMLGenerator:
+    __slots__ = ("config",)
 
-    def __init__(self, xmpp: XMPPWebsocketClient, /) -> None: ...
+    def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
+        self.config: XMPPConfig = xmpp.config
 
     @property
     def open(self) -> str:
