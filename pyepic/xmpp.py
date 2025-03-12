@@ -11,11 +11,15 @@ from .errors import XMPPClosed, XMPPConnectionError
 
 if TYPE_CHECKING:
     from asyncio import Task
+    from collections.abc import Coroutine
+    from typing import Any
 
     from aiohttp import ClientWebSocketResponse, WSMsgType
 
     from .auth import AuthSession
     from .http import XMPPConfig
+
+    SendCoro = Coroutine[Any, Any, None]
 
 
 if __import__("sys").version_info <= (3, 11):
@@ -31,7 +35,13 @@ _logger = getLogger(__name__)
 class XMLGenerator: ...
 
 
-class XMLProcessor: ...
+class XMLProcessor:
+    __slots__ = ("xmpp",)
+
+    def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
+        self.xmpp: XMPPWebsocketClient = xmpp
+
+    async def process(self, data: str, /) -> None: ...
 
 
 class XMPPWebsocketClient:
@@ -40,6 +50,7 @@ class XMPPWebsocketClient:
         "config",
         "session",
         "ws",
+        "processor",
         "recv_task",
         "ping_task",
         "cleanup_event",
@@ -52,6 +63,8 @@ class XMPPWebsocketClient:
 
         self.session: ClientSession | None = None
         self.ws: ClientWebSocketResponse | None = None
+
+        self.processor: XMLProcessor = XMLProcessor(self)
 
         self.recv_task: Task | None = None
         self.ping_task: Task | None = None
@@ -70,9 +83,17 @@ class XMPPWebsocketClient:
         except IndexError:
             return None
 
-    async def ping(self) -> None:
+    def open(self) -> SendCoro:
         # TODO: implement this
-        ...
+        return self.send(...)
+
+    def ping(self) -> SendCoro:
+        # TODO: implement this
+        return self.send(...)
+
+    def quit(self) -> SendCoro:
+        # TODO: implement this
+        return self.send(...)
 
     async def send(self, data: str, /) -> None:
         await self.ws.send_str(data)
@@ -94,8 +115,7 @@ class XMPPWebsocketClient:
                 self.auth_session.action_logger("RECV: {0}".format(data))
 
                 if message.type == WSMsgType.TEXT:
-                    # TODO: Process message here
-                    ...
+                    await self.processor.process(data)
 
                 elif message.type == WSMsgType.CLOSED:
                     raise XMPPClosed(message)
@@ -142,13 +162,13 @@ class XMPPWebsocketClient:
 
         self.auth_session.action_logger("XMPP started")
 
-        # TODO: Send initial XML stream here
+        await self.open()
 
     async def stop(self) -> None:
         if self.running is False:
             return
 
-        # TODO: Send </stream:stream> here
+        await self.quit()
 
         try:
             await wait_for(self.wait_for_cleanup(), self.config.stop_timeout)
