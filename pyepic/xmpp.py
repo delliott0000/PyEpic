@@ -5,7 +5,7 @@ from logging import getLogger
 from traceback import print_exception
 from typing import TYPE_CHECKING
 
-from aiohttp import ClientSession
+from aiohttp import ClientSession, WSMsgType
 
 from .errors import XMPPClosed, XMPPConnectionError
 
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from collections.abc import Coroutine
     from typing import Any
 
-    from aiohttp import ClientWebSocketResponse, WSMsgType
+    from aiohttp import ClientWebSocketResponse
 
     from .auth import AuthSession
     from .http import XMPPConfig
@@ -32,14 +32,32 @@ __all__ = ("XMLGenerator", "XMLProcessor", "XMPPWebsocketClient")
 _logger = getLogger(__name__)
 
 
-class XMLGenerator: ...
+class XMLGenerator:
+
+    def __init__(self, xmpp: XMPPWebsocketClient, /) -> None: ...
+
+    @property
+    def open(self) -> str:
+        # TODO: implement this
+        return "..."
+
+    @property
+    def ping(self) -> str:
+        # TODO: implement this
+        return "..."
+
+    @property
+    def quit(self) -> str:
+        # TODO: implement this
+        return "..."
 
 
 class XMLProcessor:
-    __slots__ = ("xmpp",)
+    __slots__ = ("xmpp", "generator")
 
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
+        self.generator: XMLGenerator = XMLGenerator(xmpp)
 
     async def process(self, data: str, /) -> None: ...
 
@@ -84,19 +102,16 @@ class XMPPWebsocketClient:
             return None
 
     def open(self) -> SendCoro:
-        # TODO: implement this
-        return self.send("...")
+        return self.send(self.processor.generator.open)
 
     def ping(self) -> SendCoro:
-        # TODO: implement this
-        return self.send("...")
+        return self.send(self.processor.generator.ping)
 
     def quit(self) -> SendCoro:
-        # TODO: implement this
-        return self.send("...")
+        return self.send(self.processor.generator.quit)
 
     async def send(self, data: str, /) -> None:
-        # TODO: Unquote when other methods are implemented
+        # TODO: Unquote this when other methods are implemented
         # TODO: So it won't throw exceptions in the meantime
         """await self.ws.send_str(data)"""
         self.auth_session.action_logger("SENT: {0}".format(data))
