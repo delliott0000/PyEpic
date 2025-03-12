@@ -85,18 +85,20 @@ class XMPPWebsocketClient:
 
     def open(self) -> SendCoro:
         # TODO: implement this
-        return self.send(...)
+        return self.send("...")
 
     def ping(self) -> SendCoro:
         # TODO: implement this
-        return self.send(...)
+        return self.send("...")
 
     def quit(self) -> SendCoro:
         # TODO: implement this
-        return self.send(...)
+        return self.send("...")
 
     async def send(self, data: str, /) -> None:
-        await self.ws.send_str(data)
+        # TODO: Unquote when other methods are implemented
+        # TODO: So it won't throw exceptions in the meantime
+        """await self.ws.send_str(data)"""
         self.auth_session.action_logger("SENT: {0}".format(data))
 
     async def ping_loop(self) -> None:
