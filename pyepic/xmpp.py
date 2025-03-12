@@ -50,12 +50,12 @@ class XMLGenerator:
         return "..."
 
     @property
-    def quit(self) -> str:
+    def auth(self) -> str:
         # TODO: implement this
         return "..."
 
     @property
-    def auth(self) -> str:
+    def quit(self) -> str:
         # TODO: implement this
         return "..."
 
