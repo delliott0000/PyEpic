@@ -335,34 +335,23 @@ class FullAccount(Generic[AuthT], PartialAccount):
                 note=entry.get("note") or None,
             )
 
-    def friend(self, account: PartialAccount, /) -> DCo:
+    def __friend(self, friend_id: str, op_type: str, op: str, /) -> DCo:
         route = FriendsService(
-            "/friends/api/v1/{account_id}/friends/{friend_id}",
+            "/friends/api/v1/{account_id}/{op_type}/{friend_id}",
             account_id=self.id,
-            friend_id=account.id,
+            op_type=op_type,
+            friend_id=friend_id,
         )
-        return self.auth_session.access_request("post", route)
+        return self.auth_session.access_request(op, route)
+
+    def friend(self, account: PartialAccount, /) -> DCo:
+        return self.__friend(account.id, "friends", "post")
 
     def unfriend(self, account: PartialAccount, /) -> DCo:
-        route = FriendsService(
-            "/friends/api/v1/{account_id}/friends/{friend_id}",
-            account_id=self.id,
-            friend_id=account.id,
-        )
-        return self.auth_session.access_request("delete", route)
+        return self.__friend(account.id, "friends", "delete")
 
     def block(self, account: PartialAccount, /) -> DCo:
-        route = FriendsService(
-            "/friends/api/v1/{account_id}/blocklist/{friend_id}",
-            account_id=self.id,
-            friend_id=account.id,
-        )
-        return self.auth_session.access_request("post", route)
+        return self.__friend(account.id, "blocklist", "post")
 
     def unblock(self, account: PartialAccount, /) -> DCo:
-        route = FriendsService(
-            "/friends/api/v1/{account_id}/blocklist/{friend_id}",
-            account_id=self.id,
-            friend_id=account.id,
-        )
-        return self.auth_session.access_request("delete", route)
+        return self.__friend(account.id, "blocklist", "delete")
