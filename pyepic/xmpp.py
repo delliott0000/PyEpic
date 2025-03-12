@@ -55,13 +55,9 @@ class XMLGenerator:
         return "..."
 
     @property
-    def plain_auth(self) -> str:
+    def auth(self) -> str:
         # TODO: implement this
         return "..."
-
-    @property
-    def any_other_auth(self) -> str:
-        raise NotImplementedError
 
 
 class XMLProcessor:
