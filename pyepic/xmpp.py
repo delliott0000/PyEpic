@@ -123,9 +123,7 @@ class XMPPWebsocketClient:
         return self.send(self.processor.generator.quit)
 
     async def send(self, data: str, /) -> None:
-        # TODO: Unquote this when other methods are implemented
-        # TODO: So it won't throw exceptions in the meantime
-        """await self.ws.send_str(data)"""
+        await self.ws.send_str(data)
         self.auth_session.action_logger("SENT: {0}".format(data))
 
     async def ping_loop(self) -> None:
@@ -191,6 +189,10 @@ class XMPPWebsocketClient:
 
         self.auth_session.action_logger("XMPP started")
 
+        # Let one iteration of the event loop pass
+        # Before sending our opening message
+        # So the receiver can initialise first
+        await sleep(0)
         await self.open()
 
     async def stop(self) -> None:
