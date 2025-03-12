@@ -55,6 +55,7 @@ class XMLGenerator:
 
     @property
     def plain_auth(self) -> str:
+        # TODO: implement this
         return "..."
 
     @property
