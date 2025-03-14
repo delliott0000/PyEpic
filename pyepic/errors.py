@@ -51,7 +51,7 @@ class HTTPException(EpicException):
         return f"{self.response.status} {self.response.reason} - {self.server_message}"
 
 
-# TODO: Implement special methods on XMPP Exception classes
+# TODO: Implement special methods on WS/XMPP Exception classes
 
 
 class WSException(EpicException):
