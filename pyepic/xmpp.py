@@ -73,7 +73,7 @@ class XMPPWebsocketClient:
         "recv_task",
         "ping_task",
         "cleanup_event",
-        "errors",
+        "exceptions",
     )
 
     def __init__(self, auth_session: AuthSession, /) -> None:
@@ -89,16 +89,16 @@ class XMPPWebsocketClient:
         self.ping_task: Task | None = None
         self.cleanup_event: Event | None = None
 
-        self.errors: list[Exception] = []
+        self.exceptions: list[Exception] = []
 
     @property
     def running(self) -> bool:
         return self.ws is not None and not self.ws.closed
 
     @property
-    def latest_error(self) -> Exception | None:
+    def most_recent_exception(self) -> Exception | None:
         try:
-            return self.errors[-1]
+            return self.exceptions[-1]
         except IndexError:
             return None
 
@@ -130,8 +130,8 @@ class XMPPWebsocketClient:
                 elif message.type == WSMsgType.ERROR:
                     raise WSConnectionError(message)
 
-        except Exception as error:
-            if isinstance(error, WSClosed):
+        except Exception as exception:
+            if isinstance(exception, WSClosed):
                 self.auth_session.action_logger(
                     "Websocket received closing message"
                 )
@@ -139,8 +139,8 @@ class XMPPWebsocketClient:
                 self.auth_session.action_logger(
                     "Websocket encountered a fatal error", level=_logger.error
                 )
-                self.errors.append(error)
-                print_exception(error)
+                self.exceptions.append(exception)
+                print_exception(exception)
 
             create_task(self.cleanup())  # noqa
 
