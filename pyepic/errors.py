@@ -12,9 +12,9 @@ if TYPE_CHECKING:
 __all__ = (
     "EpicException",
     "HTTPException",
-    "XMPPException",
-    "XMPPClosed",
-    "XMPPConnectionError",
+    "WSException",
+    "WSClosed",
+    "WSConnectionError",
     "FortniteException",
     "UnknownTemplateID",
     "BadItemAttributes",
@@ -54,17 +54,17 @@ class HTTPException(EpicException):
 # TODO: Implement special methods on XMPP Exception classes
 
 
-class XMPPException(EpicException):
+class WSException(EpicException):
 
     def __init__(self, message: WSMessage, /) -> None:
         self.message: WSMessage = message
 
 
-class XMPPClosed(XMPPException):
+class WSClosed(WSException):
     pass
 
 
-class XMPPConnectionError(XMPPException):
+class WSConnectionError(WSException):
     pass
 
 

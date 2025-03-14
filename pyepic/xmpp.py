@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 
 from aiohttp import ClientSession, WSMsgType
 
-from .errors import XMPPClosed, XMPPConnectionError
+from .errors import WSClosed, WSConnectionError
 
 if TYPE_CHECKING:
     from asyncio import Task
@@ -125,13 +125,13 @@ class XMPPWebsocketClient:
                     await self.processor.process(data)
 
                 elif message.type == WSMsgType.CLOSED:
-                    raise XMPPClosed(message)
+                    raise WSClosed(message)
 
                 elif message.type == WSMsgType.ERROR:
-                    raise XMPPConnectionError(message)
+                    raise WSConnectionError(message)
 
         except Exception as error:
-            if isinstance(error, XMPPClosed):
+            if isinstance(error, WSClosed):
                 self.auth_session.action_logger(
                     "Websocket received closing message"
                 )
