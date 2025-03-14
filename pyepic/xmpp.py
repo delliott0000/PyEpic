@@ -4,10 +4,11 @@ from asyncio import Event, create_task, sleep, wait_for
 from logging import getLogger
 from traceback import print_exception
 from typing import TYPE_CHECKING
+from xml.etree.ElementTree import Element, XMLPullParser
 
 from aiohttp import ClientSession, WSMsgType
 
-from .errors import WSClosed, WSConnectionError
+from .errors import WSConnectionError, XMPPClosed
 
 if TYPE_CHECKING:
     from asyncio import Task
@@ -54,13 +55,28 @@ class XMLGenerator:
 
 
 class XMLProcessor:
-    __slots__ = ("xmpp", "generator")
+    __slots__ = ("xmpp", "generator", "parser", "xml_depth")
 
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
         self.generator: XMLGenerator = XMLGenerator(xmpp)
+        self.parser: XMLPullParser = XMLPullParser(("start", "end"))
+        self.xml_depth: int = 0
 
-    async def process(self, message: WSMessage, /) -> None: ...
+    async def process(self, message: WSMessage, /) -> None:
+        self.parser.feed(message.data)
+
+        event: str
+        xml: Element
+        for event, xml in self.parser.read_events():
+
+            if event == "start":
+                self.xml_depth += 1
+            elif event == "end":
+                self.xml_depth -= 1
+
+            if self.xml_depth == 0:
+                raise XMPPClosed(message)
 
 
 class XMPPWebsocketClient:
@@ -124,24 +140,25 @@ class XMPPWebsocketClient:
                     )
                     await self.processor.process(message)
 
-                elif message.type == WSMsgType.CLOSED:
-                    raise WSClosed(message)
-
-                elif message.type == WSMsgType.ERROR:
+                else:
                     raise WSConnectionError(message)
 
         except Exception as exception:
-            if isinstance(exception, WSClosed):
-                self.auth_session.action_logger(
-                    "Websocket received closing message"
-                )
+            if isinstance(exception, XMPPClosed):
+                txt = "Websocket received closing message"
+                level = _logger.debug
+                print_exc = False
             else:
-                self.auth_session.action_logger(
-                    "Websocket encountered a fatal error", level=_logger.error
-                )
+                txt = "Websocket encountered a fatal error"
+                level = _logger.error
+                print_exc = True
+
+            self.auth_session.action_logger(txt, level=level)
+            self.exceptions.append(exception)
+
+            if print_exc is True:
                 print_exception(exception)
 
-            self.exceptions.append(exception)
             create_task(self.cleanup())  # noqa
 
         finally:

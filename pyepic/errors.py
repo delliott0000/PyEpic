@@ -13,8 +13,8 @@ __all__ = (
     "EpicException",
     "HTTPException",
     "WSException",
-    "WSClosed",
     "WSConnectionError",
+    "XMPPClosed",
     "FortniteException",
     "UnknownTemplateID",
     "BadItemAttributes",
@@ -60,11 +60,11 @@ class WSException(EpicException):
         self.message: WSMessage = message
 
 
-class WSClosed(WSException):
+class WSConnectionError(WSException):
     pass
 
 
-class WSConnectionError(WSException):
+class XMPPClosed(WSException):
     pass
 
 
