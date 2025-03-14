@@ -137,7 +137,7 @@ class XMPPWebsocketClient:
                 )
             else:
                 self.auth_session.action_logger(
-                    "XMPP encountered a fatal error", level=_logger.error
+                    "Websocket encountered a fatal error", level=_logger.error
                 )
                 self.errors.append(error)
                 print_exception(error)
