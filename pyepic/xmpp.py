@@ -108,15 +108,6 @@ class XMPPWebsocketClient:
         except IndexError:
             return None
 
-    def open(self) -> SendCoro:
-        return self.send(self.processor.generator.open)
-
-    def ping(self) -> SendCoro:
-        return self.send(self.processor.generator.ping)
-
-    def quit(self) -> SendCoro:
-        return self.send(self.processor.generator.quit)
-
     async def send(self, data: str, /) -> None:
         await self.ws.send_str(data)
         self.auth_session.action_logger("SENT: {0}".format(data))
@@ -124,7 +115,7 @@ class XMPPWebsocketClient:
     async def ping_loop(self) -> None:
         while True:
             await sleep(self.config.ping_interval)
-            await self.ping()
+            await self.send(self.processor.generator.ping)
 
     async def recv_loop(self) -> None:
         self.auth_session.action_logger("Websocket receiver running")
@@ -188,13 +179,13 @@ class XMPPWebsocketClient:
         # Before sending our opening message
         # So the receiver can initialise first
         await sleep(0)
-        await self.open()
+        await self.send(self.processor.generator.open)
 
     async def stop(self) -> None:
         if self.running is False:
             return
 
-        await self.quit()
+        await self.send(self.processor.generator.quit)
 
         try:
             await wait_for(self.wait_for_cleanup(), self.config.stop_timeout)
