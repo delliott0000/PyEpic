@@ -117,9 +117,9 @@ class XMPPWebsocketClient:
         try:
             while True:
                 message = await self.ws.receive()
-                self.auth_session.action_logger("RECV: {0}".format(message.data))
 
                 if message.type == WSMsgType.TEXT:
+                    self.auth_session.action_logger("RECV: {0}".format(message.data))
                     await self.processor.process(message)
 
                 elif message.type == WSMsgType.CLOSED:
