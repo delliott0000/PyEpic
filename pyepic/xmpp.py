@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from collections.abc import Coroutine
     from typing import Any
 
-    from aiohttp import ClientWebSocketResponse
+    from aiohttp import ClientWebSocketResponse, WSMessage
 
     from .auth import AuthSession
     from .http import XMPPConfig
@@ -60,7 +60,7 @@ class XMLProcessor:
         self.xmpp: XMPPWebsocketClient = xmpp
         self.generator: XMLGenerator = XMLGenerator(xmpp)
 
-    async def process(self, data: str, /) -> None: ...
+    async def process(self, message: WSMessage, /) -> None: ...
 
 
 class XMPPWebsocketClient:
@@ -117,12 +117,10 @@ class XMPPWebsocketClient:
         try:
             while True:
                 message = await self.ws.receive()
-                data = message.data
-
-                self.auth_session.action_logger("RECV: {0}".format(data))
+                self.auth_session.action_logger("RECV: {0}".format(message.data))
 
                 if message.type == WSMsgType.TEXT:
-                    await self.processor.process(data)
+                    await self.processor.process(message)
 
                 elif message.type == WSMsgType.CLOSED:
                     raise WSClosed(message)
