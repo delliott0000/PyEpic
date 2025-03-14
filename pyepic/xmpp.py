@@ -139,9 +139,9 @@ class XMPPWebsocketClient:
                 self.auth_session.action_logger(
                     "Websocket encountered a fatal error", level=_logger.error
                 )
-                self.exceptions.append(exception)
                 print_exception(exception)
 
+            self.exceptions.append(exception)
             create_task(self.cleanup())  # noqa
 
         finally:
