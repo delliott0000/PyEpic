@@ -56,7 +56,7 @@ class XMLGenerator:
     @property
     def quit(self) -> str:
         # TODO: implement this
-        return "..."
+        return "</stream:stream>"
 
 
 class XMLProcessor:
