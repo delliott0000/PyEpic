@@ -49,13 +49,7 @@ class XMLGenerator:
         return "..."
 
     @property
-    def auth(self) -> str:
-        # TODO: implement this
-        return "..."
-
-    @property
     def quit(self) -> str:
-        # TODO: implement this
         return "</stream:stream>"
 
 
