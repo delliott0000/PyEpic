@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from asyncio import Event, create_task, sleep, wait_for
+from base64 import b64encode
 from logging import getLogger
 from traceback import print_exception
 from typing import TYPE_CHECKING
@@ -33,6 +34,13 @@ __all__ = ("XMLGenerator", "XMLProcessor", "XMPPWebsocketClient")
 _logger = getLogger(__name__)
 
 
+class XMLNamespaces:
+
+    CTX = "jabber:client"
+    SASL = "urn:ietf:params:xml:ns:xmpp-sasl"
+    STREAM = "http://etherx.jabber.org/streams"
+
+
 class XMLGenerator:
     __slots__ = ("xmpp",)
 
@@ -49,8 +57,8 @@ class XMLGenerator:
             self.xml_prolog
             + " "
             + (
-                f"<stream:stream xmlns='jabber:client' "
-                f"xmlns:stream='http://etherx.jabber.org/streams' "
+                f"<stream:stream xmlns='{XMLNamespaces.CTX}' "
+                f"xmlns:stream='{XMLNamespaces.STREAM}' "
                 f"to='{self.xmpp.config.host}' "
                 f"version='{self.xmpp.config.xmpp_version}'>"
             )
@@ -64,6 +72,21 @@ class XMLGenerator:
     @property
     def quit(self) -> str:
         return "</stream:stream>"
+
+    def auth(self, mechanism: str, /) -> str:
+        if mechanism == "PLAIN":
+            return (
+                f"<auth xmlns='{XMLNamespaces.SASL}' "
+                f"mechanism='PLAIN'>{self.b64_plain_auth}</auth>"
+            )
+        else:
+            raise NotImplementedError
+
+    @property
+    def b64_plain_auth(self) -> str:
+        acc_id = self.xmpp.auth_session.account_id
+        acc_tk = self.xmpp.auth_session.access_token
+        return b64encode(f"\x00{acc_id}\x00{acc_tk}".encode()).decode()
 
 
 class XMLProcessor:
@@ -97,6 +120,14 @@ class XMLProcessor:
 
             elif event == "end":
                 self.xml_depth -= 1
+
+                if response is None:
+
+                    if tag == f"{{{XMLNamespaces.SASL}}}mechanism":
+                        response = self.generator.auth(text)
+
+                    elif tag == f"{{{XMLNamespaces.SASL}}}success":
+                        self.xmpp.auth_session.action_logger("Websocket authenticated")
 
             if self.xml_depth == 0:
                 self.parser = None
