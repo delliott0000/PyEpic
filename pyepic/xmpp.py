@@ -7,7 +7,7 @@ from random import getrandbits
 from traceback import print_exception
 from typing import TYPE_CHECKING
 from uuid import uuid4
-from xml.etree.ElementTree import Element, XMLPullParser
+from xml.etree.ElementTree import XMLPullParser, fromstring
 
 from aiohttp import ClientSession, WSMsgType
 
@@ -15,8 +15,9 @@ from .errors import WSConnectionError, XMPPClosed
 
 if TYPE_CHECKING:
     from asyncio import Task
-    from collections.abc import Coroutine
-    from typing import Any
+    from collections.abc import Coroutine, Iterable
+    from typing import Any, Self
+    from xml.etree.ElementTree import Element
 
     from aiohttp import ClientWebSocketResponse, WSMessage
 
@@ -46,10 +47,60 @@ class XMLNamespaces:
 
 
 class Stanza:
+    __slots__ = ("_tag", "_text", "_children", "_attributes", "_id")
 
-    id: str
+    def __init__(
+        self,
+        *,
+        tag: str,
+        text: str = "",
+        children: Iterable[Stanza] = (),
+        **attributes: str,
+    ) -> None:
+        if text and children:
+            raise ValueError("Invalid combination of Stanza arguments passed")
+        elif attributes.get("id"):
+            _logger.warning("Stanza.__init__ received an ID keyword argument")
 
-    def __str__(self) -> str: ...
+        self._tag = tag
+        self._text = text
+        self._children = tuple(children)
+        self._attributes = attributes
+        self._id = self._attributes["id"] = self.new_id()
+
+    def __str__(self) -> str:
+        attrs_str = ""
+        for key, value in self._attributes.items():
+            attrs_str += f" {key}='{value}'"
+        if self._text:
+            return f"<{self._tag}{attrs_str}>{self._text}</{self._tag}>"
+        elif self._children:
+            return f"<{self._tag}{attrs_str}>{''.join(str(child) for child in self._children)}</{self._tag}>"
+        else:
+            return f"<{self._tag}{attrs_str}/>"
+
+    @property
+    def id(self) -> str:
+        return self._id
+
+    @classmethod
+    def build(cls, source: Element | str, /) -> Self:
+        if isinstance(source, str):
+            source = fromstring(source)
+        return cls(
+            tag=source.tag,
+            text=source.text or "",
+            children=(cls.build(child) for child in source),
+            **source.attrib,
+        )
+
+    @staticmethod
+    def new_id():
+        # Taken straight from aioxmpp
+        _id = getrandbits(120)
+        _id = _id.to_bytes((_id.bit_length() + 7) // 8, "little")
+        _id = urlsafe_b64encode(_id).rstrip(b"=").decode("ascii")
+        return ":" + _id
 
 
 class XMLGenerator:
