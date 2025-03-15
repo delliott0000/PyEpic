@@ -78,6 +78,7 @@ class XMLProcessor:
         event: str
         xml: Element
         for event, xml in self.parser.read_events():
+            tag, text = xml.tag, xml.text
 
             if event == "start":
                 self.xml_depth += 1
