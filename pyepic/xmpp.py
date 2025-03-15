@@ -73,20 +73,20 @@ class XMLGenerator:
     def quit(self) -> str:
         return "</stream:stream>"
 
+    @property
+    def b64_plain(self) -> str:
+        acc_id = self.xmpp.auth_session.account_id
+        acc_tk = self.xmpp.auth_session.access_token
+        return b64encode(f"\x00{acc_id}\x00{acc_tk}".encode()).decode()
+
     def auth(self, mechanism: str, /) -> str:
         if mechanism == "PLAIN":
             return (
                 f"<auth xmlns='{XMLNamespaces.SASL}' "
-                f"mechanism='PLAIN'>{self.b64_plain_auth}</auth>"
+                f"mechanism='PLAIN'>{self.b64_plain}</auth>"
             )
         else:
             raise NotImplementedError
-
-    @property
-    def b64_plain_auth(self) -> str:
-        acc_id = self.xmpp.auth_session.account_id
-        acc_tk = self.xmpp.auth_session.access_token
-        return b64encode(f"\x00{acc_id}\x00{acc_tk}".encode()).decode()
 
 
 class XMLProcessor:
@@ -127,7 +127,9 @@ class XMLProcessor:
                         response = self.generator.auth(text)
 
                     elif tag == f"{{{XMLNamespaces.SASL}}}success":
-                        self.xmpp.auth_session.action_logger("Websocket authenticated")
+                        self.xmpp.auth_session.action_logger(
+                            "Websocket authenticated"
+                        )
 
                         # At this point we must restart the stream
                         self.init_parser()
