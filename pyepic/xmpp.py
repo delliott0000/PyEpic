@@ -60,10 +60,16 @@ class XMLProcessor:
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
         self.generator: XMLGenerator = XMLGenerator(xmpp)
-        self.parser: XMLPullParser = XMLPullParser(("start", "end"))
+        self.parser: XMLPullParser | None = None
         self.xml_depth: int = 0
 
+    def init_parser(self) -> None:
+        self.parser = XMLPullParser(("start", "end"))
+
     async def process(self, message: WSMessage, /) -> None:
+        if self.parser is None:
+            raise RuntimeError("XML parser has not been created")
+
         self.parser.feed(message.data)
 
         event: str
@@ -76,6 +82,7 @@ class XMLProcessor:
                 self.xml_depth -= 1
 
             if self.xml_depth == 0:
+                self.parser = None
                 raise XMPPClosed(message)
 
 
@@ -179,6 +186,7 @@ class XMPPWebsocketClient:
             timeout=xmpp.connect_timeout,
             protocols=("xmpp",),
         )
+        self.processor.init_parser()
 
         self.recv_task = create_task(self.recv_loop())
         self.ping_task = create_task(self.ping_loop())
