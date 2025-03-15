@@ -59,8 +59,10 @@ class XMLProcessor:
 
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
+
         self.generator: XMLGenerator = XMLGenerator(xmpp)
         self.parser: XMLPullParser | None = None
+
         self.xml_depth: int = 0
 
     def init_parser(self) -> None:
