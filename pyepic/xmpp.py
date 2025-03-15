@@ -81,6 +81,9 @@ class Stanza:
         else:
             return f"<{self._tag}{attrs_str}/>"
 
+    def __eq__(self, other: Stanza | str, /) -> bool:
+        return str(self) == str(other)
+
     @property
     def id(self) -> str:
         return self._id
