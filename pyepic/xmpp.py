@@ -41,8 +41,13 @@ class XMLGenerator:
 
     @property
     def open(self) -> str:
-        # TODO: implement this
-        return "..."
+        return (
+            f"<?xml version='{self.xmpp.config.xml_version}'?> "
+            f"<stream:stream xmlns='jabber:client' "
+            f"xmlns:stream='http://etherx.jabber.org/streams' "
+            f"to='{self.xmpp.config.host}' "
+            f"version='{self.xmpp.config.xmpp_version}'>"
+        )
 
     @property
     def ping(self) -> str:
