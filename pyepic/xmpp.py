@@ -7,7 +7,7 @@ from random import getrandbits
 from traceback import print_exception
 from typing import TYPE_CHECKING
 from uuid import uuid4
-from xml.etree.ElementTree import XMLPullParser, fromstring
+from xml.etree.ElementTree import XMLPullParser
 
 from aiohttp import ClientSession, WSMsgType
 
@@ -16,7 +16,7 @@ from .errors import WSConnectionError, XMPPClosed
 if TYPE_CHECKING:
     from asyncio import Task
     from collections.abc import Coroutine, Iterable
-    from typing import Any, Self
+    from typing import Any
     from xml.etree.ElementTree import Element
 
     from aiohttp import ClientWebSocketResponse, WSMessage
@@ -87,17 +87,6 @@ class Stanza:
     @property
     def id(self) -> str:
         return self._id
-
-    @classmethod
-    def build(cls, source: Element | str, /) -> Self:
-        if isinstance(source, str):
-            source = fromstring(source)
-        return cls(
-            tag=source.tag,
-            text=source.text or "",
-            children=(cls.build(child) for child in source),
-            **source.attrib,
-        )
 
     @staticmethod
     def new_id():
