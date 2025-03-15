@@ -60,7 +60,9 @@ class Stanza:
         if text and children:
             raise ValueError("Invalid combination of Stanza arguments passed")
         elif attributes.get("id"):
-            _logger.warning("Stanza.__init__ received an 'ID' keyword argument")
+            _logger.warning(
+                "Stanza.__init__ received an 'ID' keyword argument"
+            )
 
         self._tag = tag
         self._text = text
@@ -109,15 +111,6 @@ class XMLGenerator:
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
 
-    # This will be removed
-    @staticmethod
-    def new_id() -> str:
-        # Taken straight from aioxmpp
-        _id = getrandbits(120)
-        _id = _id.to_bytes((_id.bit_length() + 7) // 8, "little")
-        _id = urlsafe_b64encode(_id).rstrip(b"=").decode("ascii")
-        return ":" + _id
-
     @property
     def uuid(self):
         return uuid4().hex.upper()
@@ -145,39 +138,24 @@ class XMLGenerator:
         acc_tk = self.xmpp.auth_session.access_token
         return b64encode(f"\x00{acc_id}\x00{acc_tk}".encode()).decode()
 
-    def auth(self, mechanism: str, /) -> str:
+    def auth(self, mechanism: str, /) -> Stanza:
         if mechanism == "PLAIN":
-            return (
-                f"<auth xmlns='{XMLNamespaces.SASL}' "
-                f"mechanism='PLAIN'>{self.b64_plain}</auth>"
-            )
+            auth = self.b64_plain
         else:
+            # Expected authorization mechanism is PLAIN
+            # But implement other mechanisms if needed
             raise NotImplementedError
-
-    def bind(self) -> str:
-        return self.iq(
-            f"<bind xmlns='{XMLNamespaces.BIND}'><resource>V2:Fortnite:{self.xmpp.config.platform}::{self.uuid}</resource></bind>",
-            type="set",
+        return Stanza(
+            tag="auth",
+            text=auth,
+            xmlns=XMLNamespaces.SASL,
+            mechanism=mechanism,
         )
 
-    def ping(self) -> str:
-        return self.iq(f"<ping xmlns='{XMLNamespaces.PING}'/>", type="get")
-
-    def stanza(self, _type: str, body: str = "", **kwargs: str) -> str:
-        kwargs["id"] = self.new_id()
-        attrs = ""
-        for key, value in kwargs.items():
-            attrs += f" {key}='{value}'"
-        return f"<{_type}{attrs}>{body}</{_type}>"
-
-    def iq(self, body: str = "", **kwargs: str) -> str:
-        return self.stanza("iq", body, **kwargs)
-
-    def message(self, body: str = "", **kwargs: str) -> str:
-        return self.stanza("message", body, **kwargs)
-
-    def presence(self, body: str = "", **kwargs: str) -> str:
-        return self.stanza("presence", body, **kwargs)
+    @staticmethod
+    def ping() -> Stanza:
+        child = Stanza(tag="ping", xmlns=XMLNamespaces.PING)
+        return Stanza(tag="iq", type="get", children=(child,))
 
 
 class XMLProcessor:
@@ -196,7 +174,7 @@ class XMLProcessor:
     def xml_depth(self) -> int:
         return len(self.open_events)
 
-    def process(self, message: WSMessage, /) -> str | None:
+    def process(self, message: WSMessage, /) -> Stanza | str | None:
         if self.parser is None:
             raise RuntimeError("XML parser has not been created")
 
