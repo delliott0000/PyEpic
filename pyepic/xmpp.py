@@ -113,12 +113,21 @@ class XMLGenerator:
         else:
             raise NotImplementedError
 
-    def iq(self, body: str, **kwargs) -> str:
+    def stanza(self, _type: str, body: str = "", **kwargs: str) -> str:
         kwargs["id"] = self.new_id()
         attrs = ""
         for key, value in kwargs.items():
             attrs += f" {key}='{value}'"
-        return f"<iq{attrs}>{body}</iq>"
+        return f"<{_type}{attrs}>{body}</{_type}>"
+
+    def iq(self, body: str = "", **kwargs: str) -> str:
+        return self.stanza("iq", body, **kwargs)
+
+    def message(self, body: str = "", **kwargs: str) -> str:
+        return self.stanza("message", body, **kwargs)
+
+    def presence(self, body: str = "", **kwargs: str) -> str:
+        return self.stanza("presence", body, **kwargs)
 
 
 class XMLProcessor:
