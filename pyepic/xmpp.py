@@ -45,6 +45,13 @@ class XMLNamespaces:
     PING = "urn:xmpp:ping"
 
 
+class Stanza:
+
+    id: str
+
+    def __str__(self) -> str: ...
+
+
 class XMLGenerator:
     __slots__ = ("xmpp",)
 
@@ -52,15 +59,12 @@ class XMLGenerator:
         self.xmpp: XMPPWebsocketClient = xmpp
 
     @staticmethod
-    def new_id():
-        # Taken straight from `aioxmpp`
-        # Generates unique IDs for XML stanzas
-        rand_token = getrandbits(120)
-        rand_token = rand_token.to_bytes(
-            (rand_token.bit_length() + 7) // 8, "little"
-        )
-        e = urlsafe_b64encode(rand_token).rstrip(b"=").decode("ascii")
-        return ":" + e
+    def new_id() -> str:
+        # Taken straight from aioxmpp
+        _id = getrandbits(120)
+        _id = _id.to_bytes((_id.bit_length() + 7) // 8, "little")
+        _id = urlsafe_b64encode(_id).rstrip(b"=").decode("ascii")
+        return ":" + _id
 
     @property
     def xml_prolog(self) -> str:
@@ -69,14 +73,10 @@ class XMLGenerator:
     @property
     def open(self) -> str:
         return (
-            self.xml_prolog
-            + " "
-            + (
-                f"<stream:stream xmlns='{XMLNamespaces.CTX}' "
-                f"xmlns:stream='{XMLNamespaces.STREAM}' "
-                f"to='{self.xmpp.config.host}' "
-                f"version='{self.xmpp.config.xmpp_version}'>"
-            )
+            f"<stream:stream xmlns='{XMLNamespaces.CTX}' "
+            f"xmlns:stream='{XMLNamespaces.STREAM}' "
+            f"to='{self.xmpp.config.host}' "
+            f"version='{self.xmpp.config.xmpp_version}'>"
         )
 
     @property
@@ -137,7 +137,7 @@ class XMLProcessor:
         self.xmpp: XMPPWebsocketClient = xmpp
 
         self.generator: XMLGenerator = XMLGenerator(xmpp)
-        self.parser: XMLPullParser | None = None
+        self.parser: XMLPullParser = XMLPullParser(("start", "end"))
 
         self.open_events: list[Element] = []
         self.outbound_ids: list[str] = []
@@ -145,9 +145,6 @@ class XMLProcessor:
     @property
     def xml_depth(self) -> int:
         return len(self.open_events)
-
-    def init_parser(self) -> None:
-        self.parser = XMLPullParser(("start", "end"))
 
     def process(self, message: WSMessage, /) -> str | None:
         if self.parser is None:
@@ -213,9 +210,17 @@ class XMPPWebsocketClient:
         except IndexError:
             return None
 
-    async def send(self, data: str, /) -> None:
-        await self.ws.send_str(data)
-        self.auth_session.action_logger(f"SENT: {data}")
+    async def send(
+        self, source: Stanza | str, /, *, with_xml_prolog: bool = False
+    ) -> None:
+        if isinstance(source, Stanza):
+            self.processor.outbound_ids.append(source.id)
+            source = str(source)
+        if with_xml_prolog is True:
+            source = self.processor.generator.xml_prolog + source
+
+        await self.ws.send_str(source)
+        self.auth_session.action_logger(f"SENT: {source}")
 
     async def ping_loop(self) -> None:
         while True:
@@ -274,7 +279,6 @@ class XMPPWebsocketClient:
             timeout=xmpp.connect_timeout,
             protocols=("xmpp",),
         )
-        self.processor.init_parser()
 
         self.recv_task = create_task(self.recv_loop())
         self.ping_task = create_task(self.ping_loop())
@@ -286,7 +290,7 @@ class XMPPWebsocketClient:
         # Before sending our opening message
         # So the receiver can initialise first
         await sleep(0)
-        await self.send(self.processor.generator.open)
+        await self.send(self.processor.generator.open, with_xml_prolog=True)
 
     async def stop(self) -> None:
         if self.running is False:
