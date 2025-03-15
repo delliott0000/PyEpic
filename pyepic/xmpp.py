@@ -60,7 +60,7 @@ class Stanza:
         if text and children:
             raise ValueError("Invalid combination of Stanza arguments passed")
         elif attributes.get("id"):
-            _logger.warning("Stanza.__init__ received an ID keyword argument")
+            _logger.warning("Stanza.__init__ received an 'ID' keyword argument")
 
         self._tag = tag
         self._text = text
@@ -109,6 +109,7 @@ class XMLGenerator:
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
 
+    # This will be removed
     @staticmethod
     def new_id() -> str:
         # Taken straight from aioxmpp
@@ -116,6 +117,10 @@ class XMLGenerator:
         _id = _id.to_bytes((_id.bit_length() + 7) // 8, "little")
         _id = urlsafe_b64encode(_id).rstrip(b"=").decode("ascii")
         return ":" + _id
+
+    @property
+    def uuid(self):
+        return uuid4().hex.upper()
 
     @property
     def xml_prolog(self) -> str:
@@ -129,21 +134,6 @@ class XMLGenerator:
             f"to='{self.xmpp.config.host}' "
             f"version='{self.xmpp.config.xmpp_version}'>"
         )
-
-    @property
-    def uuid(self):
-        return uuid4().hex.upper()
-
-    @property
-    def bind(self) -> str:
-        return self.iq(
-            f"<bind xmlns='{XMLNamespaces.BIND}'><resource>V2:Fortnite:{self.xmpp.config.platform}::{self.uuid}</resource></bind>",
-            type="set",
-        )
-
-    @property
-    def ping(self) -> str:
-        return self.iq(f"<ping xmlns='{XMLNamespaces.PING}'/>", type="get")
 
     @property
     def quit(self) -> str:
@@ -163,6 +153,15 @@ class XMLGenerator:
             )
         else:
             raise NotImplementedError
+
+    def bind(self) -> str:
+        return self.iq(
+            f"<bind xmlns='{XMLNamespaces.BIND}'><resource>V2:Fortnite:{self.xmpp.config.platform}::{self.uuid}</resource></bind>",
+            type="set",
+        )
+
+    def ping(self) -> str:
+        return self.iq(f"<ping xmlns='{XMLNamespaces.PING}'/>", type="get")
 
     def stanza(self, _type: str, body: str = "", **kwargs: str) -> str:
         kwargs["id"] = self.new_id()
@@ -276,7 +275,7 @@ class XMPPWebsocketClient:
     async def ping_loop(self) -> None:
         while True:
             await sleep(self.config.ping_interval)
-            await self.send(self.processor.generator.ping)
+            await self.send(self.processor.generator.ping())
 
     async def recv_loop(self) -> None:
         self.auth_session.action_logger("Websocket receiver running")
