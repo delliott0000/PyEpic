@@ -122,7 +122,7 @@ class XMLGenerator:
 
 
 class XMLProcessor:
-    __slots__ = ("xmpp", "generator", "parser", "open_events")
+    __slots__ = ("xmpp", "generator", "parser", "open_events", "outbound_ids")
 
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
@@ -131,6 +131,7 @@ class XMLProcessor:
         self.parser: XMLPullParser | None = None
 
         self.open_events: list[Element] = []
+        self.outbound_ids: list[str] = []
 
     @property
     def xml_depth(self) -> int:
