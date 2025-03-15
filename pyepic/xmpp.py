@@ -68,24 +68,28 @@ class XMLProcessor:
     def init_parser(self) -> None:
         self.parser = XMLPullParser(("start", "end"))
 
-    async def process(self, message: WSMessage, /) -> None:
+    def process(self, message: WSMessage, /) -> str | None:
         if self.parser is None:
             raise RuntimeError("XML parser has not been created")
 
         self.parser.feed(message.data)
 
+        response = None
         event: str
         xml: Element
         for event, xml in self.parser.read_events():
 
             if event == "start":
                 self.xml_depth += 1
+
             elif event == "end":
                 self.xml_depth -= 1
 
             if self.xml_depth == 0:
                 self.parser = None
                 raise XMPPClosed(message)
+
+        return response
 
 
 class XMPPWebsocketClient:
@@ -147,7 +151,9 @@ class XMPPWebsocketClient:
                     self.auth_session.action_logger(
                         "RECV: {0}".format(message.data)
                     )
-                    await self.processor.process(message)
+                    response = self.processor.process(message)
+                    if response is not None:
+                        await self.send(response)
 
                 else:
                     raise WSConnectionError(message)
