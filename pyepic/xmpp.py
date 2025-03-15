@@ -40,13 +40,20 @@ class XMLGenerator:
         self.xmpp: XMPPWebsocketClient = xmpp
 
     @property
+    def xml_prolog(self) -> str:
+        return f"<?xml version='{self.xmpp.config.xml_version}'?>"
+
+    @property
     def open(self) -> str:
         return (
-            f"<?xml version='{self.xmpp.config.xml_version}'?> "
-            f"<stream:stream xmlns='jabber:client' "
-            f"xmlns:stream='http://etherx.jabber.org/streams' "
-            f"to='{self.xmpp.config.host}' "
-            f"version='{self.xmpp.config.xmpp_version}'>"
+            self.xml_prolog
+            + " "
+            + (
+                f"<stream:stream xmlns='jabber:client' "
+                f"xmlns:stream='http://etherx.jabber.org/streams' "
+                f"to='{self.xmpp.config.host}' "
+                f"version='{self.xmpp.config.xmpp_version}'>"
+            )
         )
 
     @property
