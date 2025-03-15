@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 from asyncio import Event, create_task, sleep, wait_for
-from base64 import b64encode
+from base64 import b64encode, urlsafe_b64encode
 from logging import getLogger
+from random import getrandbits
 from traceback import print_exception
 from typing import TYPE_CHECKING
+from uuid import uuid4
 from xml.etree.ElementTree import Element, XMLPullParser
 
 from aiohttp import ClientSession, WSMsgType
@@ -38,6 +40,8 @@ class XMLNamespaces:
 
     CTX = "jabber:client"
     SASL = "urn:ietf:params:xml:ns:xmpp-sasl"
+    BIND = "urn:ietf:params:xml:ns:xmpp-bind"
+    PING = "urn:xmpp:ping"
     STREAM = "http://etherx.jabber.org/streams"
 
 
@@ -46,6 +50,17 @@ class XMLGenerator:
 
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
+
+    @staticmethod
+    def new_id():
+        # Taken straight from `aioxmpp`
+        # Generates unique IDs for XML stanzas
+        rand_token = getrandbits(120)
+        rand_token = rand_token.to_bytes(
+            (rand_token.bit_length() + 7) // 8, "little"
+        )
+        e = urlsafe_b64encode(rand_token).rstrip(b"=").decode("ascii")
+        return ":" + e
 
     @property
     def xml_prolog(self) -> str:
@@ -65,9 +80,19 @@ class XMLGenerator:
         )
 
     @property
+    def uuid(self):
+        return uuid4().hex.upper()
+
+    @property
+    def bind(self) -> str:
+        return self.iq(
+            f"<bind xmlns='{XMLNamespaces.BIND}'><resource>V2:Fortnite:{self.xmpp.config.platform}::{self.uuid}</resource></bind>",
+            type="set",
+        )
+
+    @property
     def ping(self) -> str:
-        # TODO: implement this
-        return "..."
+        return self.iq(f"<ping xmlns='{XMLNamespaces.PING}'/>", type="get")
 
     @property
     def quit(self) -> str:
@@ -87,6 +112,13 @@ class XMLGenerator:
             )
         else:
             raise NotImplementedError
+
+    def iq(self, body: str, **kwargs) -> str:
+        kwargs["id"] = self.new_id()
+        attrs = ""
+        for key, value in kwargs.items():
+            attrs += f" {key}='{value}'"
+        return f"<iq{attrs}>{body}</iq>"
 
 
 class XMLProcessor:
@@ -120,22 +152,6 @@ class XMLProcessor:
 
             elif event == "end":
                 self.xml_depth -= 1
-
-                if response is None:
-
-                    if tag == f"{{{XMLNamespaces.SASL}}}mechanism":
-                        response = self.generator.auth(text)
-
-                    elif tag == f"{{{XMLNamespaces.SASL}}}success":
-                        self.xmpp.auth_session.action_logger(
-                            "Websocket authenticated"
-                        )
-
-                        # At this point we must restart the stream
-                        self.init_parser()
-                        self.xml_depth = 0
-                        response = self.generator.open
-                        break
 
             if self.xml_depth == 0:
                 self.parser = None
