@@ -163,12 +163,17 @@ class XMLProcessor:
 
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
+        self.generator: XMLGenerator = XMLGenerator(self.xmpp)
+        self.parser: XMLPullParser | None = None
 
-        self.generator: XMLGenerator = XMLGenerator(xmpp)
-        self.parser: XMLPullParser = XMLPullParser(("start", "end"))
+        self.restore()
 
-        self.open_events: list[Element] = []
-        self.outbound_ids: list[str] = []
+    def setup(self) -> None:
+        self.parser = XMLPullParser(("start", "end"))
+
+    def restore(self) -> None:
+        self.open_events: list[Element] = []  # noqa
+        self.outbound_ids: list[str] = []  # noqa
 
     @property
     def xml_depth(self) -> int:
@@ -193,7 +198,7 @@ class XMLProcessor:
                 self.open_events.remove(xml)
 
             if self.xml_depth == 0:
-                self.parser = None
+                self.restore()
                 raise XMPPClosed(message)
 
         return response
@@ -307,6 +312,7 @@ class XMPPWebsocketClient:
             timeout=xmpp.connect_timeout,
             protocols=("xmpp",),
         )
+        self.processor.setup()
 
         self.recv_task = create_task(self.recv_loop())
         self.ping_task = create_task(self.ping_loop())
