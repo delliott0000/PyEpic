@@ -174,7 +174,7 @@ class XMLProcessor:
     def xml_depth(self) -> int:
         return len(self.open_events)
 
-    def process(self, message: WSMessage, /) -> Stanza | str | None:
+    def process(self, message: WSMessage, /) -> Stanza | None:
         if self.parser is None:
             raise RuntimeError("XML parser has not been created")
 
