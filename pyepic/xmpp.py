@@ -31,7 +31,7 @@ if __import__("sys").version_info <= (3, 11):
     from asyncio import TimeoutError
 
 
-__all__ = ("XMLGenerator", "XMLProcessor", "XMPPWebsocketClient")
+__all__ = ("XMLNamespaces", "Stanza", "XMLGenerator", "XMLProcessor", "XMPPWebsocketClient")
 
 
 _logger = getLogger(__name__)
