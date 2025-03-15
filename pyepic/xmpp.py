@@ -134,7 +134,7 @@ class XMPPWebsocketClient:
 
     async def send(self, data: str, /) -> None:
         await self.ws.send_str(data)
-        self.auth_session.action_logger("SENT: {0}".format(data))
+        self.auth_session.action_logger(f"SENT: {data}")
 
     async def ping_loop(self) -> None:
         while True:
@@ -149,9 +149,7 @@ class XMPPWebsocketClient:
                 message = await self.ws.receive()
 
                 if message.type == WSMsgType.TEXT:
-                    self.auth_session.action_logger(
-                        "RECV: {0}".format(message.data)
-                    )
+                    self.auth_session.action_logger(f"RECV: {message.data}")
                     response = self.processor.process(message)
                     if response is not None:
                         await self.send(response)
@@ -191,7 +189,7 @@ class XMPPWebsocketClient:
             connector=http.connector, connector_owner=http.connector is None
         )
         self.ws = await self.session.ws_connect(
-            "wss://{0}:{1}".format(xmpp.domain, xmpp.port),
+            f"wss://{xmpp.domain}:{xmpp.port}",
             timeout=xmpp.connect_timeout,
             protocols=("xmpp",),
         )
