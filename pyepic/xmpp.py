@@ -129,6 +129,12 @@ class XMLProcessor:
                     elif tag == f"{{{XMLNamespaces.SASL}}}success":
                         self.xmpp.auth_session.action_logger("Websocket authenticated")
 
+                        # At this point we must restart the stream
+                        self.init_parser()
+                        self.xml_depth = 0
+                        response = self.generator.open
+                        break
+
             if self.xml_depth == 0:
                 self.parser = None
                 raise XMPPClosed(message)
