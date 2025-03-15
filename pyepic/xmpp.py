@@ -39,10 +39,10 @@ _logger = getLogger(__name__)
 class XMLNamespaces:
 
     CTX = "jabber:client"
+    STREAM = "http://etherx.jabber.org/streams"
     SASL = "urn:ietf:params:xml:ns:xmpp-sasl"
     BIND = "urn:ietf:params:xml:ns:xmpp-bind"
     PING = "urn:xmpp:ping"
-    STREAM = "http://etherx.jabber.org/streams"
 
 
 class XMLGenerator:
@@ -122,7 +122,7 @@ class XMLGenerator:
 
 
 class XMLProcessor:
-    __slots__ = ("xmpp", "generator", "parser", "xml_depth")
+    __slots__ = ("xmpp", "generator", "parser", "open_events")
 
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
@@ -130,7 +130,11 @@ class XMLProcessor:
         self.generator: XMLGenerator = XMLGenerator(xmpp)
         self.parser: XMLPullParser | None = None
 
-        self.xml_depth: int = 0
+        self.open_events: list[Element] = []
+
+    @property
+    def xml_depth(self) -> int:
+        return len(self.open_events)
 
     def init_parser(self) -> None:
         self.parser = XMLPullParser(("start", "end"))
@@ -148,10 +152,10 @@ class XMLProcessor:
             tag, text = xml.tag, xml.text
 
             if event == "start":
-                self.xml_depth += 1
+                self.open_events.append(xml)
 
             elif event == "end":
-                self.xml_depth -= 1
+                self.open_events.remove(xml)
 
             if self.xml_depth == 0:
                 self.parser = None
