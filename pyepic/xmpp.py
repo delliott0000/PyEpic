@@ -143,7 +143,7 @@ class XMLGenerator:
             auth = self.b64_plain
         else:
             # Expected authorization mechanism is PLAIN
-            # But implement other mechanisms if needed
+            # But implement other mechanisms here if needed
             raise NotImplementedError
         return Stanza(
             tag="auth",
