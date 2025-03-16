@@ -31,7 +31,13 @@ if __import__("sys").version_info <= (3, 11):
     from asyncio import TimeoutError
 
 
-__all__ = ("XMLNamespaces", "Stanza", "XMLGenerator", "XMLProcessor", "XMPPWebsocketClient")
+__all__ = (
+    "XMLNamespaces",
+    "Stanza",
+    "XMLGenerator",
+    "XMLProcessor",
+    "XMPPWebsocketClient",
+)
 
 
 _logger = getLogger(__name__)
@@ -90,7 +96,7 @@ class Stanza:
 
     @staticmethod
     def new_id():
-        # Taken straight from aioxmpp
+        # Credit: aioxmpp
         _id = getrandbits(120)
         _id = _id.to_bytes((_id.bit_length() + 7) // 8, "little")
         _id = urlsafe_b64encode(_id).rstrip(b"=").decode("ascii")
@@ -151,49 +157,57 @@ class XMLGenerator:
 
 
 class XMLProcessor:
-    __slots__ = ("xmpp", "generator", "parser", "open_events", "outbound_ids")
+    __slots__ = (
+        "xmpp",
+        "generator",
+        "parser",
+        "root",
+        "outbound_ids",
+        "xml_depth",
+    )
 
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
         self.generator: XMLGenerator = XMLGenerator(self.xmpp)
-        self.parser: XMLPullParser | None = None
 
-        self.restore()
+        self.parser: XMLPullParser | None = None
+        self.root: Element | None = None
+        self.outbound_ids: list[str] = []
+        self.xml_depth: int = 0
 
     def setup(self) -> None:
         self.parser = XMLPullParser(("start", "end"))
 
-    def restore(self) -> None:
-        self.open_events: list[Element] = []  # noqa
-        self.outbound_ids: list[str] = []  # noqa
+    def teardown(self) -> None:
+        self.parser = None
+        self.outbound_ids = []
+        self.xml_depth = 0
+        self.root = None
 
-    @property
-    def xml_depth(self) -> int:
-        return len(self.open_events)
-
-    def process(self, message: WSMessage, /) -> Stanza | None:
+    def process(self, message: WSMessage, /) -> None:
         if self.parser is None:
-            raise RuntimeError("XML parser has not been created")
+            raise RuntimeError("XML parser doesn't exist")
 
         self.parser.feed(message.data)
 
-        response = None
+        # Inspiration: slixmpp
         event: str
         xml: Element
         for event, xml in self.parser.read_events():
-            tag, text = xml.tag, xml.text
 
             if event == "start":
-                self.open_events.append(xml)
+                if self.xml_depth == 0:
+                    self.root = xml
+                self.xml_depth += 1
 
             elif event == "end":
-                self.open_events.remove(xml)
+                self.xml_depth -= 1
 
-            if self.xml_depth == 0:
-                self.restore()
-                raise XMPPClosed(message)
+                if self.xml_depth == 0:
+                    raise XMPPClosed(message)
 
-        return response
+                elif self.xml_depth == 1:
+                    self.root.clear()
 
 
 class XMPPWebsocketClient:
@@ -261,9 +275,7 @@ class XMPPWebsocketClient:
 
                 if message.type == WSMsgType.TEXT:
                     self.auth_session.action_logger(f"RECV: {message.data}")
-                    response = self.processor.process(message)
-                    if response is not None:
-                        await self.send(response)
+                    self.processor.process(message)
 
                 else:
                     raise WSConnectionError(message)
@@ -344,6 +356,7 @@ class XMPPWebsocketClient:
 
         self.session = None
         self.ws = None
+        self.processor.teardown()
 
         self.recv_task = None
         self.ping_task = None
