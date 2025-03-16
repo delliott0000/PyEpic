@@ -161,7 +161,6 @@ class XMLProcessor:
         "xmpp",
         "generator",
         "parser",
-        "root",
         "outbound_ids",
         "xml_depth",
     )
@@ -171,7 +170,6 @@ class XMLProcessor:
         self.generator: XMLGenerator = XMLGenerator(self.xmpp)
 
         self.parser: XMLPullParser | None = None
-        self.root: Element | None = None
         self.outbound_ids: list[str] = []
         self.xml_depth: int = 0
 
@@ -182,7 +180,6 @@ class XMLProcessor:
         self.parser = None
         self.outbound_ids = []
         self.xml_depth = 0
-        self.root = None
 
     def process(self, message: WSMessage, /) -> None:
         if self.parser is None:
@@ -196,8 +193,6 @@ class XMLProcessor:
         for event, xml in self.parser.read_events():
 
             if event == "start":
-                if self.xml_depth == 0:
-                    self.root = xml
                 self.xml_depth += 1
 
             elif event == "end":
@@ -207,7 +202,8 @@ class XMLProcessor:
                     raise XMPPClosed(message)
 
                 elif self.xml_depth == 1:
-                    self.root.clear()
+                    # TODO: Actually process messages here
+                    ...
 
 
 class XMPPWebsocketClient:
