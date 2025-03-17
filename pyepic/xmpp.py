@@ -53,50 +53,57 @@ class XMLNamespaces:
 
 
 class Stanza:
-    __slots__ = ("_tag", "_text", "_children", "_attributes", "_id")
+    __slots__ = ("name", "text", "children", "attributes")
 
     def __init__(
         self,
         *,
-        tag: str,
+        name: str,
         text: str = "",
         children: Iterable[Stanza] = (),
+        make_id: bool = True,
         **attributes: str,
     ) -> None:
+        passed_id = attributes.get("id")
         if text and children:
             raise ValueError("Invalid combination of Stanza arguments passed")
-        elif attributes.get("id"):
+        elif make_id and passed_id:
             _logger.warning(
-                "Stanza.__init__ received an 'ID' keyword argument"
+                "Stanza.__init__ received make_id=True and an 'ID' keyword argument"
+            )
+        elif not make_id and not passed_id:
+            _logger.warning(
+                "Stanza.__init__ received make_id=False and no 'ID' keyword argument"
             )
 
-        self._tag = tag
-        self._text = text
-        self._children = tuple(children)
-        self._attributes = attributes
-        self._id = self._attributes["id"] = self.new_id()
+        self.name = name
+        self.text = text
+        self.children = tuple(children)
+        self.attributes = attributes
+        if make_id or not passed_id:
+            self.attributes["id"] = self.new_id()
 
     def __str__(self) -> str:
         attrs_str = ""
-        for key, value in self._attributes.items():
+        for key, value in self.attributes.items():
             attrs_str += f" {key}='{value}'"
-        if self._text:
-            return f"<{self._tag}{attrs_str}>{self._text}</{self._tag}>"
-        elif self._children:
-            return f"<{self._tag}{attrs_str}>{''.join(str(child) for child in self._children)}</{self._tag}>"
+        if self.text:
+            return f"<{self.name}{attrs_str}>{self.text}</{self.name}>"
+        elif self.children:
+            return f"<{self.name}{attrs_str}>{''.join(str(child) for child in self.children)}</{self.name}>"
         else:
-            return f"<{self._tag}{attrs_str}/>"
+            return f"<{self.name}{attrs_str}/>"
 
     def __eq__(self, other: Stanza | str, /) -> bool:
         return str(self) == str(other)
 
     @property
     def id(self) -> str:
-        return self._id
+        return self.attributes["id"]
 
     @staticmethod
     def new_id():
-        # Credit: aioxmpp
+        # Full credit: aioxmpp
         _id = getrandbits(120)
         _id = _id.to_bytes((_id.bit_length() + 7) // 8, "little")
         _id = urlsafe_b64encode(_id).rstrip(b"=").decode("ascii")
@@ -144,7 +151,7 @@ class XMLGenerator:
             # But implement other mechanisms here if needed
             raise NotImplementedError
         return Stanza(
-            tag="auth",
+            name="auth",
             text=auth,
             xmlns=XMLNamespaces.SASL,
             mechanism=mechanism,
@@ -152,8 +159,8 @@ class XMLGenerator:
 
     @staticmethod
     def ping() -> Stanza:
-        child = Stanza(tag="ping", xmlns=XMLNamespaces.PING)
-        return Stanza(tag="iq", type="get", children=(child,))
+        child = Stanza(name="ping", xmlns=XMLNamespaces.PING)
+        return Stanza(name="iq", type="get", children=(child,))
 
 
 class XMLProcessor:
@@ -202,8 +209,9 @@ class XMLProcessor:
                     raise XMPPClosed(message)
 
                 elif self.xml_depth == 1:
-                    # TODO: Actually process messages here
-                    ...
+                    self.handle(xml)
+
+    def handle(self, xml: Element, /) -> None: ...
 
 
 class XMPPWebsocketClient:
