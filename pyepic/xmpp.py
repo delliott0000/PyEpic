@@ -16,7 +16,7 @@ from .errors import WSConnectionError, XMPPClosed
 if TYPE_CHECKING:
     from asyncio import Task
     from collections.abc import Coroutine, Iterable
-    from typing import Any
+    from typing import Any, Self
     from xml.etree.ElementTree import Element
 
     from aiohttp import ClientWebSocketResponse, WSMessage
@@ -80,7 +80,7 @@ class Stanza:
         self.text = text
         self.children = tuple(children)
         self.attributes = attributes
-        if make_id or not passed_id:
+        if make_id:
             self.attributes["id"] = self.new_id()
 
     def __str__(self) -> str:
@@ -97,9 +97,12 @@ class Stanza:
     def __eq__(self, other: Stanza | str, /) -> bool:
         return str(self) == str(other)
 
+    @classmethod
+    def from_element(cls, xml: Element, /) -> Self: ...
+
     @property
-    def id(self) -> str:
-        return self.attributes["id"]
+    def id(self) -> str | None:
+        return self.attributes.get("id")
 
     @staticmethod
     def new_id():
@@ -257,7 +260,9 @@ class XMPPWebsocketClient:
         self, source: Stanza | str, /, *, with_xml_prolog: bool = False
     ) -> None:
         if isinstance(source, Stanza):
-            self.processor.outbound_ids.append(source.id)
+            _id = source.id
+            if _id is not None:
+                self.processor.outbound_ids.append(source.id)
             source = str(source)
         if with_xml_prolog is True:
             source = self.processor.generator.xml_prolog + source
