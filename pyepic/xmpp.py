@@ -218,6 +218,7 @@ class XMLProcessor:
 
                 for sub_xml_2 in sub_xml_1:
                     if match(sub_xml_2, XMLNamespaces.SASL, "mechanism"):
+
                         mechanism = sub_xml_2.text
                         auth = self.generator.auth(mechanism)
                         return await self.xmpp.send(auth)
