@@ -16,7 +16,7 @@ from .errors import WSConnectionError, XMPPClosed
 if TYPE_CHECKING:
     from asyncio import Task
     from collections.abc import Coroutine, Iterable
-    from typing import Any, Self
+    from typing import Any
     from xml.etree.ElementTree import Element
 
     from aiohttp import ClientWebSocketResponse, WSMessage
@@ -64,24 +64,16 @@ class Stanza:
         make_id: bool = True,
         **attributes: str,
     ) -> None:
-        passed_id = attributes.get("id")
+        children = tuple(children)
         if text and children:
             raise ValueError("Invalid combination of Stanza arguments passed")
-        elif make_id and passed_id:
-            _logger.warning(
-                "Stanza.__init__ received make_id=True and an 'ID' keyword argument"
-            )
-        elif not make_id and not passed_id:
-            _logger.warning(
-                "Stanza.__init__ received make_id=False and no 'ID' keyword argument"
-            )
 
-        self.name = name
-        self.text = text
-        self.children = tuple(children)
-        self.attributes = attributes
+        self.name: str = name
+        self.text: str = text
+        self.children: tuple[Stanza, ...] = children
+        self.attributes: dict[str, str] = attributes
         if make_id:
-            self.attributes["id"] = self.new_id()
+            self.attributes["id"] = self.make_id()
 
     def __str__(self) -> str:
         attrs_str = ""
@@ -97,15 +89,12 @@ class Stanza:
     def __eq__(self, other: Stanza | str, /) -> bool:
         return str(self) == str(other)
 
-    @classmethod
-    def from_element(cls, xml: Element, /) -> Self: ...
-
     @property
     def id(self) -> str | None:
         return self.attributes.get("id")
 
     @staticmethod
-    def new_id():
+    def make_id():
         # Full credit: aioxmpp
         _id = getrandbits(120)
         _id = _id.to_bytes((_id.bit_length() + 7) // 8, "little")
