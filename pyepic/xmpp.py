@@ -185,7 +185,7 @@ class XMLProcessor:
         self.outbound_ids = []
         self.xml_depth = 0
 
-    def process(self, message: WSMessage, /) -> None:
+    async def process(self, message: WSMessage, /) -> None:
         if self.parser is None:
             raise RuntimeError("XML parser doesn't exist")
 
@@ -206,9 +206,9 @@ class XMLProcessor:
                     raise XMPPClosed(message)
 
                 elif self.xml_depth == 1:
-                    self.handle(xml)
+                    await self.handle(xml)
 
-    def handle(self, xml: Element, /) -> None: ...
+    async def handle(self, xml: Element, /) -> None: ...
 
 
 class XMPPWebsocketClient:
@@ -278,7 +278,7 @@ class XMPPWebsocketClient:
 
                 if message.type == WSMsgType.TEXT:
                     self.auth_session.action_logger(f"RECV: {message.data}")
-                    self.processor.process(message)
+                    await self.processor.process(message)
 
                 else:
                     raise WSConnectionError(message)
