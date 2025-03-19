@@ -205,7 +205,7 @@ class XMLProcessor:
 
     async def handle(self, xml: Element, /) -> None:
         if match(xml, XMLNamespaces.STREAM, "features"):
-            await self.negotiate(xml)
+            return await self.negotiate(xml)
 
         elif match(xml, XMLNamespaces.SASL, "success"):
             self.teardown()
