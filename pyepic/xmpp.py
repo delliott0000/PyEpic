@@ -6,12 +6,11 @@ from logging import getLogger
 from random import getrandbits
 from traceback import print_exception
 from typing import TYPE_CHECKING
-from uuid import uuid4
 from xml.etree.ElementTree import XMLPullParser
 
 from aiohttp import ClientSession, WSMsgType
 
-from .errors import WSConnectionError, XMPPClosed
+from .errors import WSConnectionError, XMPPClosed, XMPPException
 
 if TYPE_CHECKING:
     from asyncio import Task
@@ -113,10 +112,6 @@ class XMLGenerator:
         self.xmpp: XMPPWebsocketClient = xmpp
 
     @property
-    def uuid(self):
-        return uuid4().hex.upper()
-
-    @property
     def xml_prolog(self) -> str:
         return f"<?xml version='{self.xmpp.config.xml_version}'?>"
 
@@ -203,12 +198,39 @@ class XMLProcessor:
                 self.xml_depth -= 1
 
                 if self.xml_depth == 0:
-                    raise XMPPClosed(message)
+                    raise XMPPClosed(xml, "Stream closed")
 
                 elif self.xml_depth == 1:
                     await self.handle(xml)
 
-    async def handle(self, xml: Element, /) -> None: ...
+    async def handle(self, xml: Element, /) -> None:
+        if match(xml, XMLNamespaces.STREAM, "features"):
+
+            for sub_xml_1 in xml:
+                if match(sub_xml_1, XMLNamespaces.SASL, "mechanisms"):
+
+                    for sub_xml_2 in sub_xml_1:
+                        if match(sub_xml_2, XMLNamespaces.SASL, "mechanism"):
+
+                            mechanism = sub_xml_2.text
+                            auth = self.generator.auth(mechanism)
+                            return await self.xmpp.send(auth)
+
+                    else:
+                        raise XMPPException(
+                            xml,
+                            "Could not determine stream authentication method",
+                        )
+
+                elif match(sub_xml_1, XMLNamespaces.BIND, "bind"):
+                    ...
+
+        elif match(xml, XMLNamespaces.SASL, "success"):
+            self.teardown()
+            self.setup()
+            return await self.xmpp.send(
+                self.generator.open, with_xml_prolog=True
+            )
 
 
 class XMPPWebsocketClient:

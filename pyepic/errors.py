@@ -3,6 +3,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from xml.etree.ElementTree import Element
+
     from aiohttp import ClientResponse, WSMessage
 
     from ._types import Json
@@ -14,6 +16,7 @@ __all__ = (
     "HTTPException",
     "WSException",
     "WSConnectionError",
+    "XMPPException",
     "XMPPClosed",
     "FortniteException",
     "UnknownTemplateID",
@@ -51,9 +54,6 @@ class HTTPException(EpicException):
         return f"{self.response.status} {self.response.reason} - {self.server_message}"
 
 
-# TODO: Implement special methods on WS/XMPP Exception classes
-
-
 class WSException(EpicException):
 
     def __init__(self, message: WSMessage, /) -> None:
@@ -64,7 +64,17 @@ class WSConnectionError(WSException):
     pass
 
 
-class XMPPClosed(WSException):
+class XMPPException(EpicException):
+
+    def __init__(self, xml: Element, description: str, /) -> None:
+        self.xml: Element = xml
+        self.description: str = description
+
+    def __str__(self) -> str:
+        return self.description
+
+
+class XMPPClosed(XMPPException):
     pass
 
 
