@@ -43,6 +43,18 @@ __all__ = (
 _logger = getLogger(__name__)
 
 
+def make_stanza_id():
+    # Full credit: aioxmpp
+    _id = getrandbits(120)
+    _id = _id.to_bytes((_id.bit_length() + 7) // 8, "little")
+    _id = urlsafe_b64encode(_id).rstrip(b"=").decode("ascii")
+    return ":" + _id
+
+
+def match(xml: Element, ns: str, tag: str, /) -> bool:
+    return xml.tag == f"{{{ns}}}{tag}"
+
+
 class XMLNamespaces:
 
     CTX = "jabber:client"
@@ -73,7 +85,7 @@ class Stanza:
         self.children: tuple[Stanza, ...] = children
         self.attributes: dict[str, str] = attributes
         if make_id:
-            self.attributes["id"] = self.make_id()
+            self.attributes["id"] = make_stanza_id()
 
     def __str__(self) -> str:
         attrs_str = ""
@@ -92,14 +104,6 @@ class Stanza:
     @property
     def id(self) -> str | None:
         return self.attributes.get("id")
-
-    @staticmethod
-    def make_id():
-        # Full credit: aioxmpp
-        _id = getrandbits(120)
-        _id = _id.to_bytes((_id.bit_length() + 7) // 8, "little")
-        _id = urlsafe_b64encode(_id).rstrip(b"=").decode("ascii")
-        return ":" + _id
 
 
 class XMLGenerator:
@@ -145,6 +149,7 @@ class XMLGenerator:
         return Stanza(
             name="auth",
             text=auth,
+            make_id=False,
             xmlns=XMLNamespaces.SASL,
             mechanism=mechanism,
         )
