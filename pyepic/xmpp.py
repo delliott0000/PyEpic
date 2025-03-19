@@ -228,9 +228,7 @@ class XMLProcessor:
         elif match(xml, XMLNamespaces.SASL, "success"):
             self.teardown()
             self.setup()
-            return await self.xmpp.send(
-                self.generator.open, with_xml_prolog=True
-            )
+            return await self.xmpp.open()
 
 
 class XMPPWebsocketClient:
@@ -272,6 +270,15 @@ class XMPPWebsocketClient:
         except IndexError:
             return None
 
+    async def open(self) -> None:
+        await self.send(self.processor.generator.open, with_xml_prolog=True)
+
+    async def ping(self) -> None:
+        await self.send(self.processor.generator.ping())
+
+    async def close(self) -> None:
+        await self.send(self.processor.generator.quit)
+
     async def send(
         self, source: Stanza | str, /, *, with_xml_prolog: bool = False
     ) -> None:
@@ -289,7 +296,7 @@ class XMPPWebsocketClient:
     async def ping_loop(self) -> None:
         while True:
             await sleep(self.config.ping_interval)
-            await self.send(self.processor.generator.ping())
+            await self.ping()
 
     async def recv_loop(self) -> None:
         self.auth_session.action_logger("Websocket receiver running")
@@ -353,13 +360,13 @@ class XMPPWebsocketClient:
         # Before sending our opening message
         # So the receiver can initialise first
         await sleep(0)
-        await self.send(self.processor.generator.open, with_xml_prolog=True)
+        await self.open()
 
     async def stop(self) -> None:
         if self.running is False:
             return
 
-        await self.send(self.processor.generator.quit)
+        await self.close()
 
         try:
             await wait_for(self.wait_for_cleanup(), self.config.stop_timeout)
