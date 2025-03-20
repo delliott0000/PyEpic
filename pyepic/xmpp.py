@@ -90,6 +90,8 @@ class Stanza:
     def __str__(self) -> str:
         attrs_str = ""
         for key, value in self.attributes.items():
+            # Handle `_from` attribute
+            key = key.strip("_")
             attrs_str += f" {key}='{value}'"
         if self.text:
             return f"<{self.name}{attrs_str}>{self.text}</{self.name}>"
