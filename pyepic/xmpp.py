@@ -227,6 +227,8 @@ class XMLProcessor:
                     ...
 
         elif match(xml, XMLNamespaces.SASL, "success"):
+            # We must restart stream
+            # Without touching the WS connection
             self.teardown()
             self.setup()
             return await self.xmpp.open()
