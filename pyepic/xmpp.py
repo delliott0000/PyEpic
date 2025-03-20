@@ -43,12 +43,16 @@ __all__ = (
 _logger = getLogger(__name__)
 
 
-def make_stanza_id():
+def make_stanza_id() -> str:
     # Full credit: aioxmpp
     _id = getrandbits(120)
     _id = _id.to_bytes((_id.bit_length() + 7) // 8, "little")
     _id = urlsafe_b64encode(_id).rstrip(b"=").decode("ascii")
     return ":" + _id
+
+
+def make_resource(platform: str, /) -> str:
+    return f"V2:Fortnite:{platform}::{uuid4().hex.upper()}"
 
 
 def match(xml: Element, ns: str, tag: str, /) -> bool:
@@ -137,6 +141,11 @@ class XMLGenerator:
         acc_tk = self.xmpp.auth_session.access_token
         return b64encode(f"\x00{acc_id}\x00{acc_tk}".encode()).decode()
 
+    def make_iq(self, **kwargs: Any) -> Stanza:
+        return Stanza(
+            name="iq", to=self.xmpp.config.host, _from=self.xmpp.jid, **kwargs
+        )
+
     def auth(self, mechanism: str, /) -> Stanza:
         if mechanism == "PLAIN":
             auth = self.b64_plain
@@ -152,10 +161,19 @@ class XMLGenerator:
             mechanism=mechanism,
         )
 
-    @staticmethod
-    def ping() -> Stanza:
+    def bind(self, resource: str, /) -> Stanza:
+        child2 = Stanza(name="resource", text=resource, make_id=False)
+        child1 = Stanza(
+            name="bind",
+            xmlns=XMLNamespaces.BIND,
+            children=(child2,),
+            make_id=False,
+        )
+        return self.make_iq(type="set", children=(child1,))
+
+    def ping(self) -> Stanza:
         child = Stanza(name="ping", xmlns=XMLNamespaces.PING, make_id=False)
-        return Stanza(name="iq", type="get", children=(child,))
+        return self.make_iq(type="get", children=(child,))
 
 
 class XMLProcessor:
@@ -206,16 +224,36 @@ class XMLProcessor:
                 elif self.xml_depth == 1:
                     await self.handler(xml)
 
+    # TODO: can we optimise the way we inspect the xml data?
     async def handler(self, xml: Element, /) -> None:
+        xmpp = self.xmpp
+        generator = self.generator
+        action_logger = xmpp.auth_session.action_logger
+
+        _id = xml.attrib.get("id")
+        if _id is None:
+            pass
+        elif _id in self.outbound_ids:
+            action_logger(f"ACK:  {_id}")
+            self.outbound_ids.remove(_id)
+        else:
+            action_logger(f"Unknown message: {_id}", level=_logger.warning)
+
         if match(xml, XMLNamespaces.STREAM, "features"):
 
             for sub_xml_1 in xml:
                 if match(sub_xml_1, XMLNamespaces.SASL, "mechanisms"):
+
                     for sub_xml_2 in sub_xml_1:
                         if match(sub_xml_2, XMLNamespaces.SASL, "mechanism"):
+
                             mechanism = sub_xml_2.text
-                            auth = self.generator.auth(mechanism)
-                            return await self.xmpp.send(auth)
+                            action_logger(
+                                f"Attempting {mechanism} authentication.."
+                            )
+                            auth = generator.auth(mechanism)
+                            await xmpp.send(auth)
+                            return
 
                     else:
                         raise XMPPException(
@@ -224,14 +262,36 @@ class XMLProcessor:
                         )
 
                 elif match(sub_xml_1, XMLNamespaces.BIND, "bind"):
-                    ...
+
+                    resource = make_resource(xmpp.config.platform)
+                    await xmpp.send(generator.bind(resource))
+                    return
 
         elif match(xml, XMLNamespaces.SASL, "success"):
-            # We must restart stream
+            # We must restart stream here
             # Without touching the WS connection
+            action_logger("Authenticated")
             self.teardown()
             self.setup()
-            return await self.xmpp.open()
+            await xmpp.open()
+            return
+
+        elif match(xml, XMLNamespaces.CTX, "iq"):
+
+            for sub_xml_1 in xml:
+                if match(sub_xml_1, XMLNamespaces.BIND, "bind"):
+
+                    for sub_xml_2 in sub_xml_1:
+                        if match(sub_xml_2, XMLNamespaces.BIND, "jid"):
+
+                            jid = sub_xml_2.text
+                            resource = jid.split("/")[1]
+                            xmpp.resource = resource
+                            action_logger(f"Bound to JID {jid}")
+                            return
+
+                    else:
+                        raise XMPPException(xml, "Unable to bind JID")
 
 
 class XMPPWebsocketClient:
@@ -366,9 +426,6 @@ class XMPPWebsocketClient:
         self.recv_task = create_task(self.recv_loop())
         self.ping_task = create_task(self.ping_loop())
         self.cleanup_event = Event()
-
-        uuid = uuid4().hex.upper()
-        self.resource = f"V2:Fortnite:{xmpp.platform}::{uuid}"
 
         self.auth_session.action_logger("XMPP started")
 
