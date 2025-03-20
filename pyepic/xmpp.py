@@ -152,7 +152,7 @@ class XMLGenerator:
 
     @staticmethod
     def ping() -> Stanza:
-        child = Stanza(name="ping", xmlns=XMLNamespaces.PING)
+        child = Stanza(name="ping", xmlns=XMLNamespaces.PING, make_id=False)
         return Stanza(name="iq", type="get", children=(child,))
 
 
