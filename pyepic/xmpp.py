@@ -202,36 +202,32 @@ class XMLProcessor:
                     raise XMPPClosed(xml, "Stream closed")
 
                 elif self.xml_depth == 1:
-                    await self.handle(xml)
+                    await self.handler(xml)
 
-    async def handle(self, xml: Element, /) -> None:
+    async def handler(self, xml: Element, /) -> None:
         if match(xml, XMLNamespaces.STREAM, "features"):
-            return await self.negotiate(xml)
+
+            for sub_xml_1 in xml:
+                if match(sub_xml_1, XMLNamespaces.SASL, "mechanisms"):
+                    for sub_xml_2 in sub_xml_1:
+                        if match(sub_xml_2, XMLNamespaces.SASL, "mechanism"):
+                            mechanism = sub_xml_2.text
+                            auth = self.generator.auth(mechanism)
+                            return await self.xmpp.send(auth)
+
+                    else:
+                        raise XMPPException(
+                            xml,
+                            "Could not determine stream authentication method",
+                        )
+
+                elif match(sub_xml_1, XMLNamespaces.BIND, "bind"):
+                    ...
 
         elif match(xml, XMLNamespaces.SASL, "success"):
             self.teardown()
             self.setup()
             return await self.xmpp.open()
-
-    async def negotiate(self, xml: Element, /) -> None:
-        for sub_xml_1 in xml:
-            if match(sub_xml_1, XMLNamespaces.SASL, "mechanisms"):
-
-                for sub_xml_2 in sub_xml_1:
-                    if match(sub_xml_2, XMLNamespaces.SASL, "mechanism"):
-
-                        mechanism = sub_xml_2.text
-                        auth = self.generator.auth(mechanism)
-                        return await self.xmpp.send(auth)
-
-                else:
-                    raise XMPPException(
-                        xml,
-                        "Could not determine stream authentication method",
-                    )
-
-            elif match(sub_xml_1, XMLNamespaces.BIND, "bind"):
-                ...
 
 
 class XMPPWebsocketClient:
