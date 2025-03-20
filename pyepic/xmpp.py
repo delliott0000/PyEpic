@@ -6,6 +6,7 @@ from logging import getLogger
 from random import getrandbits
 from traceback import print_exception
 from typing import TYPE_CHECKING
+from uuid import uuid4
 from xml.etree.ElementTree import XMLPullParser
 
 from aiohttp import ClientSession, WSMsgType
@@ -244,6 +245,7 @@ class XMPPWebsocketClient:
         "ping_task",
         "cleanup_event",
         "exceptions",
+        "resource",
     )
 
     def __init__(self, auth_session: AuthSession, /) -> None:
@@ -260,6 +262,15 @@ class XMPPWebsocketClient:
         self.cleanup_event: Event | None = None
 
         self.exceptions: list[Exception] = []
+
+        self.resource: str | None = None
+
+    @property
+    def jid(self) -> str:
+        if self.resource:
+            return f"{self.auth_session.account_id}@{self.config.host}/{self.resource}"
+        else:
+            return f"{self.auth_session.account_id}@{self.config.host}"
 
     @property
     def running(self) -> bool:
@@ -356,6 +367,9 @@ class XMPPWebsocketClient:
         self.ping_task = create_task(self.ping_loop())
         self.cleanup_event = Event()
 
+        uuid = uuid4().hex.upper()
+        self.resource = f"V2:Fortnite:{xmpp.platform}::{uuid}"
+
         self.auth_session.action_logger("XMPP started")
 
         # Let one iteration of the event loop pass
@@ -395,5 +409,7 @@ class XMPPWebsocketClient:
         self.recv_task = None
         self.ping_task = None
         self.cleanup_event = None
+
+        self.resource = None
 
         self.auth_session.action_logger("XMPP stopped")
