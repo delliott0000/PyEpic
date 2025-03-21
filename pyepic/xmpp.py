@@ -59,6 +59,7 @@ def match(xml: Element, ns: str, tag: str, /) -> bool:
 
 class XMLNamespaces:
 
+    SESSION = "urn:ietf:params:xml:ns:xmpp-session"
     CLIENT = "jabber:client"
     STREAM = "http://etherx.jabber.org/streams"
     SASL = "urn:ietf:params:xml:ns:xmpp-sasl"
@@ -173,6 +174,12 @@ class XMLGenerator:
         child = Stanza(name="ping", xmlns=XMLNamespaces.PING, make_id=False)
         return self.make_iq(type="get", children=(child,))
 
+    def session(self) -> Stanza:
+        child = Stanza(
+            name="session", xmlns=XMLNamespaces.SESSION, make_id=False
+        )
+        return self.make_iq(type="set", children=(child,))
+
 
 class XMLProcessor:
     __slots__ = (
@@ -222,20 +229,29 @@ class XMLProcessor:
                 elif self.xml_depth == 1:
                     await self.handler(xml)
 
-    # TODO: can we optimise the way we inspect the xml data?
     async def handler(self, xml: Element, /) -> None:
-        xmpp = self.xmpp
-        generator = self.generator
-        action_logger = xmpp.auth_session.action_logger
-
         xml_id = xml.attrib.get("id")
         if xml_id:
             if xml_id in self.outbound_ids:
                 self.outbound_ids.remove(xml_id)
             else:
-                action_logger(
+                self.xmpp.auth_session.action_logger(
                     f"Unknown message: {xml_id}", level=_logger.warning
                 )
+
+        if self.xmpp.ready:
+            handled = False
+        else:
+            handled = await self.negotiate(xml)
+
+        if handled is False:
+            # TODO: handle events (messages, presences and so on)
+            ...
+
+    async def negotiate(self, xml: Element, /) -> bool:
+        xmpp = self.xmpp
+        generator = self.generator
+        action_logger = xmpp.auth_session.action_logger
 
         if match(xml, XMLNamespaces.STREAM, "features"):
 
@@ -251,7 +267,7 @@ class XMLProcessor:
                             )
                             auth = generator.auth(mechanism)
                             await xmpp.send(auth)
-                            return
+                            return True
 
                     else:
                         raise XMPPException(
@@ -263,15 +279,16 @@ class XMLProcessor:
 
                     resource = make_resource(xmpp.config.platform)
                     await xmpp.send(generator.bind(resource))
-                    return
+                    return True
 
         elif match(xml, XMLNamespaces.SASL, "success"):
 
+            xmpp.authenticated = True
             action_logger("Authenticated")
             self.teardown()
             self.setup()
             await xmpp.send(self.generator.open)
-            return
+            return True
 
         elif match(xml, XMLNamespaces.CLIENT, "iq"):
 
@@ -285,10 +302,12 @@ class XMLProcessor:
                             resource = jid.split("/")[1]
                             xmpp.resource = resource
                             action_logger(f"Bound to JID {jid}")
-                            return
+                            return True
 
                     else:
                         raise XMPPException(xml, "Unable to bind JID")
+
+        return False
 
 
 class XMPPWebsocketClient:
@@ -300,9 +319,11 @@ class XMPPWebsocketClient:
         "processor",
         "recv_task",
         "ping_task",
+        "ready_event",
         "cleanup_event",
         "exceptions",
-        "resource",
+        "_resource",
+        "_authenticated",
     )
 
     def __init__(self, auth_session: AuthSession, /) -> None:
@@ -316,11 +337,13 @@ class XMPPWebsocketClient:
 
         self.recv_task: Task | None = None
         self.ping_task: Task | None = None
+        self.ready_event: Event | None = None
         self.cleanup_event: Event | None = None
 
         self.exceptions: list[Exception] = []
 
-        self.resource: str | None = None
+        self._resource: str | None = None
+        self._authenticated: bool = False
 
     @property
     def jid(self) -> str:
@@ -330,8 +353,36 @@ class XMPPWebsocketClient:
             return f"{self.auth_session.account_id}@{self.config.host}"
 
     @property
+    def bound(self) -> bool:
+        return bool(self.resource)
+
+    @property
+    def ready(self) -> bool:
+        return self.bound and self.authenticated
+
+    @property
     def running(self) -> bool:
         return self.ws is not None and not self.ws.closed
+
+    @property
+    def resource(self) -> str | None:
+        return self._resource
+
+    @resource.setter
+    def resource(self, value: str | None, /) -> None:
+        self._resource = value
+        if self.ready:
+            self.ready_event.set()
+
+    @property
+    def authenticated(self) -> bool:
+        return self._authenticated
+
+    @authenticated.setter
+    def authenticated(self, value: bool, /) -> None:
+        self._authenticated = value
+        if self.ready:
+            self.ready_event.set()
 
     @property
     def most_recent_exception(self) -> Exception | None:
@@ -413,6 +464,7 @@ class XMPPWebsocketClient:
 
         self.recv_task = create_task(self.recv_loop())
         self.ping_task = create_task(self.ping_loop())
+        self.ready_event = Event()
         self.cleanup_event = Event()
 
         self.auth_session.action_logger("XMPP started")
@@ -422,6 +474,7 @@ class XMPPWebsocketClient:
         # So the receiver can initialise first
         await sleep(0)
         await self.send(self.processor.generator.open)
+        create_task(self.set_session())  # noqa
 
     async def stop(self) -> None:
         if self.running is False:
@@ -434,6 +487,24 @@ class XMPPWebsocketClient:
         except TimeoutError:
             await self.cleanup()
 
+    async def set_session(self) -> None:
+        try:
+            await wait_for(self.wait_for_ready(), self.config.connect_timeout)
+            await self.send(self.processor.generator.session())
+
+        except (Exception, TimeoutError) as exception:
+            self.auth_session.action_logger(
+                "Failed to set session - aborting..", level=_logger.error
+            )
+            print_exception(exception)
+            await self.cleanup()
+
+    async def wait_for_ready(self) -> None:
+        try:
+            await self.ready_event.wait()
+        except AttributeError:
+            raise RuntimeError("XMPP client is not running!")
+
     async def wait_for_cleanup(self) -> None:
         if self.cleanup_event is None:
             return
@@ -442,6 +513,7 @@ class XMPPWebsocketClient:
     async def cleanup(self) -> None:
         self.recv_task.cancel()
         self.ping_task.cancel()
+        self.ready_event.set()
         self.cleanup_event.set()
 
         await self.ws.close()
@@ -453,8 +525,10 @@ class XMPPWebsocketClient:
 
         self.recv_task = None
         self.ping_task = None
+        self.ready_event = None
         self.cleanup_event = None
 
         self.resource = None
+        self.authenticated = False
 
         self.auth_session.action_logger("XMPP stopped")
