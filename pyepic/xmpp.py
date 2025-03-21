@@ -61,7 +61,7 @@ def match(xml: Element, ns: str, tag: str, /) -> bool:
 
 class XMLNamespaces:
 
-    CTX = "jabber:client"
+    CLIENT = "jabber:client"
     STREAM = "http://etherx.jabber.org/streams"
     SASL = "urn:ietf:params:xml:ns:xmpp-sasl"
     BIND = "urn:ietf:params:xml:ns:xmpp-bind"
@@ -125,7 +125,7 @@ class XMLGenerator:
     @property
     def open(self) -> str:
         return (
-            f"<stream:stream xmlns='{XMLNamespaces.CTX}' "
+            f"<stream:stream xmlns='{XMLNamespaces.CLIENT}' "
             f"xmlns:stream='{XMLNamespaces.STREAM}' "
             f"to='{self.xmpp.config.host}' "
             f"version='{self.xmpp.config.xmpp_version}'>"
@@ -187,7 +187,7 @@ class XMLProcessor:
 
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
-        self.generator: XMLGenerator = XMLGenerator(self.xmpp)
+        self.generator: XMLGenerator = XMLGenerator(xmpp)
 
         self.parser: XMLPullParser | None = None
         self.outbound_ids: list[str] = []
@@ -230,14 +230,14 @@ class XMLProcessor:
         generator = self.generator
         action_logger = xmpp.auth_session.action_logger
 
-        _id = xml.attrib.get("id")
-        if _id is None:
-            pass
-        elif _id in self.outbound_ids:
-            action_logger(f"ACK:  {_id}")
-            self.outbound_ids.remove(_id)
-        else:
-            action_logger(f"Unknown message: {_id}", level=_logger.warning)
+        xml_id = xml.attrib.get("id")
+        if xml_id:
+            if xml_id in self.outbound_ids:
+                self.outbound_ids.remove(xml_id)
+            else:
+                action_logger(
+                    f"Unknown message: {xml_id}", level=_logger.warning
+                )
 
         if match(xml, XMLNamespaces.STREAM, "features"):
 
@@ -268,15 +268,14 @@ class XMLProcessor:
                     return
 
         elif match(xml, XMLNamespaces.SASL, "success"):
-            # We must restart stream here
-            # Without touching the WS connection
+
             action_logger("Authenticated")
             self.teardown()
             self.setup()
             await xmpp.open()
             return
 
-        elif match(xml, XMLNamespaces.CTX, "iq"):
+        elif match(xml, XMLNamespaces.CLIENT, "iq"):
 
             for sub_xml_1 in xml:
                 if match(sub_xml_1, XMLNamespaces.BIND, "bind"):
@@ -343,21 +342,20 @@ class XMPPWebsocketClient:
         except IndexError:
             return None
 
-    async def open(self) -> None:
-        await self.send(self.processor.generator.open, with_xml_prolog=True)
+    def open(self) -> SendCoro:
+        return self.send(self.processor.generator.open, with_xml_prolog=True)
 
-    async def ping(self) -> None:
-        await self.send(self.processor.generator.ping())
+    def ping(self) -> SendCoro:
+        return self.send(self.processor.generator.ping())
 
-    async def close(self) -> None:
-        await self.send(self.processor.generator.quit)
+    def close(self) -> SendCoro:
+        return self.send(self.processor.generator.quit)
 
     async def send(
         self, source: Stanza | str, /, *, with_xml_prolog: bool = False
     ) -> None:
         if isinstance(source, Stanza):
-            _id = source.id
-            if _id is not None:
+            if source.id is not None:
                 self.processor.outbound_ids.append(source.id)
             source = str(source)
         if with_xml_prolog is True:
@@ -410,15 +408,16 @@ class XMPPWebsocketClient:
         if self.running is True:
             return
 
-        http = self.auth_session.client
-        xmpp = self.config
+        client = self.auth_session.client
+        config = self.config
 
         self.session = ClientSession(
-            connector=http.connector, connector_owner=http.connector is None
+            connector=client.connector,
+            connector_owner=client.connector is None,
         )
         self.ws = await self.session.ws_connect(
-            f"wss://{xmpp.domain}:{xmpp.port}",
-            timeout=xmpp.connect_timeout,
+            f"wss://{config.domain}:{config.port}",
+            timeout=config.connect_timeout,
             protocols=("xmpp",),
         )
         self.processor.setup()
