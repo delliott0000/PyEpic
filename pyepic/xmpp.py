@@ -239,7 +239,7 @@ class XMLProcessor:
                     f"Unknown message: {xml_id}", level=_logger.warning
                 )
 
-        if self.xmpp.ready:
+        if self.xmpp.negotiated:
             handled = False
         else:
             handled = await self.negotiate(xml)
@@ -319,7 +319,7 @@ class XMPPWebsocketClient:
         "processor",
         "recv_task",
         "ping_task",
-        "ready_event",
+        "negotiated_event",
         "cleanup_event",
         "exceptions",
         "_resource",
@@ -337,7 +337,7 @@ class XMPPWebsocketClient:
 
         self.recv_task: Task | None = None
         self.ping_task: Task | None = None
-        self.ready_event: Event | None = None
+        self.negotiated_event: Event | None = None
         self.cleanup_event: Event | None = None
 
         self.exceptions: list[Exception] = []
@@ -357,12 +357,12 @@ class XMPPWebsocketClient:
         return bool(self.resource)
 
     @property
-    def ready(self) -> bool:
-        return self.bound and self.authenticated
-
-    @property
     def running(self) -> bool:
         return self.ws is not None and not self.ws.closed
+
+    @property
+    def negotiated(self) -> bool:
+        return self.bound and self.authenticated
 
     @property
     def resource(self) -> str | None:
@@ -371,8 +371,8 @@ class XMPPWebsocketClient:
     @resource.setter
     def resource(self, value: str | None, /) -> None:
         self._resource = value
-        if self.ready:
-            self.ready_event.set()
+        if self.negotiated:
+            self.negotiated_event.set()
 
     @property
     def authenticated(self) -> bool:
@@ -381,8 +381,8 @@ class XMPPWebsocketClient:
     @authenticated.setter
     def authenticated(self, value: bool, /) -> None:
         self._authenticated = value
-        if self.ready:
-            self.ready_event.set()
+        if self.negotiated:
+            self.negotiated_event.set()
 
     @property
     def most_recent_exception(self) -> Exception | None:
@@ -464,7 +464,7 @@ class XMPPWebsocketClient:
 
         self.recv_task = create_task(self.recv_loop())
         self.ping_task = create_task(self.ping_loop())
-        self.ready_event = Event()
+        self.negotiated_event = Event()
         self.cleanup_event = Event()
 
         self.auth_session.action_logger("XMPP started")
@@ -489,7 +489,7 @@ class XMPPWebsocketClient:
 
     async def set_session(self) -> None:
         try:
-            await wait_for(self.wait_for_ready(), self.config.connect_timeout)
+            await wait_for(self.wait_for_negotiated(), self.config.connect_timeout)
             await self.send(self.processor.generator.session())
 
         except (Exception, TimeoutError) as exception:
@@ -499,9 +499,9 @@ class XMPPWebsocketClient:
             print_exception(exception)
             await self.cleanup()
 
-    async def wait_for_ready(self) -> None:
+    async def wait_for_negotiated(self) -> None:
         try:
-            await self.ready_event.wait()
+            await self.negotiated_event.wait()
         except AttributeError:
             raise RuntimeError("XMPP client is not running!")
 
@@ -513,7 +513,7 @@ class XMPPWebsocketClient:
     async def cleanup(self) -> None:
         self.recv_task.cancel()
         self.ping_task.cancel()
-        self.ready_event.set()
+        self.negotiated_event.set()
         self.cleanup_event.set()
 
         await self.ws.close()
@@ -525,7 +525,7 @@ class XMPPWebsocketClient:
 
         self.recv_task = None
         self.ping_task = None
-        self.ready_event = None
+        self.negotiated_event = None
         self.cleanup_event = None
 
         self.resource = None
