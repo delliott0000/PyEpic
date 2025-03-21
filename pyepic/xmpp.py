@@ -145,6 +145,12 @@ class XMLGenerator:
             name="iq", to=self.xmpp.config.host, _from=self.xmpp.jid, **kwargs
         )
 
+    def make_message(self, *, to: str, **kwargs: Any) -> Stanza:
+        return Stanza(name="message", to=to, _from=self.xmpp.jid, **kwargs)
+
+    def make_presence(self, **kwargs: Any) -> Stanza:
+        return Stanza(name="presence", _from=self.xmpp.jid, **kwargs)
+
     def auth(self, mechanism: str, /) -> Stanza:
         if mechanism == "PLAIN":
             auth = self.b64_plain
@@ -248,6 +254,7 @@ class XMLProcessor:
             # TODO: handle events (messages, presences and so on)
             ...
 
+    # TODO: can we improve the way we inspect the xml data?
     async def negotiate(self, xml: Element, /) -> bool:
         xmpp = self.xmpp
         generator = self.generator
