@@ -15,7 +15,7 @@ from .errors import WSConnectionError, XMPPClosed, XMPPException
 
 if TYPE_CHECKING:
     from asyncio import Task
-    from collections.abc import Coroutine, Iterable
+    from collections.abc import Iterable
     from typing import Any
     from xml.etree.ElementTree import Element
 
@@ -23,8 +23,6 @@ if TYPE_CHECKING:
 
     from .auth import AuthSession
     from .http import XMPPConfig
-
-    SendCoro = Coroutine[Any, Any, None]
 
 
 if __import__("sys").version_info <= (3, 11):
@@ -132,7 +130,7 @@ class XMLGenerator:
         )
 
     @property
-    def quit(self) -> str:
+    def close(self) -> str:
         return "</stream:stream>"
 
     @property
@@ -272,7 +270,7 @@ class XMLProcessor:
             action_logger("Authenticated")
             self.teardown()
             self.setup()
-            await xmpp.open()
+            await xmpp.send(self.generator.open)
             return
 
         elif match(xml, XMLNamespaces.CLIENT, "iq"):
@@ -342,15 +340,6 @@ class XMPPWebsocketClient:
         except IndexError:
             return None
 
-    def open(self) -> SendCoro:
-        return self.send(self.processor.generator.open, with_xml_prolog=True)
-
-    def ping(self) -> SendCoro:
-        return self.send(self.processor.generator.ping())
-
-    def close(self) -> SendCoro:
-        return self.send(self.processor.generator.quit)
-
     async def send(
         self, source: Stanza | str, /, *, with_xml_prolog: bool = False
     ) -> None:
@@ -367,7 +356,7 @@ class XMPPWebsocketClient:
     async def ping_loop(self) -> None:
         while True:
             await sleep(self.config.ping_interval)
-            await self.ping()
+            await self.send(self.processor.generator.ping())
 
     async def recv_loop(self) -> None:
         self.auth_session.action_logger("Websocket receiver running")
@@ -432,13 +421,13 @@ class XMPPWebsocketClient:
         # Before sending our opening message
         # So the receiver can initialise first
         await sleep(0)
-        await self.open()
+        await self.send(self.processor.generator.open)
 
     async def stop(self) -> None:
         if self.running is False:
             return
 
-        await self.close()
+        await self.send(self.processor.generator.close)
 
         try:
             await wait_for(self.wait_for_cleanup(), self.config.stop_timeout)
