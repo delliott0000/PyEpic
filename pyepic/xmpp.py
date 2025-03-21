@@ -489,7 +489,9 @@ class XMPPWebsocketClient:
 
     async def set_session(self) -> None:
         try:
-            await wait_for(self.wait_for_negotiated(), self.config.connect_timeout)
+            await wait_for(
+                self.wait_for_negotiated(), self.config.connect_timeout
+            )
             await self.send(self.processor.generator.session())
 
         except (Exception, TimeoutError) as exception:
