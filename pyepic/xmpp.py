@@ -218,7 +218,6 @@ class XMLProcessor:
             raise RuntimeError("XML parser doesn't exist")
 
         self.parser.feed(message.data)
-
         for event, xml in self.parser.read_events():
 
             if event == "start-ns":
