@@ -186,6 +186,7 @@ class XMLGenerator:
         return self.make_iq(type="set", children=(child,))
 
 
+# noinspection PyAttributeOutsideInit
 class XMLProcessor:
     __slots__ = (
         "xmpp",
@@ -198,15 +199,12 @@ class XMLProcessor:
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
         self.generator: XMLGenerator = XMLGenerator(xmpp)
-
-        self.parser: XMLPullParser | None = None
-        self.outbound_ids: list[str] = []
-        self.xml_depth: int = 0
+        self.reset()
 
     def setup(self) -> None:
         self.parser = XMLPullParser(("start", "end"))
 
-    def teardown(self) -> None:
+    def reset(self) -> None:
         self.parser = None
         self.outbound_ids = []
         self.xml_depth = 0
@@ -217,9 +215,6 @@ class XMLProcessor:
 
         self.parser.feed(message.data)
 
-        # Inspiration: slixmpp
-        event: str
-        xml: Element
         for event, xml in self.parser.read_events():
 
             if event == "start":
@@ -291,7 +286,7 @@ class XMLProcessor:
 
             xmpp.authenticated = True
             action_logger("Authenticated")
-            self.teardown()
+            self.reset()
             self.setup()
             await xmpp.send(self.generator.open)
             return True
@@ -529,7 +524,7 @@ class XMPPWebsocketClient:
 
         self.session = None
         self.ws = None
-        self.processor.teardown()
+        self.processor.reset()
 
         self.recv_task = None
         self.ping_task = None
