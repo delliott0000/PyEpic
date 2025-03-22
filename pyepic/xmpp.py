@@ -93,7 +93,6 @@ class Stanza:
     def __str__(self) -> str:
         attrs_str = ""
         for key, value in self.attributes.items():
-            # Handle `_from` attribute
             key = key.strip("_")
             attrs_str += f" {key}='{value}'"
         if self.text:
@@ -142,14 +141,14 @@ class XMLGenerator:
 
     def make_iq(self, **kwargs: Any) -> Stanza:
         return Stanza(
-            name="iq", to=self.xmpp.config.host, _from=self.xmpp.jid, **kwargs
+            name="iq", to=self.xmpp.config.host, from_=self.xmpp.jid, **kwargs
         )
 
     def make_message(self, *, to: str, **kwargs: Any) -> Stanza:
-        return Stanza(name="message", to=to, _from=self.xmpp.jid, **kwargs)
+        return Stanza(name="message", to=to, from_=self.xmpp.jid, **kwargs)
 
     def make_presence(self, **kwargs: Any) -> Stanza:
-        return Stanza(name="presence", _from=self.xmpp.jid, **kwargs)
+        return Stanza(name="presence", from_=self.xmpp.jid, **kwargs)
 
     def auth(self, mechanism: str, /) -> Stanza:
         if mechanism == "PLAIN":
