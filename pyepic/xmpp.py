@@ -207,11 +207,11 @@ class XMLProcessor:
         self.parser = XMLPullParser(("start", "end", "start-ns"))
 
     def reset(self) -> None:
-        self.parser = None
-        self.outbound_ids = []
-        self.xml_depth = 0
-        self.ns_stack = []
-        self.ns_temp = []
+        self.parser: XMLPullParser | None = None
+        self.outbound_ids: list[str] = []
+        self.xml_depth: int = 0
+        self.ns_stack: list[dict[str, str]] = []
+        self.ns_temp: list[tuple[str, str]] = []
 
     async def process(self, message: WSMessage, /) -> None:
         if self.parser is None:
@@ -224,7 +224,7 @@ class XMLProcessor:
             if event == "start-ns":
                 self.ns_temp.append(xml)
 
-            if event == "start":
+            elif event == "start":
                 self.xml_depth += 1
                 try:
                     new_scope = self.ns_stack[-1].copy()
@@ -491,7 +491,7 @@ class XMPPWebsocketClient:
         # So the receiver can initialise first
         await sleep(0)
         await self.send(self.processor.generator.open)
-        create_task(self.set_session())  # noqa
+        create_task(self.setup())  # noqa
 
     async def stop(self) -> None:
         if self.running is False:
@@ -504,7 +504,7 @@ class XMPPWebsocketClient:
         except TimeoutError:
             await self.cleanup()
 
-    async def set_session(self) -> None:
+    async def setup(self) -> None:
         try:
             await wait_for(
                 self.wait_for_negotiated(), self.config.connect_timeout
@@ -513,7 +513,7 @@ class XMPPWebsocketClient:
 
         except (Exception, TimeoutError) as exception:
             self.auth_session.action_logger(
-                "Failed to set session - aborting..", level=_logger.error
+                "Setup failed - aborting..", level=_logger.error
             )
             print_exception(exception)
             await self.cleanup()
