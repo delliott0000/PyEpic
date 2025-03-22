@@ -15,7 +15,7 @@ from .errors import WSConnectionError, XMPPClosed, XMPPException
 
 if TYPE_CHECKING:
     from asyncio import Task
-    from collections.abc import Iterable
+    from collections.abc import Callable, Iterable
     from typing import Any
     from xml.etree.ElementTree import Element
 
@@ -186,7 +186,6 @@ class XMLGenerator:
         return self.make_iq(type="set", children=(child,))
 
 
-# noinspection PyAttributeOutsideInit
 class XMLProcessor:
     __slots__ = (
         "xmpp",
@@ -202,12 +201,12 @@ class XMLProcessor:
         self.reset()
 
     def setup(self) -> None:
-        self.parser = XMLPullParser(("start", "end"))
+        self.parser = XMLPullParser(("start", "end"))  # noqa
 
     def reset(self) -> None:
-        self.parser: XMLPullParser | None = None
-        self.outbound_ids: list[str] = []
-        self.xml_depth: int = 0
+        self.parser: XMLPullParser | None = None  # noqa
+        self.outbound_ids: list[str] = []  # noqa
+        self.xml_depth: int = 0  # noqa
 
     async def process(self, message: WSMessage, /) -> None:
         if self.parser is None:
@@ -238,76 +237,87 @@ class XMLProcessor:
                     f"Unknown message: {xml_id}", level=_logger.warning
                 )
 
-        if self.xmpp.negotiated:
-            handled = False
+        if not self.xmpp.negotiated:
+            await self.negotiate(xml)
         else:
-            handled = await self.negotiate(xml)
-
-        if handled is False:
-            # TODO: handle events (messages, presences and so on)
+            # TODO: handle events here
             ...
 
-    # TODO: can we improve the way we inspect the xml data?
-    async def negotiate(self, xml: Element, /) -> bool:
-        xmpp = self.xmpp
-        generator = self.generator
-        action_logger = xmpp.auth_session.action_logger
+    async def negotiate(self, xml: Element, /) -> None:
+        negotiation: dict[tuple, Callable] = {
+            (
+                XMLNamespaces.STREAM,
+                "features",
+                (
+                    XMLNamespaces.SASL,
+                    "mechanisms",
+                    (XMLNamespaces.SASL, "mechanism", None),
+                ),
+            ): self.sasl,
+            (
+                XMLNamespaces.STREAM,
+                "features",
+                (XMLNamespaces.BIND, "bind", None),
+            ): self.bind,
+            (XMLNamespaces.SASL, "success", None): self.sasl_success,
+            (
+                XMLNamespaces.CLIENT,
+                "iq",
+                (
+                    XMLNamespaces.BIND,
+                    "bind",
+                    (XMLNamespaces.BIND, "jid", None),
+                ),
+            ): self.bind_success,
+        }
 
-        if match(xml, XMLNamespaces.STREAM, "features"):
+        def traverse(_xml: Element, _pattern: tuple, /) -> Element | None:
+            ns, tag, subpattern = _pattern
 
-            for sub_xml_1 in xml:
-                if match(sub_xml_1, XMLNamespaces.SASL, "mechanisms"):
+            if not match(_xml, ns, tag):
+                return None
+            elif subpattern is None:
+                return _xml
 
-                    for sub_xml_2 in sub_xml_1:
-                        if match(sub_xml_2, XMLNamespaces.SASL, "mechanism"):
+            child = _xml.find(f"{{{subpattern[0]}}}{subpattern[1]}")
 
-                            mechanism = sub_xml_2.text
-                            action_logger(
-                                f"Attempting {mechanism} authentication.."
-                            )
-                            auth = generator.auth(mechanism)
-                            await xmpp.send(auth)
-                            return True
+            if child is None:
+                return None
 
-                    else:
-                        raise XMPPException(
-                            xml,
-                            "Could not determine stream authentication method",
-                        )
+            return traverse(child, subpattern)
 
-                elif match(sub_xml_1, XMLNamespaces.BIND, "bind"):
+        for pattern, callback in negotiation.items():
+            result = traverse(xml, pattern)
+            if result is not None:
+                await callback(result)
+                return
 
-                    resource = make_resource(xmpp.config.platform)
-                    await xmpp.send(generator.bind(resource))
-                    return True
+        raise XMPPException(xml, "Unable to negotiate stream")
 
-        elif match(xml, XMLNamespaces.SASL, "success"):
+    async def sasl(self, xml: Element, /) -> None:
+        mechanism = xml.text
+        self.xmpp.auth_session.action_logger(
+            f"Attempting {mechanism} authentication.."
+        )
+        auth = self.generator.auth(mechanism)
+        await self.xmpp.send(auth)
 
-            xmpp.authenticated = True
-            action_logger("Authenticated")
-            self.reset()
-            self.setup()
-            await xmpp.send(self.generator.open)
-            return True
+    async def bind(self, _: Element, /) -> None:
+        resource = make_resource(self.xmpp.config.platform)
+        await self.xmpp.send(self.generator.bind(resource))
 
-        elif match(xml, XMLNamespaces.CLIENT, "iq"):
+    async def sasl_success(self, _: Element, /) -> None:
+        self.xmpp.authenticated = True
+        self.xmpp.auth_session.action_logger("Authenticated")
+        self.reset()
+        self.setup()
+        await self.xmpp.send(self.generator.open)
 
-            for sub_xml_1 in xml:
-                if match(sub_xml_1, XMLNamespaces.BIND, "bind"):
-
-                    for sub_xml_2 in sub_xml_1:
-                        if match(sub_xml_2, XMLNamespaces.BIND, "jid"):
-
-                            jid = sub_xml_2.text
-                            resource = jid.split("/")[1]
-                            xmpp.resource = resource
-                            action_logger(f"Bound to JID {jid}")
-                            return True
-
-                    else:
-                        raise XMPPException(xml, "Unable to bind JID")
-
-        return False
+    async def bind_success(self, xml: Element, /) -> None:
+        jid = xml.text
+        resource = jid.split("/")[1]
+        self.xmpp.resource = resource
+        self.xmpp.auth_session.action_logger(f"Bound to JID {jid}")
 
 
 class XMPPWebsocketClient:
