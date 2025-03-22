@@ -319,6 +319,7 @@ class XMPPWebsocketClient:
         "processor",
         "recv_task",
         "ping_task",
+        "setup_task",
         "negotiated_event",
         "cleanup_event",
         "exceptions",
@@ -337,6 +338,8 @@ class XMPPWebsocketClient:
 
         self.recv_task: Task | None = None
         self.ping_task: Task | None = None
+        self.setup_task: Task | None = None
+
         self.negotiated_event: Event | None = None
         self.cleanup_event: Event | None = None
 
@@ -464,6 +467,8 @@ class XMPPWebsocketClient:
 
         self.recv_task = create_task(self.recv_loop())
         self.ping_task = create_task(self.ping_loop())
+        self.setup_task = create_task(self.setup())
+
         self.negotiated_event = Event()
         self.cleanup_event = Event()
 
@@ -474,7 +479,6 @@ class XMPPWebsocketClient:
         # So the receiver can initialise first
         await sleep(0)
         await self.send(self.processor.generator.open)
-        create_task(self.setup())  # noqa
 
     async def stop(self) -> None:
         if self.running is False:
@@ -483,23 +487,42 @@ class XMPPWebsocketClient:
         await self.send(self.processor.generator.close)
 
         try:
-            await wait_for(self.wait_for_cleanup(), self.config.stop_timeout)
+            event = self.wait_for_cleanup()
+            timeout = self.config.stop_timeout
+            await wait_for(event, timeout)
+
         except TimeoutError:
             await self.cleanup()
 
     async def setup(self) -> None:
+        complete = False
+
         try:
-            await wait_for(
-                self.wait_for_negotiated(), self.config.connect_timeout
-            )
+            event = self.wait_for_negotiated()
+            timeout = self.config.connect_timeout
+            await wait_for(event, timeout)
+
+            # TODO: send initial session/presence/party
             await self.send(self.processor.generator.session())
+            ...
+
+            complete = True
 
         except (Exception, TimeoutError) as exception:
-            self.auth_session.action_logger(
-                "Setup failed - aborting..", level=_logger.error
-            )
+            txt, level = "Setup failed - aborting..", _logger.error
+
+            self.auth_session.action_logger(txt, level=level)
+            self.exceptions.append(exception)
+
             print_exception(exception)
-            await self.cleanup()
+
+            create_task(self.cleanup())  # noqa
+
+        finally:
+            if complete:
+                self.auth_session.action_logger("Setup finished")
+            else:
+                self.auth_session.action_logger("Setup aborted")
 
     async def wait_for_negotiated(self) -> None:
         try:
@@ -513,10 +536,13 @@ class XMPPWebsocketClient:
         await self.cleanup_event.wait()
 
     async def cleanup(self) -> None:
-        self.recv_task.cancel()
-        self.ping_task.cancel()
-        self.negotiated_event.set()
-        self.cleanup_event.set()
+        for task in self.recv_task, self.ping_task, self.setup_task:
+            if task and not task.done():
+                task.cancel()
+
+        for event in self.negotiated_event, self.cleanup_event:
+            if event and not event.is_set():
+                event.set()
 
         await self.ws.close()
         await self.session.close()
@@ -527,6 +553,8 @@ class XMPPWebsocketClient:
 
         self.recv_task = None
         self.ping_task = None
+        self.setup_task = None
+
         self.negotiated_event = None
         self.cleanup_event = None
 
