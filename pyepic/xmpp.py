@@ -194,6 +194,8 @@ class XMLProcessor:
         "parser",
         "outbound_ids",
         "xml_depth",
+        "ns_stack",
+        "ns_temp",
     )
 
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
@@ -202,12 +204,14 @@ class XMLProcessor:
         self.reset()
 
     def setup(self) -> None:
-        self.parser = XMLPullParser(("start", "end"))
+        self.parser = XMLPullParser(("start", "end", "start-ns"))
 
     def reset(self) -> None:
         self.parser = None
         self.outbound_ids = []
         self.xml_depth = 0
+        self.ns_stack = []
+        self.ns_temp = []
 
     async def process(self, message: WSMessage, /) -> None:
         if self.parser is None:
@@ -217,11 +221,23 @@ class XMLProcessor:
 
         for event, xml in self.parser.read_events():
 
+            if event == "start-ns":
+                self.ns_temp.append(xml)
+
             if event == "start":
                 self.xml_depth += 1
+                try:
+                    new_scope = self.ns_stack[-1].copy()
+                except IndexError:
+                    new_scope = {}
+                self.ns_stack.append(
+                    new_scope | {key: value for key, value in self.ns_temp}
+                )
+                self.ns_temp = []
 
             elif event == "end":
                 self.xml_depth -= 1
+                self.ns_stack = self.ns_stack[:-1]
 
                 if self.xml_depth == 0:
                     raise XMPPClosed(xml, "Stream closed")
