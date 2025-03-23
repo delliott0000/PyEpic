@@ -58,7 +58,6 @@ def match(xml: Element, ns: str, tag: str, /) -> bool:
 
 
 class XMLNamespaces:
-
     SESSION = "urn:ietf:params:xml:ns:xmpp-session"
     CLIENT = "jabber:client"
     STREAM = "http://etherx.jabber.org/streams"

@@ -61,7 +61,6 @@ class CacheConfig:
 
 @dataclass(kw_only=True, slots=True, frozen=True)
 class XMPPConfig:
-
     xml_version: str = "1.0"
     xmpp_version: str = "1.0"
 
