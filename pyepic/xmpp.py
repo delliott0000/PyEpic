@@ -469,6 +469,8 @@ class XMPPWebsocketClient:
     async def send(
         self, source: Stanza | str, /, *, with_xml_prolog: bool = False
     ) -> None:
+        if not self.running:
+            raise RuntimeError("XMPP client is not running!")
         if isinstance(source, Stanza):
             if source.id is not None:
                 self.processor.outbound_ids.append(source.id)
