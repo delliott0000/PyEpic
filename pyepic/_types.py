@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, TypeVar
 
 if TYPE_CHECKING:
-    from collections.abc import Coroutine
+    from collections.abc import Callable, Coroutine
     from typing import Any, Literal, TypedDict
 
     from .account import PartialAccount
@@ -25,6 +25,9 @@ if TYPE_CHECKING:
     FriendType = Literal[
         "friends", "incoming", "outgoing", "suggested", "blocklist"
     ]
+
+    Listener = Callable[..., ...]
+    ListenerDeco = Callable[[Listener], Listener]
 
     class PartialCacheEntry(TypedDict):
         account: PartialAccount

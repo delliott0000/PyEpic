@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from asyncio import Event, create_task, sleep, wait_for
 from base64 import b64encode, urlsafe_b64encode
+from collections import defaultdict
 from logging import getLogger
 from random import getrandbits
 from traceback import print_exception
@@ -21,6 +22,7 @@ if TYPE_CHECKING:
 
     from aiohttp import ClientWebSocketResponse, WSMessage
 
+    from ._types import Listener, ListenerDeco
     from .auth import AuthSession
     from .http import XMPPConfig
 
@@ -30,6 +32,7 @@ if __import__("sys").version_info <= (3, 11):
 
 
 __all__ = (
+    "EventDispatcher",
     "XMLNamespaces",
     "Stanza",
     "XMLGenerator",
@@ -55,6 +58,53 @@ def make_resource(platform: str, /) -> str:
 
 def match(xml: Element, ns: str, tag: str, /) -> bool:
     return xml.tag == f"{{{ns}}}{tag}"
+
+
+class EventDispatcher:
+    event_listeners: dict[str, list[Listener]] = defaultdict(list)
+    presence_listeners: list[Listener] = []
+
+    @classmethod
+    def event(cls, event: str, /) -> ListenerDeco:
+        def decorator(listener: Listener, /) -> Listener:
+            cls.add_event_listener(event, listener)
+            return listener
+
+        return decorator
+
+    @classmethod
+    def presence(cls) -> ListenerDeco:
+        def decorator(listener: Listener, /) -> Listener:
+            cls.add_presence_listener(listener)
+            return listener
+
+        return decorator
+
+    @classmethod
+    def add_event_listener(cls, event: str, listener: Listener, /) -> None:
+        cls.event_listeners[event].append(listener)
+        _logger.debug(f"Added listener {listener} for event {event}")
+
+    @classmethod
+    def add_presence_listener(cls, listener: Listener, /) -> None:
+        cls.presence_listeners.append(listener)
+        _logger.debug(f"Added presence listener {listener}")
+
+    @classmethod
+    def remove_event_listener(cls, event: str, listener: Listener, /) -> None:
+        try:
+            cls.event_listeners[event].remove(listener)
+        except ValueError:
+            return
+        _logger.debug(f"Removed listener {listener} for event {event}")
+
+    @classmethod
+    def remove_presence_listener(cls, listener: Listener, /) -> None:
+        try:
+            cls.presence_listeners.remove(listener)
+        except ValueError:
+            return
+        _logger.debug(f"Removed presence listener {listener}")
 
 
 class XMLNamespaces:
