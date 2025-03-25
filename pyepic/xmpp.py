@@ -575,11 +575,7 @@ class XMPPWebsocketClient:
             event = self.wait_for_negotiated()
             timeout = self.config.connect_timeout
             await wait_for(event, timeout)
-
-            # TODO: send initial session/presence/party
-            await self.send(self.processor.generator.session())
-            ...
-
+            await self._setup()
             complete = True
 
         except (Exception, TimeoutError) as exception:
@@ -597,6 +593,12 @@ class XMPPWebsocketClient:
                 self.auth_session.action_logger("Setup finished")
             else:
                 self.auth_session.action_logger("Setup aborted")
+
+    async def _setup(self) -> None:
+        await self.send(self.processor.generator.session())
+        await self.send(self.processor.generator.make_presence())
+        # TODO: party setup
+        ...
 
     async def wait_for_negotiated(self) -> None:
         try:
