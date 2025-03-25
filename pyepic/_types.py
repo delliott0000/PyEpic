@@ -26,7 +26,7 @@ if TYPE_CHECKING:
         "friends", "incoming", "outgoing", "suggested", "blocklist"
     ]
 
-    Listener = Callable[..., ...]
+    Listener = Callable[..., Coroutine[..., ..., ...]]
     ListenerDeco = Callable[[Listener], Listener]
 
     class PartialCacheEntry(TypedDict):

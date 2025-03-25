@@ -33,8 +33,8 @@ if __import__("sys").version_info <= (3, 11):
 
 __all__ = (
     "EventDispatcher",
-    "XMLNamespaces",
     "Stanza",
+    "XMLNamespaces",
     "XMLGenerator",
     "XMLProcessor",
     "XMPPWebsocketClient",
@@ -63,6 +63,16 @@ def match(xml: Element, ns: str, tag: str, /) -> bool:
 class EventDispatcher:
     event_listeners: dict[str, list[Listener]] = defaultdict(list)
     presence_listeners: list[Listener] = []
+
+    @classmethod
+    def process_event(
+        cls, auth_session: AuthSession, xml: Element, /
+    ) -> None: ...
+
+    @classmethod
+    def process_presence(
+        cls, auth_session: AuthSession, xml: Element, /
+    ) -> None: ...
 
     @classmethod
     def event(cls, event: str, /) -> ListenerDeco:
@@ -107,15 +117,6 @@ class EventDispatcher:
         _logger.debug(f"Removed presence listener {listener}")
 
 
-class XMLNamespaces:
-    SESSION = "urn:ietf:params:xml:ns:xmpp-session"
-    CLIENT = "jabber:client"
-    STREAM = "http://etherx.jabber.org/streams"
-    SASL = "urn:ietf:params:xml:ns:xmpp-sasl"
-    BIND = "urn:ietf:params:xml:ns:xmpp-bind"
-    PING = "urn:xmpp:ping"
-
-
 class Stanza:
     __slots__ = ("name", "text", "children", "attributes")
 
@@ -157,6 +158,15 @@ class Stanza:
     @property
     def id(self) -> str | None:
         return self.attributes.get("id")
+
+
+class XMLNamespaces:
+    SESSION = "urn:ietf:params:xml:ns:xmpp-session"
+    CLIENT = "jabber:client"
+    STREAM = "http://etherx.jabber.org/streams"
+    SASL = "urn:ietf:params:xml:ns:xmpp-sasl"
+    BIND = "urn:ietf:params:xml:ns:xmpp-bind"
+    PING = "urn:xmpp:ping"
 
 
 class XMLGenerator:
@@ -288,8 +298,11 @@ class XMLProcessor:
 
         if not self.xmpp.negotiated:
             await self.negotiate(xml)
+        elif "message" in xml.tag:
+            EventDispatcher.process_event(self.xmpp.auth_session, xml)
+        elif "presence" in xml.tag:
+            EventDispatcher.process_presence(self.xmpp.auth_session, xml)
         else:
-            # TODO: handle events here
             ...
 
     async def negotiate(self, xml: Element, /) -> None:
