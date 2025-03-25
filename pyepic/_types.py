@@ -19,6 +19,7 @@ if TYPE_CHECKING:
 
     DCo = Coroutine[Any, Any, Dict]
     JCo = Coroutine[Any, Any, Json]
+    NCo = Coroutine[Any, Any, None]
 
     Attributes = dict[str, Any]
 

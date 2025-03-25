@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
     from aiohttp import ClientWebSocketResponse, WSMessage
 
-    from ._types import Listener, ListenerDeco
+    from ._types import Listener, ListenerDeco, NCo
     from .auth import AuthSession
     from .http import XMPPConfig
 
@@ -189,7 +189,7 @@ class XMLGenerator:
         )
 
     @property
-    def close(self) -> str:
+    def quit(self) -> str:
         return "</stream:stream>"
 
     @property
@@ -248,7 +248,6 @@ class XMLGenerator:
 class XMLProcessor:
     __slots__ = (
         "xmpp",
-        "generator",
         "parser",
         "outbound_ids",
         "xml_depth",
@@ -256,7 +255,6 @@ class XMLProcessor:
 
     def __init__(self, xmpp: XMPPWebsocketClient, /) -> None:
         self.xmpp: XMPPWebsocketClient = xmpp
-        self.generator: XMLGenerator = XMLGenerator(xmpp)
         self.reset()
 
     def setup(self) -> None:
@@ -361,19 +359,18 @@ class XMLProcessor:
         self.xmpp.auth_session.action_logger(
             f"Attempting {mechanism} authentication.."
         )
-        auth = self.generator.auth(mechanism)
-        await self.xmpp.send(auth)
+        await self.xmpp.send_auth(mechanism)
 
     async def bind(self, _: Element, /) -> None:
         resource = make_resource(self.xmpp.config.platform)
-        await self.xmpp.send(self.generator.bind(resource))
+        await self.xmpp.send_bind(resource)
 
     async def sasl_success(self, _: Element, /) -> None:
         self.xmpp.authenticated = True
         self.xmpp.auth_session.action_logger("Authenticated")
         self.reset()
         self.setup()
-        await self.xmpp.send(self.generator.open)
+        await self.xmpp.send_open()
 
     async def bind_success(self, xml: Element, /) -> None:
         jid = xml.text
@@ -389,6 +386,7 @@ class XMPPWebsocketClient:
         "session",
         "ws",
         "processor",
+        "generator",
         "recv_task",
         "ping_task",
         "setup_task",
@@ -407,6 +405,7 @@ class XMPPWebsocketClient:
         self.ws: ClientWebSocketResponse | None = None
 
         self.processor: XMLProcessor = XMLProcessor(self)
+        self.generator: XMLGenerator = XMLGenerator(self)
 
         self.recv_task: Task | None = None
         self.ping_task: Task | None = None
@@ -466,6 +465,21 @@ class XMPPWebsocketClient:
         except IndexError:
             return None
 
+    def send_open(self) -> NCo:
+        return self.send(self.generator.open, with_xml_prolog=True)
+
+    def send_auth(self, mechanism: str, /) -> NCo:
+        return self.send(self.generator.auth(mechanism))
+
+    def send_bind(self, resource: str, /) -> NCo:
+        return self.send(self.generator.bind(resource))
+
+    def send_ping(self) -> NCo:
+        return self.send(self.generator.ping())
+
+    def send_quit(self) -> NCo:
+        return self.send(self.generator.quit)
+
     async def send(
         self, source: Stanza | str, /, *, with_xml_prolog: bool = False
     ) -> None:
@@ -476,7 +490,7 @@ class XMPPWebsocketClient:
                 self.processor.outbound_ids.append(source.id)
             source = str(source)
         if with_xml_prolog is True:
-            source = self.processor.generator.xml_prolog + source
+            source = self.generator.xml_prolog + source
 
         await self.ws.send_str(source)
         self.auth_session.action_logger(f"SENT: {source}")
@@ -484,7 +498,7 @@ class XMPPWebsocketClient:
     async def ping_loop(self) -> None:
         while True:
             await sleep(self.config.ping_interval)
-            await self.send(self.processor.generator.ping())
+            await self.send_ping()
 
     async def recv_loop(self) -> None:
         self.auth_session.action_logger("Websocket receiver running")
@@ -552,13 +566,13 @@ class XMPPWebsocketClient:
         # Before sending our opening message
         # So the receiver can initialise first
         await sleep(0)
-        await self.send(self.processor.generator.open)
+        await self.send_open()
 
     async def stop(self) -> None:
         if self.running is False:
             return
 
-        await self.send(self.processor.generator.close)
+        await self.send_quit()
 
         try:
             event = self.wait_for_cleanup()
@@ -595,8 +609,8 @@ class XMPPWebsocketClient:
                 self.auth_session.action_logger("Setup aborted")
 
     async def _setup(self) -> None:
-        await self.send(self.processor.generator.session())
-        await self.send(self.processor.generator.make_presence())
+        await self.send(self.generator.session())
+        await self.send(self.generator.make_presence())
         # TODO: party setup
         ...
 
