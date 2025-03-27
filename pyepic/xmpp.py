@@ -13,10 +13,12 @@ from xml.etree.ElementTree import XMLPullParser
 from aiohttp import ClientSession, WSMsgType
 
 from .errors import WSConnectionError, XMPPClosed, XMPPException
+from .utils import utc_now
 
 if TYPE_CHECKING:
     from asyncio import Task
     from collections.abc import Callable, Iterable
+    from datetime import datetime
     from typing import Any
     from xml.etree.ElementTree import Element
 
@@ -32,6 +34,7 @@ if __import__("sys").version_info <= (3, 11):
 
 
 __all__ = (
+    "EventContext",
     "EventDispatcher",
     "Stanza",
     "XMLNamespaces",
@@ -60,19 +63,17 @@ def match(xml: Element, ns: str, tag: str, /) -> bool:
     return xml.tag == f"{{{ns}}}{tag}"
 
 
+class EventContext:
+    __slots__ = ("auth_session", "created_at")
+
+    def __init__(self, auth_session: AuthSession, /) -> None:
+        self.auth_session: AuthSession = auth_session
+        self.created_at: datetime = utc_now()
+
+
 class EventDispatcher:
     event_listeners: dict[str, list[Listener]] = defaultdict(list)
     presence_listeners: list[Listener] = []
-
-    @classmethod
-    def process_event(
-        cls, auth_session: AuthSession, xml: Element, /
-    ) -> None: ...
-
-    @classmethod
-    def process_presence(
-        cls, auth_session: AuthSession, xml: Element, /
-    ) -> None: ...
 
     @classmethod
     def event(cls, event: str, /) -> ListenerDeco:
@@ -296,10 +297,6 @@ class XMLProcessor:
 
         if not self.xmpp.negotiated:
             await self.negotiate(xml)
-        elif "message" in xml.tag:
-            EventDispatcher.process_event(self.xmpp.auth_session, xml)
-        elif "presence" in xml.tag:
-            EventDispatcher.process_presence(self.xmpp.auth_session, xml)
         else:
             ...
 

@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from .auth import AuthSession
     from .fortnite import SaveTheWorldItem
     from .route import Route
+    from .xmpp import EventContext
 
     URL = Route | str
 
@@ -27,7 +28,7 @@ if TYPE_CHECKING:
         "friends", "incoming", "outgoing", "suggested", "blocklist"
     ]
 
-    Listener = Callable[..., Coroutine[..., ..., ...]]
+    Listener = Callable[[EventContext], NCo]
     ListenerDeco = Callable[[Listener], Listener]
 
     class PartialCacheEntry(TypedDict):
