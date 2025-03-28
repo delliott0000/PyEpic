@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 
     from aiohttp import ClientWebSocketResponse, WSMessage
 
-    from ._types import Listener, ListenerDeco, NCo
+    from ._types import Dict, Listener, ListenerDeco, NCo
     from .auth import AuthSession
     from .http import XMPPConfig
 
@@ -64,16 +64,23 @@ def match(xml: Element, ns: str, tag: str, /) -> bool:
 
 
 class EventContext:
-    __slots__ = ("auth_session", "created_at")
+    __slots__ = ("auth_session", "body", "created_at")
 
-    def __init__(self, auth_session: AuthSession, /) -> None:
+    def __init__(self, auth_session: AuthSession, body: Dict, /) -> None:
         self.auth_session: AuthSession = auth_session
+        self.body: Dict = body
         self.created_at: datetime = utc_now()
 
 
 class EventDispatcher:
     event_listeners: dict[str, list[Listener]] = defaultdict(list)
     presence_listeners: list[Listener] = []
+
+    @classmethod
+    def on_event(cls, auth_session: AuthSession, body: Dict, /) -> None: ...
+
+    @classmethod
+    def on_presence(cls, auth_session: AuthSession, body: Dict, /) -> None: ...
 
     @classmethod
     def event(cls, event: str, /) -> ListenerDeco:
@@ -287,18 +294,22 @@ class XMLProcessor:
 
     async def handler(self, xml: Element, /) -> None:
         xml_id = xml.attrib.get("id")
-        if xml_id:
-            if xml_id in self.outbound_ids:
-                self.outbound_ids.remove(xml_id)
-            else:
-                self.xmpp.auth_session.action_logger(
-                    f"Unknown message: {xml_id}", level=_logger.warning
-                )
+        known = False
+
+        if xml_id in self.outbound_ids:
+            self.outbound_ids.remove(xml_id)
+            known = True
 
         if not self.xmpp.negotiated:
             await self.negotiate(xml)
-        else:
+        elif "message" in xml.tag:
             ...
+        elif "presence" in xml.tag:
+            ...
+        elif not known:
+            self.xmpp.auth_session.action_logger(
+                f"Unknown message: {xml_id}", level=_logger.warning
+            )
 
     async def negotiate(self, xml: Element, /) -> None:
         negotiation: dict[tuple, Callable] = {
