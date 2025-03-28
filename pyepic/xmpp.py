@@ -75,12 +75,38 @@ class EventContext:
 class EventDispatcher:
     event_listeners: dict[str, list[Listener]] = defaultdict(list)
     presence_listeners: list[Listener] = []
+    tasks: list[Task] = []
 
     @classmethod
-    def on_event(cls, auth_session: AuthSession, body: Dict, /) -> None: ...
+    def on_event(cls, auth_session: AuthSession, body: Dict, /) -> None:
+        event = body.get("type")
+        ctx = EventContext(auth_session, body)
+        for func in cls.event_listeners.get(event, []):
+            cls.run_coro(func(ctx))
 
     @classmethod
-    def on_presence(cls, auth_session: AuthSession, body: Dict, /) -> None: ...
+    def on_presence(cls, auth_session: AuthSession, body: Dict, /) -> None:
+        ctx = EventContext(auth_session, body)
+        for func in cls.presence_listeners:
+            cls.run_coro(func(ctx))
+
+    @classmethod
+    def run_coro(cls, coro: NCo, /) -> None:
+        task = create_task(coro)
+        cls.tasks.append(task)
+        task.add_done_callback(cls.on_task_complete)
+
+    @classmethod
+    def on_task_complete(cls, task: Task, /) -> None:
+        try:
+            cls.tasks.remove(task)
+        except ValueError:
+            pass
+
+        exception = task.exception()
+        if exception is not None:
+            _logger.error("Dispatched event raised an exception")
+            print_exception(exception)
 
     @classmethod
     def event(cls, event: str, /) -> ListenerDeco:
@@ -290,9 +316,9 @@ class XMLProcessor:
                     raise XMPPClosed(xml, "Stream closed")
 
                 elif self.xml_depth == 1:
-                    await self.handler(xml)
+                    await self.handle(xml)
 
-    async def handler(self, xml: Element, /) -> None:
+    async def handle(self, xml: Element, /) -> None:
         xml_id = xml.attrib.get("id")
         known = False
 
