@@ -3,6 +3,7 @@ from __future__ import annotations
 from asyncio import Event, create_task, sleep, wait_for
 from base64 import b64encode, urlsafe_b64encode
 from collections import defaultdict
+from json import loads
 from logging import getLogger
 from random import getrandbits
 from traceback import print_exception
@@ -319,7 +320,7 @@ class XMLProcessor:
                     await self.handle(xml)
 
     async def handle(self, xml: Element, /) -> None:
-        xml_id = xml.attrib.get("id")
+        xml_id = xml.get("id")
         known = False
 
         if xml_id in self.outbound_ids:
@@ -329,13 +330,73 @@ class XMLProcessor:
         if not self.xmpp.negotiated:
             await self.negotiate(xml)
         elif "message" in xml.tag:
-            ...
+            self.handle_event(xml)
         elif "presence" in xml.tag:
-            ...
+            self.handle_presence(xml)
         elif not known:
             self.xmpp.auth_session.action_logger(
                 f"Unknown message: {xml_id}", level=_logger.warning
             )
+
+    def handle_event(self, xml: Element, /) -> None:
+        type_ = xml.get("type")
+
+        if type_ is not None and type_ != "normal":
+            return
+
+        from_ = xml.get("from")
+
+        if from_ != "xmpp-admin@prod.ol.epicgames.com":
+            return
+
+        for sub_xml in xml:
+            if "body" in sub_xml.tag:
+                body = loads(sub_xml.text)
+                break
+        else:
+            return
+
+        EventDispatcher.on_event(self.xmpp.auth_session, body)
+
+    def handle_presence(self, xml: Element, /) -> None:
+        type_ = xml.get("type")
+
+        if type_ is None or type_ == "available":
+            available = True
+        elif type_ == "unavailable":
+            available = False
+        else:
+            return
+
+        from_ = xml.get("from")
+
+        if from_ is None or "-" in from_:
+            return
+
+        split = from_.split("@")
+        user_id = split[0]
+        platform = split[1].split(":")[2]
+
+        status = None
+        show = None
+
+        for sub_xml in xml:
+            if "status" in sub_xml.tag:
+                status = loads(sub_xml.text)
+            elif "show" in sub_xml.tag:
+                show = sub_xml.text
+
+        if status is None:
+            return
+
+        body = {
+            "user_id": user_id,
+            "platform": platform,
+            "available": available,
+            "show": show,
+            "status": status,
+        }
+        EventDispatcher.on_presence(self.xmpp.auth_session, body)
 
     async def negotiate(self, xml: Element, /) -> None:
         negotiation: dict[tuple, Callable] = {
