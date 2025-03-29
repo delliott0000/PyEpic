@@ -35,7 +35,7 @@ if __import__("sys").version_info <= (3, 11):
 
 
 __all__ = (
-    "EventContext",
+    "Context",
     "EventDispatcher",
     "Stanza",
     "XMLNamespaces",
@@ -64,7 +64,7 @@ def match(xml: Element, ns: str, tag: str, /) -> bool:
     return xml.tag == f"{{{ns}}}{tag}"
 
 
-class EventContext:
+class Context:
     __slots__ = ("auth_session", "body", "created_at")
 
     def __init__(self, auth_session: AuthSession, body: Dict, /) -> None:
@@ -81,13 +81,13 @@ class EventDispatcher:
     @classmethod
     def on_event(cls, auth_session: AuthSession, body: Dict, /) -> None:
         event = body.get("type")
-        ctx = EventContext(auth_session, body)
+        ctx = Context(auth_session, body)
         for func in cls.event_listeners.get(event, []):
             cls.run_coro(func(ctx))
 
     @classmethod
     def on_presence(cls, auth_session: AuthSession, body: Dict, /) -> None:
-        ctx = EventContext(auth_session, body)
+        ctx = Context(auth_session, body)
         for func in cls.presence_listeners:
             cls.run_coro(func(ctx))
 
